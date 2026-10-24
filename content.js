@@ -44,10 +44,44 @@ const SITE = {
     "When I was a kid, I used to wonder…\n How can a movie scene stay in my head for years? Or a song from an ad keep playing in my ears?\nThen I realized  Anything that touches our feelings… stays inside us.\nThat’s when I noticed:\n It’s not always about the information,\n it’s about the emotion.\nA short sentence.\n A funny scene.\n A background sound.\n All of them can make someone laugh, think, change — or even decide to buy.\nAnd that’s how my journey started.\n I don’t just write posts or scripts.\n I create moments — Moments you feel… and never forget."
   ],
   "featured": {
-    "title": "Old Cairo",
-    "youtube": "https://youtu.be/xRPr4a8iAIQ",
-    "note": "Your showreel or strongest project goes here."
+    "title": "Palmé Bakery — Croissant Making",
+    "youtube": "https://youtube.com/shorts/mtmoVkDlrJc?feature=share",
+    "note": "Croissant-making video",
+    "file": "",
+    "mime": "video/mp4"
   },
+  "clients": [
+    {
+      "name": "Palmé Bakery",
+      "logo": "assets/clients/480275833-1048736137293938-75629595-mvmbtnqg.jpg",
+      "url": "",
+      "project": "https://docs.google.com/presentation/d/1xj6908bGpFRJGZN7nAPCXutIVIUQkIg0/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
+    },
+    {
+      "name": "Qr tably",
+      "logo": "assets/clients/705891642-122178384116843777-892103-mvmc5j4r.jpg",
+      "url": "https://qrtably.com/",
+      "project": "https://docs.google.com/presentation/d/1UVp1QidcKOqxo2j6DZDXXPkBhIy4m385/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
+    },
+    {
+      "name": "Rosto Restaurant مطعم روستو",
+      "logo": "assets/clients/273410118-2605646486246427-55843526-mvmbwd6v.jpg",
+      "url": "",
+      "project": "https://drive.google.com/file/d/1UquHX-T8OwnEEj5FyDH76lpub9RWCrOO/view?usp=sharing"
+    },
+    {
+      "name": "Gheya Roof - Cafe & Restaurant",
+      "logo": "assets/clients/475964170-122120564726608496-396432-mvmc9cos.jpg",
+      "url": "",
+      "project": "https://docs.google.com/presentation/d/1g3pPMWq-hfJn-z4SlHGe5pZgh5JAC0Wz/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
+    },
+    {
+      "name": "Raw Kitchens",
+      "logo": "assets/clients/574905912-1375428307473781-34834358-mvmbrmq9.jpg",
+      "url": "https://raw-kitchens.com/",
+      "project": "https://drive.google.com/file/d/1vPMbyFeZd-yrAHqKHwoYypF8YQf0qpm-/view?usp=sharing"
+    }
+  ],
   "projects": [
     {
       "title": "Palmé Bakery",
@@ -56,7 +90,10 @@ const SITE = {
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtube.com/shorts/mtmoVkDlrJc?feature=share",
       "desc": "A cinematic croissant-making reel for Palmé Bakery, built around the craft and detail behind the baking process. Pink accent lighting reinforces the brand’s visual identity, while close-up shots and a darker, cinematic treatment bring texture, movement, and product detail to the foreground.",
-      "format": "vertical"
+      "format": "vertical",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Content Plan PDF"
     },
     {
       "title": "Pumpkin Seeds — From Process to Product",
@@ -64,8 +101,11 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtu.be/Zz1PT54Ed6w",
-      "desc": "A process-led food video following pumpkin seeds from preparation to finished product. Clear, satisfying shots make each stage easy to follow while building visual rhythm around the process.",
-      "format": "wide"
+      "desc": "A process-focused food video following pumpkin seeds from preparation to the finished product. The sequence highlights each stage with clear, satisfying visuals designed to hold attention and make the process easy to follow.",
+      "format": "wide",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Content Plan PDF"
     },
     {
       "title": "Mawlid Branch Coverage",
@@ -73,8 +113,11 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtu.be/7c2h41Wcq2E",
-      "desc": "Seasonal branch coverage for Palmé Bakery during Mawlid, capturing festive displays, themed packaging, and the in-store atmosphere. The edit brings the campaign identity into the real customer experience.",
-      "format": "wide"
+      "desc": "Seasonal branch coverage for Palmé Bakery during Mawlid, capturing the festive displays, themed packaging, and in-store atmosphere. The video connects the campaign’s visual identity with the customer experience at the branch.",
+      "format": "wide",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Content Plan PDF"
     },
     {
       "title": "Old Cairo",
@@ -82,8 +125,11 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtu.be/xRPr4a8iAIQ",
-      "desc": "A cinematic visual study of Old Cairo, shaped by architectural details, layered textures, natural light, and shadow. The sequence uses framing and pacing to turn a familiar place into a short visual story.",
-      "format": "wide"
+      "desc": "A cinematic visual study of Old Cairo, focusing on architectural details, layered textures, light, and shadow. Carefully composed shots turn the location into a short visual story shaped by atmosphere and place.",
+      "format": "wide",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Content Plan PDF"
     },
     {
       "title": "Palmé Bakery",
@@ -91,8 +137,11 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography",
       "youtube": "https://youtube.com/shorts/HMnL4bxeYQI?feature=share",
-      "desc": "A product-focused reel following the preparation of Palmé Bakery’s Raffaello Cake. Close-ups bring ingredients, texture, and finishing details forward, making the craft part of the product story.",
-      "format": "vertical"
+      "desc": "A product-focused reel featuring the preparation of Palmé Bakery’s Raffaello Cake. Close-up shots emphasize ingredients, texture, and finishing details, using visual storytelling to make the product the center of attention.",
+      "format": "vertical",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Content Plan PDF"
     }
   ],
   "cases": [
@@ -102,7 +151,10 @@ const SITE = {
       "challenge": "Brand Positioning: Establish Palmé in the market as a primary creator and manufacturer of Mawlid sweets—rather than just a reseller—competing in a heavily saturated market dominated by legacy brands.\n\nEmotional Connection: Transform Mawlid sweets from a seasonal food product into an authentic cultural and emotional experience.",
       "idea": "Consumer Insight: For Egyptians, Mawlid is not merely about buying sweets; it is rooted in childhood memories, street carnivals, paper dolls, wooden horses, and family gatherings.\n\nBig Idea: \"Behind every piece of Mawlid candy... is a story.\"\n\nCampaign Slogan: \"Hawadeet El-Mawlid\" \n\nVisual Identity: Green theme inspired by the Prophet’s Mosque dome, representing peace, tranquility, and heritage.",
       "execution": "A. Marketing & Sales Channels\n\nDirect-to-Consumer (B2C):\n\nProduced sales-driven Reels and lifestyle videos highlighting packaging design and sweet varieties.\n\nExecuted high-end product photoshoots highlighting quality and craftsmanship.\n\nCorporate Sales (B2B):\n\nTargeted corporate HR departments and business owners with premium corporate gifting packages.\n\nRetargeted past customer databases (from previous Ramadan and seasonal campaigns) alongside capturing new qualified leads.\nB. Content Strategy\n\nA 5-episode storytelling series featuring a traditional storyteller (\"Hakawati\"):\n\nEpisode 1: History of Mawlid Sweets – Originating from the Fatimid era to present day.\n\nEpisode 2: The Bride & Horse – Cultural symbolism of traditional figures.\n\nEpisode 3: Puppet Theater & Aragouz – Folkloric storytelling methods.\n\nEpisode 4: Old Egyptian Mawlid Streets – Nostalgic memories of street carnivals and swings.\n\nEpisode 5: Evolution of the Mawlid Box – From packaging to a cherished gift.\nC. Packaging & Product Design\n\nStandard Lineup: Folkloric artwork depicting nostalgic elements (Aragouz puppet, Tanoura dancer, Mawlid Bride, Horse, Carnival Cannon, Shooting Booth, Swings).\n\nPremium Lineup: High-end pop-up display boxes and custom-shaped tin boxes (Bride & Horse shapes) designed for luxury corporate and family gifting.\nD. Event & Activation\n\nHosted a Mawlid festival experience incorporating Tanoura performances, puppet shows, and traditional carnival games to strengthen brand engagement.",
-      "results": "Sold Out Pre-Mawlid: Reached full sales capacity and cleared available inventory before Mawlid day.\n\nMarket Positioning: Supported Palmé’s positioning as a modern brand rooted in traditional Mawlid sweets.\n\nChannel Growth: The campaign served both direct-to-consumer and corporate gifting audiences. Detailed performance metrics were not supplied for this portfolio."
+      "results": "Sold Out Pre-Mawlid: Reached 100% sales capacity and completely cleared all inventory prior to Mawlid day.\n\nMarket Positioning Secured: Successfully established Palmé as a go-to brand for modern yet traditional Mawlid sweets.\n\nChannel Growth: Strong performance across both B2C direct sales and B2B corporate orders, expanding the customer database for future seasons.",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Strategy PDF"
     },
     {
       "brand": "rosto",
@@ -110,19 +162,10 @@ const SITE = {
       "challenge": "Addressing common customer pain points in the restaurant industry, such as deceptive offers, inconsistent quality, delivery delays, poor customer service, small portions relative to price, and slow issue resolution.   Overcoming drops in social media performance metrics (reach and views on Instagram and Facebook) compared to major market competitors.   Standing out amidst intense competition from massive brands (like Karam Elsham and Abu Mazen) that heavily leverage food bloggers and massive promos.   ",
       "idea": "Building an integrated marketing strategy anchored in a distinct brand identity with a \"friendly and playful\" tone of voice, positioning the brand as a close friend to the audience.   Targeting specific audience segments through well-defined Buyer Personas to cater to students, families, and young adults.   Focusing on clear marketing objectives, including driving sales, promoting under-advertised new menu items, and building an engaged community around the brand.   ",
       "execution": "established a friendly, playful \"Tone of Voice\" to position the brand as a close friend to the audience.   Defined the Target Audience: Analyzed and targeted the core demographic group ranging from 20 to 50 years old across both genders.   Created Buyer Personas: Built detailed buyer personas across key target segments (university students/young adults, family heads, and working/engaged young couples) by mapping out their locations, behaviors, interests, and food preferences to ensure precision in campaign targeting.   Formulated Strategy: Developed a comprehensive marketing strategy for December 2024 featuring thorough social media analytics and competitor benchmarking.   ",
-      "results": ""
-    }
-  ],
-  "scripts": [
-    {
-      "title": "تفتكروا الكلام ع ايه ؟",
-      "type": "Reel script",
-      "text": "يدخل شخص الفرع متخفي بيبص حواليه \ncut \nالكاميرا تيجي ع 3 من الاستف واقفين جمب بعض \nشخص يزعمهم و 2 خلفه \nيسأل القائد \nكلمة السر \ncut  \nليرد الشخص الخفي \nكاملة\ncut \nيسال اللي ع الطرف\nجبت البضاعه؟\nليرد القائد اللي في النص \nاسكت انت و يقرر السؤال تاني \nجبت البضاعة\ncut \nالشخص المتخفي \nجبتها يا معلم\ncut \nيسأل الشخص التالت \nبيور؟\ncut \nيرد الخفي \nعيب عليك يا معلم بيور 100*100\ncut \nتيجي الكاميرا علي التلاته و القائد يلبس الجلفز\nحيث كدة تعالالي ع المطبخ\ncut \nblack and tov \nتفتكروا الكلام ع ايه؟\nالمزيكا المرشحة موسيقي فيلم بنك الجظ"
-    },
-    {
-      "title": "hot line wahet el yaman",
-      "type": "reel script",
-      "text": "واحد من الاستف قاعد علي تربيزه و بيشاور للكاميرا\nسكريبت\nلو جوزك بيشتكي من قله الدلع و محتاج حنان \nكلمي واحه اليمن اعزميه ع جوز حمام \nبعدها يقطم من حمامه \nميوزك تشتغل \n\"ياما حمامي سرح\" \nعلي شوتس وقت تحضير الحمام و الحشو و التحمير و بعدها و هو بيتحط ع طبق تقديم \nنفس الشخص قدام الكاميرا تاني  و هو ماسك طبق عليه حمام\nكلمونا دلوقتي ع 17722 و اطلبوا الحمام و كل اللي بتحبوا من واحه اليمن"
+      "results": "",
+      "pdf": "",
+      "pdfTitle": "",
+      "pdfLabel": "View Strategy PDF"
     }
   ],
   "moodboard": [],

@@ -59,16 +59,16 @@ h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .vid{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#141416;border:0;padding:0;cursor:pointer;overflow:hidden}
 .vid.cine{aspect-ratio:2.39/1;min-height:200px}
 .vid.vertical{aspect-ratio:9/16;max-width:360px}
-.vid img,.vid iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}
+.vid img,.vid iframe{width:100%;height:100%;object-fit:contain;border:0;display:block}.vid{background:#101012}.portrait img{object-fit:contain;background:#141416}.mood figure{height:auto;min-height:0}.mood figure img{width:100%;height:auto;object-fit:contain;display:block}.strip figure{height:auto;aspect-ratio:auto;flex:0 0 min(70vw,280px)}.strip figure img{width:100%;height:auto;object-fit:contain;display:block}.bt img{object-fit:contain;background:#141416}.bt{min-height:140px}.bg{grid-auto-rows:auto}.bt img{position:relative;inset:auto;height:auto;max-height:420px}
 .play{position:absolute;inset:0;margin:auto;width:68px;height:68px;border-radius:50%;background:var(--red)}
 .play::after{content:"";position:absolute;left:27px;top:21px;border-left:20px solid #fff;border-block:13px solid transparent}
 .ph{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:6px;border:1px dashed #4a4a4d;font:12px var(--m);letter-spacing:.16em;color:var(--mute);padding:16px;cursor:default}
 .ph small{font-size:11px;letter-spacing:.06em}
 .tba{color:var(--mute);font-style:italic;border-bottom:1px dashed #4a4a4d}
-.grid{display:grid;gap:36px 28px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));align-items:start}.work-tools{display:flex;flex-wrap:wrap;gap:8px;margin:-10px 0 28px}.filter-btn{font:10px var(--m);letter-spacing:.1em;text-transform:uppercase;padding:10px 13px;border:1px solid var(--line);background:transparent;color:var(--mute);cursor:pointer;transition:color .2s,border-color .2s,background .2s}.filter-btn:hover,.filter-btn[aria-pressed="true"]{color:var(--ink);border-color:var(--red);background:rgba(230,59,31,.12)}.card{min-width:0;transition:transform .25s ease}.card:hover{transform:translateY(-5px)}.card .vid{outline:1px solid transparent;transition:outline-color .2s}.card:hover .vid{outline-color:var(--red)}.hero-copy{max-width:700px;color:#cfc9bf;font-size:clamp(17px,2.2vw,22px);line-height:1.6;margin:0 0 8px}.hero-copy strong{color:var(--ink);font-weight:600}.hero-mark{display:inline-block;color:var(--red);font:12px var(--m);letter-spacing:.12em;margin-bottom:4px}.availability{display:flex;align-items:center;gap:9px;color:var(--mute);font:10px var(--m);letter-spacing:.1em;text-transform:uppercase;margin-top:24px}.availability:before{content:"";width:7px;height:7px;background:#83b98b;border-radius:50%;box-shadow:0 0 12px #83b98b66}.case{transition:border-color .2s}.case:hover{border-color:#555}.case dt{color:var(--gold)}
+.grid{display:grid;gap:36px 28px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));align-items:start}
 .card h3,.case h3{font:400 32px/1 var(--d);letter-spacing:.03em;margin:8px 0}
 .meta{font:11px/1.8 var(--m);letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
-.card p{margin-top:8px;color:#cfc9bf;font-size:15px}.card[hidden]{display:none}
+.card p{margin-top:8px;color:#cfc9bf;font-size:15px}
 .about{display:grid;gap:36px}
 @media(min-width:861px){.about{grid-template-columns:1fr 1.5fr}}
 .portrait{position:relative;aspect-ratio:4/5;background:#141416;max-width:420px}
@@ -80,12 +80,9 @@ h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .facts .meta{min-width:110px}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
 .tags span{font:11px var(--m);border:1px solid var(--line);padding:6px 10px;letter-spacing:.06em}
-.cases{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));margin-top:36px}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:14px}.client{border:1px solid var(--line);padding:22px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}.client-logo{display:flex;align-items:center;justify-content:center;min-height:100px;background:#141416;padding:14px}.client-logo img{display:block;max-width:100%;max-height:90px;width:auto;height:auto;object-fit:contain}.client-wordmark{min-height:100px;display:grid;place-items:center;font:clamp(22px,3vw,34px) var(--d);text-align:center}.client-project{font:11px var(--m);color:var(--gold);text-decoration:none}.local-video{aspect-ratio:auto;max-width:100%}.cases{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));margin-top:36px}
 .case{border:1px solid var(--line);padding:24px}
 .case dt{margin-top:14px}.case dd{font-size:15px;color:#cfc9bf}
-.scripts{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr))}
-.script{background:var(--ink);color:#111;font:13px/1.8 var(--m);padding:28px;white-space:pre-wrap;min-height:260px}
-.script b{display:block;margin-bottom:12px;color:#8a2a17;font-weight:400}
 .mood{columns:2 170px;column-gap:14px}
 .mood figure{break-inside:avoid;margin-bottom:14px;position:relative;background:#141416;cursor:zoom-in}
 .strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px;background:#000}
@@ -129,7 +126,7 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 <body>
 <header class="nav">
 <a class="logo" href="#top">YOUSEF AHMED</a>
-<nav><a href="#about">About</a><a href="#work">Work</a><a href="#strategy">Strategy</a><a href="#scripts">Scripts</a><a href="#direction" id="navdir">Direction</a><a href="#photos">Photo</a><a href="#boards">Moodboards</a></nav>
+<nav><a href="#about">About</a><a href="#work">Work</a><a href="#clients">Clients</a><a href="#strategy">Strategy</a><a href="#direction" id="navdir">Direction</a><a href="#photos">Photo</a><a href="#boards">Moodboards</a></nav>
 <a class="btn red" href="#contact">Hire me</a>
 </header>
 <nav class="tabbar" aria-label="Quick links"><a href="#about">About</a><a href="#work">Work</a><a href="#strategy">Strategy</a><a href="#contact">Contact</a></nav>
@@ -152,26 +149,25 @@ const vid = (id, title, fmt) => {
   if (!id) return `<div class="${c}"><div class="ph"><span>VIDEO PLACEHOLDER</span><small>Add a YouTube link</small></div></div>`;
   return `<button class="${c}" data-yt="${id}" aria-label="Play ${esc(title || "video")}"><img loading="lazy" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt=""><i class="play"></i></button>`;
 };
+const featuredVideo = (f) => f && f.file ? `<video class="local-video" controls playsinline preload="metadata" style="display:block;width:100%;max-height:78vh;object-fit:contain;background:#101012" poster="${esc(f.poster || "")}"><source src="${esc(f.file)}" type="${esc(f.mime || "video/mp4")}"></video>` : vid(yt(f && f.youtube), f && f.title, "cine");
+const docLink = (p) => p && p.pdf ? `<div class="meta" style="margin-top:14px"><a class="btn" href="${esc(p.pdf)}" target="_blank" rel="noopener">${esc(p.pdfLabel || "View Strategy PDF")}</a> <a class="btn" href="${esc(p.pdf)}" download>Download PDF ↓</a><div style="margin-top:6px;color:var(--mute)">${esc(p.pdfTitle || "Project document")}</div></div>` : "";
+const clientCard = (c) => `<article class="client rv">${c.logo ? `<a class="client-logo" ${c.url ? `href="${esc(c.url)}" target="_blank" rel="noopener"` : ""}><img src="${esc(c.logo)}" alt="${esc(c.name || "Client logo")}" loading="lazy"></a>` : `<div class="client-wordmark">${esc(c.name || "Client")}</div>`}<div class="meta">${esc(c.name || "")}</div>${c.project ? `<a class="client-project" href="${esc(c.project)}">View related project ↗</a>` : ""}</article>`;
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
 const photo = (p, i, label, ratio) => p && p.src
   ? `<figure data-lb="${esc(p.src)}"><img loading="lazy" src="${esc(p.src)}" alt="${esc(p.caption || "")}">${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ""}</figure>`
   : `<figure style="aspect-ratio:${ratio || "3/4"}"><div class="ph" style="cursor:default"><span>${label} ${pad(i)}</span><small>Image placeholder</small></div></figure>`;
 
-const project = (p, i) => { p = p || {}; return `<article class="card rv" data-category="${esc(p.category || "Other")}">${vid(yt(p.youtube), p.title, p.format === "vertical" ? "vertical" : "")}
+const project = (p, i) => { p = p || {}; return `<article class="card rv">${vid(yt(p.youtube), p.title, p.format === "vertical" ? "vertical" : "")}
 <div class="meta" style="margin-top:14px">SCENE ${pad(i)}</div><h3>${val(p.title, "Project title")}</h3>
 <div class="meta">${val(p.category, "Category")} · ${val(p.year, "Year")}</div><div class="meta">${val(p.role, "Your role")}</div>
-<p>${p.desc ? esc(p.desc) : tba("One or two sentences on the idea")}</p></article>`; };
+<p>${p.desc ? esc(p.desc) : tba("One or two sentences on the idea")}</p>${docLink(p)}</article>`; };
 
 const cse = (c, i) => { c = c || {}; return `<article class="case rv"><div class="slate">CASE STUDY ${pad(i)}</div>
 <h3>${c.brand || c.campaign ? esc([c.brand, c.campaign].filter(Boolean).join(" — ")) : tba("Brand & campaign name")}</h3><dl>
 <dt class="meta">Challenge</dt><dd>${val(c.challenge, "To be added")}</dd><dt class="meta">Idea</dt><dd>${val(c.idea, "To be added")}</dd>
 <dt class="meta">Execution</dt><dd>${val(c.execution, "To be added")}</dd>
-${c.results ? `<dt class="meta">Results</dt><dd>${esc(c.results)}</dd>` : (c.brand ? "" : `<dt class="meta">Results</dt><dd>${tba("Only real, verified results")}</dd>`)}</dl></article>`; };
-
-const script = (s, i) => s && s.text
-  ? `<div class="script rv"><b>${esc(s.title)}${s.type ? " · " + esc(s.type) : ""}</b>${esc(s.text)}</div>`
-  : `<div class="script rv"><b>SCRIPT PLACEHOLDER ${pad(i)}</b>FADE IN:\n\nINT. [LOCATION] — DAY\n\n[Action line]\n\n        [CHARACTER]\n   [Dialogue or voice-over]\n\n[Real script excerpt goes here]</div>`;
+${c.results ? `<dt class="meta">Results</dt><dd>${esc(c.results)}</dd>` : (c.brand ? "" : `<dt class="meta">Results</dt><dd>${tba("Only real, verified results")}</dd>`)}</dl>${docLink(c)}</article>`; };
 
 const ink = c => { const h = c.replace("#", ""), f = h.length < 6 ? h.split("").map(x => x + x).join("") : h, [r, g, b] = [0, 2, 4].map(i => parseInt(f.substr(i, 2), 16)); return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? "#111" : "#fff"; };
 const hexes = a => (a || []).map(c => String(c).trim()).filter(c => /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.test(c)).map(c => c[0] === "#" ? c : "#" + c);
@@ -196,12 +192,9 @@ $("#app").innerHTML = `
   <div class="rec"><i></i>REC · ${esc(S.location.toUpperCase())}</div>
   <h1>${esc(S.name.toUpperCase()).replace(/ (.+)$/, "<br>$1")}</h1>
   <p class="cred">Written, shot &amp; strategized by</p>
-  <p class="hero-copy">I turn <strong>brand stories into content people feel</strong> — from the first insight and script to the final frame.</p>
   <p class="roles">${S.roles.map(esc).join(" · ")}</p>
   <div class="cta"><a class="btn red" href="#featured">Watch featured work</a>
-  <a class="btn" href="#strategy">Explore my process</a>
   ${S.cv ? `<a class="btn" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a>` : `<span class="btn off">CV coming soon</span>`}</div>
-  <div class="availability">Available for full-time roles &amp; selected freelance projects</div>
 </section>
 <div class="mq" aria-hidden="true"><div class="mq-t">${marq}${marq}</div></div>
 ${sec("about", head("THE LOGLINE", "ABOUT", "") +
@@ -209,13 +202,13 @@ ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn" data-cv>Preview CV</button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
 ${sec("featured", head("FEATURED PROJECT", "NOW SHOWING", S.featured.youtube ? "A featured reel to start with." : "A placeholder for your showreel or strongest piece.") +
-  `<div class="rv">${vid(yt(S.featured.youtube), S.featured.title, "cine")}<p class="meta" style="margin-top:12px">${S.featured.youtube ? "NOW SHOWING · " + val(S.featured.title, "Title") : "FEATURED PLACEHOLDER — " + esc(S.featured.note)}</p></div>`)}
+  `<div class="rv">${featuredVideo(S.featured)}<p class="meta" style="margin-top:12px">${S.featured.youtube ? "NOW SHOWING · " + val(S.featured.title, "Title") : "FEATURED PLACEHOLDER — " + esc(S.featured.note)}</p></div>`)}
+${S.clients && S.clients.length ? sec("clients", head("SELECTED PARTNERS", "OUR CLIENTS", "Brands I have worked with.") + `<div class="clients-grid">${S.clients.map(clientCard).join("")}</div>`) : ""}
 ${sec("work", head("REEL 01", "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
-  `<div class="work-tools rv" role="group" aria-label="Filter projects"><button class="filter-btn" data-filter="all" aria-pressed="true">All work</button>${[...new Set(S.projects.map(p => p.category).filter(Boolean))].map(c => `<button class="filter-btn" data-filter="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join("")}</div><div class="grid" id="project-grid">${list(S.projects, 3, project)}</div>`)}
+  `<div class="grid">${list(S.projects, 3, project)}</div>`)}
 ${sec("strategy", head("REEL 02", "STRATEGY &amp; CAMPAIGNS", "How the ideas are planned, researched and run.") +
   `<div class="tags rv">${S.services.map(s => `<span>${esc(s)}</span>`).join("")}</div><div class="cases">${list(S.cases, 1, cse)}</div>`)}
-${sec("scripts", head("REEL 03", "SCRIPTS &amp; COPY", "Script pages and copywriting samples.") +
-  `<div class="scripts">${list(S.scripts, 2, script)}</div>`)}
+
 ${S.moodboard && S.moodboard.length ? sec("direction", head("REEL 04", "CREATIVE DIRECTION", "Moodboards, references and visual concepts.") +
   `<div class="mood rv">${list(S.moodboard, 6, (p, i) => photo(p, i, "MOODBOARD", ["4/5", "1/1", "3/4", "4/3", "1/1", "4/5"][i % 6]))}</div>`) : ""}
 ${sec("photos", head(S.moodboard && S.moodboard.length ? "REEL 05" : "REEL 04", "PHOTOGRAPHY &amp; BEHIND THE SCENES", "Stills and set moments. Swipe through the film strip.") +
@@ -241,13 +234,6 @@ function openCV() {
 }
 document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelector(".cvm")?.remove(); document.querySelector(".lb")?.remove(); });
 document.addEventListener("click", e => {
-  const filter = e.target.closest("[data-filter]");
-  if (filter) {
-    const chosen = filter.dataset.filter;
-    document.querySelectorAll("[data-filter]").forEach(btn => btn.setAttribute("aria-pressed", String(btn === filter)));
-    document.querySelectorAll("#project-grid .card").forEach(card => { card.hidden = chosen !== "all" && card.dataset.category !== chosen; });
-    return;
-  }
   if (e.target.closest("[data-cv]")) return openCV();
   if (e.target.closest(".cvm [data-x]")) return document.querySelector(".cvm").remove();
   const b = e.target.closest("[data-yt]");
