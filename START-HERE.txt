@@ -1,0 +1,46 @@
+YOUSEF AHMED PORTFOLIO — EDITOR PACKAGE
+(Do NOT upload this package to Netlify. It is for editing on your computer.)
+
+  editor.html            your visual editor. Keep it on your computer only.
+  site/                  the complete, editable website
+  removed-content/       backups of removed content: Scripts & Copywriting, extra moodboard (never published)
+  START-HERE.txt
+
+EDIT
+1. Double-click editor.html, click "Choose your site folder", and pick the "site" folder.
+2. Use the forms. Everything is point-and-click:
+   - Clients ............ "Clients": add / reorder / delete, upload a logo (transparent PNG works),
+                          and pick a related project so the tile links to it.
+   - PDFs ............... inside each project (Reel 01) and each case study (Reel 02): "+ Add PDF",
+                          give it a title, choose Strategy / Content Plan / Campaign / Case Study,
+                          then choose the file. Replace or Remove any time.
+                          Anything you attach is PUBLIC once the site is online.
+   - First video ........ "5 · Featured video": paste a YouTube link (Shorts are fine) or upload an
+                          MP4/WebM file. Pick the video shape so it is never cropped.
+   - Photography ....... "Photography shoots (folders)": each shoot is a FOLDER with a name and its own
+                          photos. "+ Add shoot (folder)", then "+ Add several photos" inside it. Give every
+                          photo a NAME. Visitors open a folder to see its photos side by side.
+   - Images ............. The moodboard and logos: add, replace, reorder, remove.
+                          "Image display settings" sets how many images appear per row.
+   - Moodboard .......... there is ONE moodboard: "6 · Moodboard" (images, color palettes, notes).
+   - Start a project .... the button opens WhatsApp with your number and a ready message.
+                          Change both in "2 · Contact details".
+   - CV ................. "3 · CV and portrait".
+3. Click "Preview website" to see your unsaved changes (Desktop / Phone), then
+   click "Download updated website". You get yousef-portfolio-netlify.zip.
+
+CHECK
+4. Unzip yousef-portfolio-netlify.zip. When you open the unzipped folder you must see index.html
+   directly (not inside another folder). Double-click index.html to preview.
+
+PUBLISH ON NETLIFY
+5. Go to app.netlify.com, open your site > Deploys, and drag in yousef-portfolio-netlify.zip
+   (or the unzipped folder). For a brand-new site use app.netlify.com/drop.
+6. After it deploys, check:  your-site-url/content.js  shows text,
+   your-site-url/assets/cv/Yousef-Ahmed-CV.pdf  opens your CV, and click one attached PDF.
+
+NEXT TIME YOU EDIT
+Unzip your latest yousef-portfolio-netlify.zip into a folder, open editor.html, and choose that folder.
+
+IMPORTANT: Never drag the editor package (the folder with editor.html and site/) onto Netlify.
+index.html would be one level down, and Netlify would show a blank/404 page.

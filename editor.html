@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Editor — Yousef Ahmed</title>
+<style>
+body{font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f2ee;color:#1b1b1b;margin:0}
+header{position:sticky;top:0;z-index:5;background:#0B0B0C;color:#F2EDE4;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;gap:12px}
+main{max-width:860px;margin:0 auto;padding:20px}
+.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:22px;margin-bottom:16px}
+.card ol{padding-left:20px}.card li{margin:6px 0}
+button,.btn{font:inherit;cursor:pointer;border:1px solid #bbb;background:#fff;border-radius:8px;padding:8px 14px;display:inline-block;color:#1b1b1b}
+.pri{background:#E63B1F;color:#fff;border-color:#E63B1F;font-weight:600}.pri:disabled{opacity:.4;cursor:not-allowed}
+details{background:#fff;border:1px solid #ddd;border-radius:10px;margin-bottom:12px}
+summary{padding:14px 18px;font-weight:600;cursor:pointer}
+.body{padding:0 18px 18px}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g label:has(textarea){grid-column:1/-1}
+label{display:block;font-weight:600;font-size:13px}
+input,textarea,select{width:100%;box-sizing:border-box;font:inherit;padding:9px 10px;border:1px solid #bbb;border-radius:8px;margin-top:4px;font-weight:400;background:#fff}
+.bd{background:#faf9f6;margin:10px 0}.bd .inner{padding:0 14px 14px}hr{border:0;border-top:1px solid #ddd;margin:16px 0}
+fieldset{border:1px solid #ddd;border-radius:8px;margin:14px 0;padding:14px}
+.acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.del{color:#b3261e;border-color:#e0a8a4}
+.img{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.img img,.noimg{width:90px;height:90px;border-radius:6px;object-fit:contain;background:#e8e8e8}
+.noimg{background:#eee;display:grid;place-items:center;font-size:11px;color:#777;text-align:center}
+small,.hint{font-weight:400;color:#666}.chk{display:block;margin-top:3px}
+#msg{font-weight:600;color:#b3261e}
+[hidden]{display:none!important}
+header>span{display:flex;gap:8px;flex-wrap:wrap}
+#pv{position:fixed;inset:0;z-index:20;background:#2a2a2c;display:flex;flex-direction:column}
+.pvb{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;background:#0B0B0C;color:#F2EDE4;flex-wrap:wrap}
+.pvb span{display:flex;gap:8px}
+#pvf{flex:1;border:0;margin:0 auto;background:#0B0B0C;width:100%;max-width:100%}
+.docsb{margin-top:14px;padding:12px;background:#faf9f6;border:1px dashed #bbb;border-radius:8px}
+fieldset.dc{background:#fff}
+</style>
+</head>
+<body>
+<header><b>Portfolio Editor · Yousef Ahmed</b><span><button id="pvb" disabled>Preview website</button><button id="dl" class="pri" disabled>Download updated website (Netlify-ready ZIP)</button></span></header>
+<div id="pv" hidden><div class="pvb"><b>Preview (changes are not saved until you download)</b><span><button data-w="100%">Desktop</button><button data-w="390px">Phone</button><button id="pvx">Close</button></span></div><iframe id="pvf" title="Website preview"></iframe></div>
+<datalist id="pt"></datalist>
+<main>
+<div class="card" id="start">
+<h2 style="margin-top:0">How it works</h2>
+<ol>
+<li>Click the button below and choose your <b>site</b> folder (the one that contains <code>index.html</code>). Your browser may say “Upload”. Nothing is uploaded anywhere; it only lets this page read your folder.</li>
+<li>Change text, links, videos, images, clients, and PDFs in the forms. Click <b>Preview website</b> any time to check how it looks.</li>
+<li>Click <b>Download updated website</b> at the top. You get <code>yousef-portfolio-netlify.zip</code>, ready to drag onto Netlify. Unzip it first and open <code>index.html</code> to check it.</li>
+</ol>
+<p class="hint">Use a computer (Chrome, Edge, Safari, or Firefox). Phones can’t open folders this way.</p>
+<label class="btn pri">Choose your site folder<input type="file" id="dir" webkitdirectory hidden></label>
+<p id="msg"></p>
+</div>
+<div id="ed" hidden></div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let D, root = "site", dirty = 0;
+const files = new Map(), urls = new Map(), CV = "assets/cv/Yousef-Ahmed-CV.pdf";
+const get = k => k.split(".").reduce((o, x) => o && o[x], D);
+const set = (k, v) => { const a = k.split("."), l = a.pop(); a.reduce((o, x) => o[x], D)[l] = v; };
+const url = p => { if (!urls.has(p)) urls.set(p, URL.createObjectURL(files.get(p))); return urls.get(p); };
+const ytid = u => { const m = String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(u) ? u : ""); };
+const chk = v => !v ? "" : ytid(v) ? "✓ YouTube video found" : "⚠ This doesn’t look like a YouTube link";
+
+const SCHEMA = {
+  projects: { t: "Video projects (Reel 01)", one: "project", f: [["title","Project title"],["category","Category (e.g. Restaurant campaign)"],["year","Year"],["role","Your role (e.g. Concept, Script, Editing)"],["youtube","YouTube link","url"],["desc","Short description","area"],["format","Video shape","sel"]] },
+  cases: { t: "Strategy case studies (Reel 02)", one: "case study", f: [["brand","Brand"],["campaign","Campaign name"],["challenge","Challenge","area"],["idea","Your idea","area"],["execution","What you did","area"],["results","Real results (leave empty if none)","area"]] },
+  clients: { t: "Clients (Our Clients section)", one: "client", empty: "No clients yet. The Our Clients section stays hidden until you add one. Transparent PNG logos work best.", f: [["name","Client name"],["logo","Logo","img"],["tone","Tile color","tone"],["project","Related project (optional: the tile links to it)","rel"],["url","Website link (optional)"]] },
+  moodboard: { empty: "Empty. This section is hidden on the website until you add images.", t: "Creative Direction gallery (Reel 04, shown only when it has images)", one: "image", f: [["src","Image","img"],["caption","Name (shown under the image)"]] },
+};
+
+const openS = new Set(), TAGS = ["Reference", "Lighting", "Composition", "Texture", "Color", "Inspiration"], openB = new Set();
+const blankFor = p => { if (p === "shoots") return { name: "", desc: "", photos: [] }; if (/^shoots\.\d+\.photos$/.test(p)) return { src: "", caption: "" }; if (p === "boards") return { title: "", related: "", desc: "", items: [] }; if (/^boards\.\d+\.items$/.test(p)) return { type: "image", tag: "Reference", src: "", caption: "", colors: [], text: "" }; if (/^(projects|cases)\.\d+\.docs$/.test(p)) return { title: "", kind: "Strategy", file: "" }; const b = Object.fromEntries(SCHEMA[p].f.map(([k]) => [k, k === "format" ? "wide" : ""])); if (p === "projects" || p === "cases") b.docs = []; return b; };
+const sel = (path, label, opts) => `<label>${label}<select data-k="${path}">${opts.map(([a, b]) => `<option value="${a}"${String(get(path) ?? "") === a ? " selected" : ""}>${b}</option>`).join("")}</select></label>`;
+const updPT = () => { $("#pt").innerHTML = [...new Set((D.projects || []).map(p => p.title).filter(Boolean))].map(t => `<option value="${esc(t)}">`).join(""); };
+function fld(path, label, type) {
+  const v = get(path);
+  if (type === "area" || type === "tall") return `<label>${label}<textarea data-k="${path}" rows="${type === "tall" ? 9 : 3}">${esc(v)}</textarea></label>`;
+  if (type === "sel") return `<label>${label}<select data-k="${path}"><option value="wide"${v !== "vertical" ? " selected" : ""}>Horizontal (16:9)</option><option value="vertical"${v === "vertical" ? " selected" : ""}>Vertical reel (9:16)</option></select></label>`;
+  if (type === "typ") return `<label>${label}<select data-k="${path}" data-re><option value="image"${v !== "palette" && v !== "note" ? " selected" : ""}>Image</option><option value="palette"${v === "palette" ? " selected" : ""}>Color palette</option><option value="note"${v === "note" ? " selected" : ""}>Note (lighting, composition, idea)</option></select></label>`;
+  if (type === "tag") return `<label>${label}<select data-k="${path}">${TAGS.map(t => `<option${v === t ? " selected" : ""}>${t}</option>`).join("")}</select></label>`;
+  if (type === "colors") return `<label>${label}<textarea data-colors="${path}" rows="4" placeholder="#F4B6C2">${esc((v || []).join("\n"))}</textarea></label>`;
+  if (type === "rel") return `<label>${label}<input data-k="${path}" list="pt" value="${esc(v)}" placeholder="Pick a project or type your own"></label>`;
+  if (type === "kind") return sel(path, label, ["Strategy", "Content Plan", "Campaign", "Case Study"].map(x => [x, x]));
+  if (type === "tone") return sel(path, label, [["", "Automatic"], ["light", "Light tile (best for dark or colored logos)"], ["dark", "Dark tile (best for white logos)"]]);
+  if (type === "fmt") return sel(path, label, [["", "Automatic (vertical for Shorts links)"], ["cine", "Cinematic 2.39:1"], ["wide", "Wide 16:9"], ["vertical", "Vertical 9:16"]]);
+  if (type === "img") return `<div class="img">${v && files.has(v) ? `<img src="${url(v)}" alt="">` : `<div class="noimg">No image yet</div>`}<label class="btn">${v ? "Replace" : "Choose"} ${label.toLowerCase()}<input type="file" accept="image/*" data-img="${path}" hidden></label></div>`;
+  if (type === "url") return `<label>${label}<input data-k="${path}" data-url value="${esc(v)}" placeholder="Paste the YouTube link"><small class="chk">${chk(v)}</small></label>`;
+  return `<label>${label}<input data-k="${path}" value="${esc(v)}"></label>`;
+}
+const lst = (k, l) => `<label>${l} <small>(one per line)</small><textarea data-list="${k}" rows="4">${esc((get(k) || []).join("\n"))}</textarea></label>`;
+const box = (t, inner, cls) => `<details open><summary>${t}</summary><div class="body ${cls || ""}">${inner}</div></details>`;
+
+function docsBlock(key, i) {
+  const p = `${key}.${i}.docs`, arr = get(p) || [];
+  return `<div class="docsb"><b>PDF attachments</b> <small>Strategy, content plan or campaign PDFs. Visitors see “View … PDF” links. Anything attached becomes public on the live site.</small>
+${arr.map((d, k) => `<fieldset class="dc"><legend>PDF ${k + 1}</legend><div class="g">${fld(`${p}.${k}.title`, "Document title")}${fld(`${p}.${k}.kind`, "Type", "kind")}</div><div class="img" style="margin-top:10px"><span>${d.file && files.has(d.file) ? `📄 ${esc(d.file.split("/").pop())} (${(files.get(d.file).size / 1048576).toFixed(1)} MB)` : d.file ? `📄 ${esc(d.file.split("/").pop())}` : "No PDF chosen yet"}</span><label class="btn">${d.file ? "Replace" : "Choose"} PDF<input type="file" accept="application/pdf" hidden data-pdf="${p}.${k}.file"></label></div>${acts(p, k, "PDF")}</fieldset>`).join("")}
+<div class="acts"><button data-a="add" data-p="${p}">+ Add PDF</button></div></div>`;
+}
+function listSec(key) {
+  const c = SCHEMA[key], arr = D[key], img = key === "moodboard" || key === "photos", docs = key === "projects" || key === "cases";
+  return box(c.t, `${arr.length ? "" : `<p class="hint">${c.empty || "Nothing here yet. The website shows a placeholder until you add one."}</p>`}
+${arr.map((it, i) => `<fieldset><legend>${c.one} ${i + 1}</legend><div class="g">${c.f.map(([f, l, t]) => fld(`${key}.${i}.${f}`, l, t)).join("")}</div>${docs ? docsBlock(key, i) : ""}
+<div class="acts"><button data-a="up" data-p="${key}" data-i="${i}">↑ Move up</button><button data-a="dn" data-p="${key}" data-i="${i}">↓ Move down</button><button class="del" data-a="del" data-p="${key}" data-i="${i}">Remove</button></div></fieldset>`).join("")}
+<div class="acts"><button data-a="add" data-p="${key}">+ Add ${c.one}</button>${img ? `<label class="btn">+ Add several images<input type="file" accept="image/*" multiple hidden data-multi="${key}"></label>` : ""}</div>`);
+}
+
+const itemFields = it => it.type === "palette" ? [["type", "Tile type", "typ"], ["colors", "Hex colors (one per line, e.g. #F4B6C2)", "colors"], ["caption", "Caption (optional)"]]
+  : it.type === "note" ? [["type", "Tile type", "typ"], ["tag", "Label", "tag"], ["text", "Note: a lighting style, composition idea, texture or inspiration", "area"]]
+  : [["type", "Tile type", "typ"], ["src", "Image", "img"], ["caption", "Name (shown under the image)"], ["tag", "Small label under the name", "tag"]];
+const acts = (p, i, what) => `<div class="acts"><button data-a="up" data-p="${p}" data-i="${i}">↑ Move up</button><button data-a="dn" data-p="${p}" data-i="${i}">↓ Move down</button><button class="del" data-a="del" data-p="${p}" data-i="${i}">Remove ${what}</button></div>`;
+function boardsSec() {
+  const b = D.boards[0];
+  return box("6 · Moodboard (one moodboard, after Photography)", `<p class="hint">Add images, color palettes and notes. They appear side by side in a grid, each with its name underneath.</p>
+<div class="g">${fld("boards.0.title", "Title (optional)")}${fld("boards.0.related", "Related project (optional)", "rel")}${fld("boards.0.desc", "Short description (optional)", "area")}</div>
+${b.items.map((it, k) => `<fieldset><legend>tile ${k + 1}</legend><div class="g">${itemFields(it).map(([f, l, t]) => fld(`boards.0.items.${k}.${f}`, l, t)).join("")}</div>${acts("boards.0.items", k, "tile")}</fieldset>`).join("")}
+<div class="acts"><button data-a="add" data-p="boards.0.items">+ Add tile</button><label class="btn">+ Add several images<input type="file" accept="image/*" multiple hidden data-multi="boards.0.items"></label></div>`);
+}
+function shootsSec() {
+  return box("Photography shoots (folders)", `<p class="hint">Each shoot is a folder with a name and the photos that belong to it. Visitors open a folder to see its photos side by side, each with its name underneath.</p>
+${D.shoots.map((x, i) => `<details class="bd" data-si="${i}"${openS.has(i) ? " open" : ""}><summary>Shoot ${i + 1}: ${esc(x.name || "(unnamed)")} · ${x.photos.length} photo${x.photos.length === 1 ? "" : "s"}</summary><div class="inner">
+<div class="g">${fld(`shoots.${i}.name`, "Shoot name")}${fld(`shoots.${i}.desc`, "Short description (optional)")}</div>
+${x.photos.map((q, k) => `<fieldset><legend>photo ${k + 1}</legend><div class="g">${fld(`shoots.${i}.photos.${k}.src`, "Photo", "img")}${fld(`shoots.${i}.photos.${k}.caption`, "Name (shown under the photo)")}</div>${acts(`shoots.${i}.photos`, k, "photo")}</fieldset>`).join("")}
+<div class="acts"><button data-a="add" data-p="shoots.${i}.photos">+ Add photo</button><label class="btn">+ Add several photos<input type="file" accept="image/*" multiple hidden data-multi="shoots.${i}.photos"></label></div>
+<hr>${acts("shoots", i, "this shoot (folder)")}</div></details>`).join("")}
+<div class="acts"><button data-a="add" data-p="shoots">+ Add shoot (folder)</button></div>`);
+}
+const R = {
+  basics: () => box("1 · Basics", fld("name", "Name") + fld("location", "Location") + fld("openTo", "Open to") + lst("roles", "Role titles") + lst("industries", "Industries") + lst("services", "Services (shown in the ticker and tags)"), "g"),
+  contact: () => box("2 · Contact details", fld("contact.email", "Email") + fld("contact.whatsapp", "WhatsApp number (with country code, e.g. +20…)") + fld("contact.linkedin", "LinkedIn link (full address)") + fld("contact.instagram", "Instagram link (full address)") + fld("contact.whatsappMessage", "Message visitors send you on WhatsApp when they press “Start a project”", "area"), "g"),
+  files: () => box("3 · CV and portrait", `<div class="img"><span>${D.cv && files.has(D.cv) ? `CV added ✓` : "No CV yet"}</span><label class="btn">${D.cv ? "Replace" : "Choose"} CV (PDF)<input type="file" accept="application/pdf" hidden data-cv></label></div><br>${fld("photo", "Portrait photo", "img")}`),
+  bio: () => box("4 · About text", `<label>Bio <small>(leave a blank line between paragraphs)</small><textarea data-bio rows="9">${esc((D.bio || []).join("\n\n"))}</textarea></label><br><label><input type="checkbox" data-k="bioApproved" style="width:auto"${D.bioApproved ? " checked" : ""}> I approve this bio (removes the “Draft” tag)</label>`),
+  featured: () => { const F = D.featured, vf = F.file && files.has(F.file); return box("5 · Featured video (the first video visitors see)", `<p class="hint">Paste a YouTube link, or upload a video file. A video file overrides the YouTube link. The shape keeps the footage uncropped.</p><div class="g">${fld("featured.title", "Title")}${fld("featured.format", "Video shape", "fmt")}${fld("featured.desc", "Short description (optional)", "area")}${fld("featured.youtube", "YouTube link", "url")}</div><div class="img" style="margin-top:12px"><span>${F.file ? `🎬 ${esc(F.file.split("/").pop())}${vf ? " (" + (files.get(F.file).size / 1048576).toFixed(1) + " MB)" : ""}` : "No video file (using the YouTube link)"}</span><label class="btn">${F.file ? "Replace" : "Upload"} video file (MP4 or WebM)<input type="file" accept="video/mp4,video/webm" hidden data-vid></label>${F.file ? `<button data-clear="featured.file">Remove video file</button>` : ""}</div>`); },
+  clients: () => listSec("clients"),
+  projects: () => listSec("projects"), cases: () => listSec("cases"), moodboard: () => listSec("moodboard"), shoots: shootsSec, boards: boardsSec,
+  display: () => box("Image display settings", `<div class="g">${sel("display.photoColumns", "Photography: images per row (desktop)", [["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"]])}${sel("display.boardColumns", "Moodboard: images per row (desktop)", [["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"]])}</div><p class="hint">Images sit side by side in a grid with their name underneath. Every image is shown in full: never cropped, stretched, or distorted.</p>`)
+};
+const refresh = n => { $("#sec-" + n).innerHTML = R[n](); };
+
+async function addImg(file, o = {}) {
+  const slug = file.name.replace(/\.[^.]+$/, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 30) || "image", id = Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  if (o.logo && (file.type === "image/svg+xml" || /\.svg$/i.test(file.name))) { const p = `assets/images/${slug}-${id}.svg`; files.set(p, file); return { p, w: 0, h: 0 }; }
+  const bmp = await createImageBitmap(file), sc = Math.min(1, (o.logo ? 1000 : 1600) / Math.max(bmp.width, bmp.height));
+  const c = document.createElement("canvas"); c.width = Math.round(bmp.width * sc); c.height = Math.round(bmp.height * sc);
+  const x = c.getContext("2d"); if (!o.logo) { x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); } x.drawImage(bmp, 0, 0, c.width, c.height);
+  const blob = await new Promise(r => c.toBlob(r, o.logo ? "image/png" : "image/jpeg", .85));
+  const p = `assets/images/${slug}-${id}.${o.logo ? "png" : "jpg"}`; files.set(p, blob); return { p, w: c.width, h: c.height };
+}
+
+$("#dir").onchange = async e => {
+  files.clear(); urls.clear();
+  const all = new Map();
+  for (const f of e.target.files) {
+    const parts = f.webkitRelativePath.split("/"); root = parts[0]; const p = parts.slice(1).join("/");
+    if (!p || /(^|\/)\./.test(p) || p.startsWith("__MACOSX")) continue; all.set(p, f);
+  }
+  const pre = !all.has("index.html") && all.has("site/index.html") ? "site/" : "";
+  for (const [p, f] of all) if (p.startsWith(pre)) files.set(p.slice(pre.length), f);
+  const bad = t => { $("#msg").textContent = t; };
+  if (!files.has("index.html") || !files.has("content.js")) return bad("That doesn’t look like the site folder. Please choose the folder named “site” (it contains index.html and content.js).");
+  try { D = new Function((await files.get("content.js").text()) + "\nreturn SITE;")(); } catch { return bad("Couldn’t read content.js. Please use the original folder."); }
+  ["projects","cases","moodboard","boards","clients","roles","industries","services","bio"].forEach(k => D[k] = D[k] || []); D.boards.forEach(b => b.items = b.items || []); if (!D.shoots) D.shoots = (D.photos || []).length ? [{ name: "Photography", desc: "", photos: D.photos }] : []; delete D.photos; D.shoots.forEach(x => x.photos = x.photos || []); D.projects.concat(D.cases).forEach(x => x.docs = x.docs || []); delete D.scripts; D.display = Object.assign({ boardColumns: "5", photoColumns: "4" }, D.display || {}); delete D.display.stripHeight; if (!D.boards.length) D.boards.push({ title: "", related: "", desc: "", items: [] }); D.boards = D.boards.slice(0, 1);
+  D.contact = D.contact || {}; D.featured = D.featured || {};
+  if (!(await files.get("index.html").text()).includes("S.shoots")) alert("Note: this site folder is older than this editor (it has no Photography folders). Please use the site folder from the same ZIP as this editor.");
+  $("#msg").textContent = ""; $("#start").hidden = true; $("#dl").disabled = false; $("#pvb").disabled = false;
+  $("#ed").hidden = false; $("#ed").innerHTML = Object.keys(R).map(n => `<div id="sec-${n}"></div>`).join(""); Object.keys(R).forEach(refresh); updPT();
+};
+
+document.addEventListener("input", e => {
+  const t = e.target; dirty = 1; if (t.dataset.k && /^projects\.\d+\.title$/.test(t.dataset.k)) setTimeout(updPT);
+  if (t.dataset.k) set(t.dataset.k, t.type === "checkbox" ? t.checked : t.value);
+  else if (t.dataset.list) set(t.dataset.list, t.value.split("\n").map(x => x.trim()).filter(Boolean));
+  else if (t.dataset.colors) set(t.dataset.colors, t.value.split(/[\s,;]+/).filter(Boolean));
+  else if (t.dataset.bio !== undefined) D.bio = t.value.split(/\n\s*\n/).map(x => x.trim()).filter(Boolean);
+});
+document.addEventListener("change", async e => {
+  const t = e.target, f = t.files && t.files[0];
+  if (t.dataset.url !== undefined) t.parentNode.querySelector(".chk").textContent = chk(t.value);
+  if (t.dataset.re !== undefined) refresh(t.dataset.k.split(".")[0]);
+  const slug = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 30);
+  try {
+    if (t.dataset.img && f) { const k = t.dataset.img, r = await addImg(f, { logo: /\.logo$/.test(k) }); set(k, r.p); if (/\.src$/.test(k)) { const b = k.slice(0, -4); set(b + ".w", r.w); set(b + ".h", r.h); } refresh(k === "photo" ? "files" : k.split(".")[0]); dirty = 1; }
+    else if (t.dataset.multi) { const m = t.dataset.multi; for (const g of [...t.files]) { const n = blankFor(m), r = await addImg(g); n.src = r.p; n.w = r.w; n.h = r.h; get(m).push(n); } refresh(m.split(".")[0]); dirty = 1; }
+    else if (t.dataset.cv !== undefined && f) { files.set(CV, f); D.cv = CV; refresh("files"); dirty = 1; }
+    else if (t.dataset.pdf && f) {
+      const h = new TextDecoder().decode(new Uint8Array(await f.slice(0, 5).arrayBuffer())); if (!h.startsWith("%PDF")) throw "pdf";
+      const k = t.dataset.pdf, d = get(k.replace(/\.file$/, "")), p = `assets/docs/${slug(d.title || f.name.replace(/\.pdf$/i, "")) || "document"}-${Date.now().toString(36)}.pdf`;
+      files.set(p, f); set(k, p); refresh(k.split(".")[0]); dirty = 1;
+    }
+    else if (t.dataset.vid !== undefined && f) {
+      const p = `assets/video/featured-${Date.now().toString(36)}.${/\.webm$/i.test(f.name) ? "webm" : "mp4"}`; files.set(p, f); D.featured.file = p; refresh("featured"); dirty = 1;
+      if (f.size > 40e6) alert("This video file is large (" + (f.size / 1e6).toFixed(0) + " MB) and will slow your website down. A YouTube link is recommended for big videos.");
+    }
+  } catch (err) { alert(err === "pdf" ? "That file doesn’t look like a PDF. Please choose a .pdf file." : "Sorry, that file couldn’t be read. Please use a JPG or PNG image."); }
+});
+document.addEventListener("click", e => {
+  const cl = e.target.closest("[data-clear]"); if (cl) { set(cl.dataset.clear, ""); dirty = 1; refresh(cl.dataset.clear.split(".")[0]); return; }
+  const b = e.target.closest("[data-a]"); if (!b) return;
+  const p = b.dataset.p, i = +b.dataset.i, a = get(p);
+  if (b.dataset.a === "add") { a.push(blankFor(p)); if (p === "boards") openB.add(a.length - 1); if (p === "shoots") openS.add(a.length - 1); }
+  else if (b.dataset.a === "del") { if (!confirm("Remove this item?")) return; a.splice(i, 1); if (p === "boards") openB.clear(); if (p === "shoots") openS.clear(); }
+  else { const j = b.dataset.a === "up" ? i - 1 : i + 1; if (j < 0 || j >= a.length) return; [a[i], a[j]] = [a[j], a[i]]; if (p === "boards") { openB.clear(); openB.add(j); } if (p === "shoots") { openS.clear(); openS.add(j); } }
+  dirty = 1; refresh(p.split(".")[0]); if (p === "projects") updPT();
+});
+document.addEventListener("toggle", e => { const d = e.target; if (d.dataset && d.dataset.si !== undefined) d.open ? openS.add(+d.dataset.si) : openS.delete(+d.dataset.si); if (d.dataset && d.dataset.bi !== undefined) d.open ? openB.add(+d.dataset.bi) : openB.delete(+d.dataset.bi); }, true);
+addEventListener("beforeunload", e => { if (dirty) e.preventDefault(); });
+
+/* Preview: renders the real website with your unsaved changes */
+async function preview(w) {
+  const map = v => typeof v === "string" ? (files.has(v) ? url(v) : v) : Array.isArray(v) ? v.map(map) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, map(x)])) : v;
+  const OT = "<" + "script", CT = "</" + "script>", html = (await files.get("index.html").text()).replace(OT + ' src="content.js">' + CT, () => OT + ">const SITE = " + JSON.stringify(map(D)).replace(/</g, "\\u003c") + ";" + CT);
+  $("#pvf").srcdoc = html; $("#pvf").style.width = w || "100%"; $("#pv").hidden = false;
+}
+$("#pvb").onclick = () => preview();
+$("#pv").addEventListener("click", e => { const b = e.target.closest("[data-w]"); if (b) $("#pvf").style.width = b.dataset.w; if (e.target.id === "pvx") $("#pv").hidden = true; });
+addEventListener("keydown", e => { if (e.key === "Escape") $("#pv").hidden = true; });
+
+/* Minimal ZIP writer (no compression) */
+const T = (() => { const t = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+const crc = u => { let c = -1; for (let i = 0; i < u.length; i++) c = T[(c ^ u[i]) & 255] ^ (c >>> 8); return (~c) >>> 0; };
+function makeZip(es) {
+  const enc = new TextEncoder(), parts = [], cen = []; let off = 0;
+  const d = new Date(), dt = ((d.getFullYear() - 1980) << 9 | (d.getMonth() + 1) << 5 | d.getDate()) & 0xFFFF, tm = (d.getHours() << 11 | d.getMinutes() << 5 | d.getSeconds() >> 1) & 0xFFFF;
+  for (const [name, data] of es) {
+    const n = enc.encode(name), c = crc(data), L = data.length;
+    const h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(10, tm, true); h.setUint16(12, dt, true);
+    h.setUint32(14, c, true); h.setUint32(18, L, true); h.setUint32(22, L, true); h.setUint16(26, n.length, true);
+    parts.push(h.buffer, n, data);
+    const g = new DataView(new ArrayBuffer(46));
+    g.setUint32(0, 0x02014b50, true); g.setUint16(4, 20, true); g.setUint16(6, 20, true); g.setUint16(8, 0x0800, true); g.setUint16(12, tm, true); g.setUint16(14, dt, true);
+    g.setUint32(16, c, true); g.setUint32(20, L, true); g.setUint32(24, L, true); g.setUint16(28, n.length, true); g.setUint32(42, off, true);
+    cen.push(g.buffer, n); off += 30 + n.length + L;
+  }
+  const cs = cen.reduce((a, x) => a + x.byteLength, 0), e = new DataView(new ArrayBuffer(22));
+  e.setUint32(0, 0x06054b50, true); e.setUint16(8, es.length, true); e.setUint16(10, es.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+  return new Blob([...parts, ...cen, e.buffer], { type: "application/zip" });
+}
+$("#dl").onclick = async () => {
+  files.set("content.js", new Blob(["/* Site content. Edit it with editor.html, not by hand. */\nconst SITE = " + JSON.stringify(D, null, 2) + ";\n"]));
+  const used = new Set(); (function w(v) { if (typeof v === "string") used.add(v); else if (v && typeof v === "object") Object.values(v).forEach(w); })(D);
+  const es = []; for (const [p, b] of files) { if (/^assets\/(docs|video)\//.test(p) && !used.has(p)) continue; es.push([p, new Uint8Array(await b.arrayBuffer())]); }
+  const a = document.createElement("a"); a.href = URL.createObjectURL(makeZip(es)); a.download = "yousef-portfolio-netlify.zip"; a.click(); dirty = 0;
+  alert("Downloaded: yousef-portfolio-netlify.zip\n\nIt is ready for Netlify: index.html is at the top level of the ZIP. Unzip it and open index.html to check, then drag the ZIP (or the unzipped folder) onto Netlify.");
+};
+</script>
+</body>
+</html>

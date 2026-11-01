@@ -35,7 +35,8 @@ const SITE = {
     "email": "yousefabdelrazaek@gmail.com",
     "whatsapp": "+201032847728",
     "linkedin": "https://www.linkedin.com/in/yousef-ahmed-a96618224",
-    "instagram": "https://www.instagram.com/yousefahmed.3110/"
+    "instagram": "https://www.instagram.com/yousefahmed.3110/",
+    "whatsappMessage": "Hi Yousef, I found your portfolio and I’d like to start a project."
   },
   "cv": "assets/cv/Yousef-Ahmed-CV.pdf",
   "photo": "assets/images/gemini-generated-image-vogqzwv-mvjebgct.jpg",
@@ -44,74 +45,13 @@ const SITE = {
     "When I was a kid, I used to wonder…\n How can a movie scene stay in my head for years? Or a song from an ad keep playing in my ears?\nThen I realized  Anything that touches our feelings… stays inside us.\nThat’s when I noticed:\n It’s not always about the information,\n it’s about the emotion.\nA short sentence.\n A funny scene.\n A background sound.\n All of them can make someone laugh, think, change — or even decide to buy.\nAnd that’s how my journey started.\n I don’t just write posts or scripts.\n I create moments — Moments you feel… and never forget."
   ],
   "featured": {
-    "title": "Palmé Bakery — Croissant Making",
+    "title": "Palmé Bakery · Croissant Reel",
+    "desc": "A cinematic croissant-making reel for Palmé, focusing on the craftsmanship and details behind the baking process. Pink lighting was incorporated into the visual setup to reflect the brand’s identity and create a distinctive visual atmosphere, blending product-focused close-ups with a dark, cinematic aesthetic.",
     "youtube": "https://youtube.com/shorts/mtmoVkDlrJc?feature=share",
-    "note": "Croissant-making video",
     "file": "",
-    "mime": "video/mp4"
+    "format": "vertical",
+    "note": "Your showreel or strongest project goes here."
   },
-  "clients": [
-    {
-      "name": "Palmé Bakery",
-      "logo": "assets/clients/480275833-1048736137293938-75629595-mvmbtnqg.jpg",
-      "url": "",
-      "project": "https://docs.google.com/presentation/d/1xj6908bGpFRJGZN7nAPCXutIVIUQkIg0/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
-    },
-    {
-      "name": "Qr tably",
-      "logo": "assets/clients/705891642-122178384116843777-892103-mvmc5j4r.jpg",
-      "url": "https://qrtably.com/",
-      "project": "https://docs.google.com/presentation/d/1UVp1QidcKOqxo2j6DZDXXPkBhIy4m385/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
-    },
-    {
-      "name": "Rosto Restaurant مطعم روستو",
-      "logo": "assets/clients/273410118-2605646486246427-55843526-mvmbwd6v.jpg",
-      "url": "",
-      "project": "https://drive.google.com/file/d/1UquHX-T8OwnEEj5FyDH76lpub9RWCrOO/view?usp=sharing"
-    },
-    {
-      "name": "Gheya Roof - Cafe & Restaurant",
-      "logo": "assets/clients/475964170-122120564726608496-396432-mvmc9cos.jpg",
-      "url": "",
-      "project": "https://docs.google.com/presentation/d/1g3pPMWq-hfJn-z4SlHGe5pZgh5JAC0Wz/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
-    },
-    {
-      "name": "Raw Kitchens",
-      "logo": "assets/clients/574905912-1375428307473781-34834358-mvmbrmq9.jpg",
-      "url": "https://raw-kitchens.com/",
-      "project": "https://drive.google.com/file/d/1vPMbyFeZd-yrAHqKHwoYypF8YQf0qpm-/view?usp=sharing"
-    },
-    {
-      "name": "فندق آفينو العرب - Avenue Al Arab Hotel",
-      "logo": "assets/clients/466178143-122107036778606276-886761-mvmet7x7.jpg",
-      "url": "",
-      "project": ""
-    },
-    {
-      "name": "Antika Radio",
-      "logo": "assets/clients/482235760-1148603777279383-42644372-mvmewveb.jpg",
-      "url": "",
-      "project": ""
-    },
-    {
-      "name": "Fady El Fahdy - فادي الفهدي﻿",
-      "logo": "assets/clients/459923832-122093793080537078-529815-mvmey2uf.jpg",
-      "url": "",
-      "project": "https://docs.google.com/document/d/1dbTu-RntWPwnzlvG2DXg7-BQ5YVr8lGJHh07CbHOOhw/edit?tab=t.0"
-    },
-    {
-      "name": "Beeviro ",
-      "logo": "assets/clients/435988278-122102398742266874-723167-mvmf1m7f.jpg",
-      "url": "",
-      "project": "https://www.facebook.com/share/v/1HqoiUinRE/"
-    },
-    {
-      "name": "Social Flycatcher",
-      "logo": "assets/clients/470584261-559350880408513-764410998-mvmf6gbq.jpg",
-      "url": "",
-      "project": ""
-    }
-  ],
   "projects": [
     {
       "title": "Palmé Bakery",
@@ -119,23 +59,19 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtube.com/shorts/mtmoVkDlrJc?feature=share",
-      "desc": "A cinematic croissant-making reel for Palmé Bakery, built around the craft and detail behind the baking process. Pink accent lighting reinforces the brand’s visual identity, while close-up shots and a darker, cinematic treatment bring texture, movement, and product detail to the foreground.",
+      "desc": "A cinematic croissant-making reel for Palmé, focusing on the craftsmanship and details behind the baking process. Pink lighting was incorporated into the visual setup to reflect the brand’s identity and create a distinctive visual atmosphere, blending product-focused close-ups with a dark, cinematic aesthetic.",
       "format": "vertical",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Content Plan PDF"
+      "docs": []
     },
     {
-      "title": "Pumpkin Seeds — From Process to Product",
+      "title": "Pumpkin seeds",
       "category": "Nut Roasters",
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtu.be/Zz1PT54Ed6w",
-      "desc": "A process-focused food video following pumpkin seeds from preparation to the finished product. The sequence highlights each stage with clear, satisfying visuals designed to hold attention and make the process easy to follow.",
+      "desc": "Pumpkin seeds making step by step",
       "format": "wide",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Content Plan PDF"
+      "docs": []
     },
     {
       "title": "Mawlid Branch Coverage",
@@ -143,11 +79,9 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtu.be/7c2h41Wcq2E",
-      "desc": "Seasonal branch coverage for Palmé Bakery during Mawlid, capturing the festive displays, themed packaging, and in-store atmosphere. The video connects the campaign’s visual identity with the customer experience at the branch.",
+      "desc": "A visual coverage of Palmé’s branch during Mawlid celebrations, highlighting the seasonal packaging, festive decorations, and overall branch atmosphere to capture the spirit of the occasion and the brand experience.",
       "format": "wide",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Content Plan PDF"
+      "docs": []
     },
     {
       "title": "Old Cairo",
@@ -155,11 +89,9 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography, Editing",
       "youtube": "https://youtu.be/xRPr4a8iAIQ",
-      "desc": "A cinematic visual study of Old Cairo, focusing on architectural details, layered textures, light, and shadow. Carefully composed shots turn the location into a short visual story shaped by atmosphere and place.",
+      "desc": "A cinematic reel exploring the details and visual charm of Old Cairo, highlighting its architecture, textures, and cultural character through carefully crafted shots and visual storytelling.",
       "format": "wide",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Content Plan PDF"
+      "docs": []
     },
     {
       "title": "Palmé Bakery",
@@ -167,103 +99,61 @@ const SITE = {
       "year": "2026",
       "role": "Concept, Shot Planning, Mobile Videography",
       "youtube": "https://youtube.com/shorts/HMnL4bxeYQI?feature=share",
-      "desc": "A product-focused reel featuring the preparation of Palmé Bakery’s Raffaello Cake. Close-up shots emphasize ingredients, texture, and finishing details, using visual storytelling to make the product the center of attention.",
+      "desc": "A visually driven product reel showcasing the preparation of Palmé’s Raffaello Cake. The video focuses on the details, textures, and ingredients that bring the product to life, using close-up shots and a visual storytelling approach to capture attention and highlight the product’s appeal.",
       "format": "vertical",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Content Plan PDF"
+      "docs": []
     }
   ],
   "cases": [
     {
       "brand": "Palmé Bakery",
-      "campaign": "Hawadeet El-Mawlid · حواديت المولد",
+      "campaign": "حواديت المولد -Hawadeet El-Mawlid",
       "challenge": "Brand Positioning: Establish Palmé in the market as a primary creator and manufacturer of Mawlid sweets—rather than just a reseller—competing in a heavily saturated market dominated by legacy brands.\n\nEmotional Connection: Transform Mawlid sweets from a seasonal food product into an authentic cultural and emotional experience.",
       "idea": "Consumer Insight: For Egyptians, Mawlid is not merely about buying sweets; it is rooted in childhood memories, street carnivals, paper dolls, wooden horses, and family gatherings.\n\nBig Idea: \"Behind every piece of Mawlid candy... is a story.\"\n\nCampaign Slogan: \"Hawadeet El-Mawlid\" \n\nVisual Identity: Green theme inspired by the Prophet’s Mosque dome, representing peace, tranquility, and heritage.",
       "execution": "A. Marketing & Sales Channels\n\nDirect-to-Consumer (B2C):\n\nProduced sales-driven Reels and lifestyle videos highlighting packaging design and sweet varieties.\n\nExecuted high-end product photoshoots highlighting quality and craftsmanship.\n\nCorporate Sales (B2B):\n\nTargeted corporate HR departments and business owners with premium corporate gifting packages.\n\nRetargeted past customer databases (from previous Ramadan and seasonal campaigns) alongside capturing new qualified leads.\nB. Content Strategy\n\nA 5-episode storytelling series featuring a traditional storyteller (\"Hakawati\"):\n\nEpisode 1: History of Mawlid Sweets – Originating from the Fatimid era to present day.\n\nEpisode 2: The Bride & Horse – Cultural symbolism of traditional figures.\n\nEpisode 3: Puppet Theater & Aragouz – Folkloric storytelling methods.\n\nEpisode 4: Old Egyptian Mawlid Streets – Nostalgic memories of street carnivals and swings.\n\nEpisode 5: Evolution of the Mawlid Box – From packaging to a cherished gift.\nC. Packaging & Product Design\n\nStandard Lineup: Folkloric artwork depicting nostalgic elements (Aragouz puppet, Tanoura dancer, Mawlid Bride, Horse, Carnival Cannon, Shooting Booth, Swings).\n\nPremium Lineup: High-end pop-up display boxes and custom-shaped tin boxes (Bride & Horse shapes) designed for luxury corporate and family gifting.\nD. Event & Activation\n\nHosted a Mawlid festival experience incorporating Tanoura performances, puppet shows, and traditional carnival games to strengthen brand engagement.",
       "results": "Sold Out Pre-Mawlid: Reached 100% sales capacity and completely cleared all inventory prior to Mawlid day.\n\nMarket Positioning Secured: Successfully established Palmé as a go-to brand for modern yet traditional Mawlid sweets.\n\nChannel Growth: Strong performance across both B2C direct sales and B2B corporate orders, expanding the customer database for future seasons.",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Strategy PDF"
+      "docs": []
     },
     {
       "brand": "rosto",
-      "campaign": "Social Media Strategy · 2025",
+      "campaign": "strategy 2025",
       "challenge": "Addressing common customer pain points in the restaurant industry, such as deceptive offers, inconsistent quality, delivery delays, poor customer service, small portions relative to price, and slow issue resolution.   Overcoming drops in social media performance metrics (reach and views on Instagram and Facebook) compared to major market competitors.   Standing out amidst intense competition from massive brands (like Karam Elsham and Abu Mazen) that heavily leverage food bloggers and massive promos.   ",
       "idea": "Building an integrated marketing strategy anchored in a distinct brand identity with a \"friendly and playful\" tone of voice, positioning the brand as a close friend to the audience.   Targeting specific audience segments through well-defined Buyer Personas to cater to students, families, and young adults.   Focusing on clear marketing objectives, including driving sales, promoting under-advertised new menu items, and building an engaged community around the brand.   ",
       "execution": "established a friendly, playful \"Tone of Voice\" to position the brand as a close friend to the audience.   Defined the Target Audience: Analyzed and targeted the core demographic group ranging from 20 to 50 years old across both genders.   Created Buyer Personas: Built detailed buyer personas across key target segments (university students/young adults, family heads, and working/engaged young couples) by mapping out their locations, behaviors, interests, and food preferences to ensure precision in campaign targeting.   Formulated Strategy: Developed a comprehensive marketing strategy for December 2024 featuring thorough social media analytics and competitor benchmarking.   ",
       "results": "",
-      "pdf": "",
-      "pdfTitle": "",
-      "pdfLabel": "View Strategy PDF"
+      "docs": []
     }
   ],
   "moodboard": [],
-  "photos": [
-    {
-      "src": "assets/images/836261623-2198880897685818-293-mviw5pz9.jpg",
-      "caption": "7ba kamla"
-    },
-    {
-      "src": "assets/images/839916383-1084956211208202-512-mviw5q0u.jpg",
-      "caption": "cookies 7ba kamla"
-    },
-    {
-      "src": "assets/images/840961855-28584242707896001-85-mviw5q2c.jpg",
-      "caption": "mnen 7ba kamla"
-    },
-    {
-      "src": "assets/images/img-9612-1-mviunt8v.jpg",
-      "caption": "The Mosque-Madrasa of Sultan Hasan"
-    },
-    {
-      "src": "assets/images/img-9587-mviun22x.jpg",
-      "caption": "Passage to Light"
-    },
-    {
-      "src": "assets/images/img-9610-mviumzvk.jpg",
-      "caption": "Play of Natural Light"
-    },
-    {
-      "src": "assets/images/img-9504-1-mviun0r7.jpg",
-      "caption": "Spiritual Serenity"
-    },
-    {
-      "src": "assets/images/img-9628-mviun180.jpg",
-      "caption": "Framed Heritage"
-    },
-    {
-      "src": "assets/images/img-9624-mviun1hk.jpg",
-      "caption": "Citadel Horizons"
-    },
-    {
-      "src": "assets/images/img-9582-mviun2cq.jpg",
-      "caption": "Echoes of Shadows"
-    }
-  ],
   "boards": [
     {
       "title": "Palmé Bakery · Croissant Reel",
       "related": "Palmé Bakery",
-      "desc": "Visual references for the croissant reel, bringing together lighting, color, product styling, and composition before production.",
+      "desc": "",
       "items": [
         {
           "type": "image",
           "tag": "Color",
           "src": "assets/images/chatgpt-image-apr-24-2026-04-5-mviw2to6.jpg",
-          "caption": "color reference"
+          "caption": "color reference",
+          "w": 1122,
+          "h": 1402
         },
         {
           "type": "image",
           "tag": "Reference",
           "src": "assets/images/palma-f1446-mviw2mqp.jpg",
-          "caption": "croissant shoot"
+          "caption": "croissant shoot",
+          "w": 1068,
+          "h": 1600
         },
         {
           "type": "image",
           "tag": "Inspiration",
           "src": "assets/images/gemini-generated-image-fu3rt5f-mviw2su6.jpg",
-          "caption": "pink vibes"
+          "caption": "pink vibes",
+          "w": 1024,
+          "h": 1029
         },
         {
           "type": "palette",
@@ -279,44 +169,212 @@ const SITE = {
           "type": "image",
           "tag": "Reference",
           "src": "assets/images/gemini-generated-image-z4quz8z-mviw2msi.jpg",
-          "caption": "fruit Danish"
+          "caption": "fruit Danish",
+          "w": 688,
+          "h": 1532
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "name": "Palmé Bakery",
+      "logo": "assets/images/480275833-1048736137293938-756-mvy4wcvovvh.png",
+      "tone": "",
+      "project": "https://docs.google.com/presentation/d/1xj6908bGpFRJGZN7nAPCXutIVIUQkIg0/edit?usp=drive_link&ouid=104096890300727777494&rtpof=true&sd=true",
+      "url": ""
+    },
+    {
+      "name": "Rosto Restaurant مطعم روستو",
+      "logo": "assets/images/273410118-2605646486246427-558-mvy4xagxx8d.png",
+      "tone": "",
+      "project": "https://drive.google.com/file/d/1UquHX-T8OwnEEj5FyDH76lpub9RWCrOO/view?usp=drive_link",
+      "url": ""
+    },
+    {
+      "name": "Qr tably",
+      "logo": "assets/images/705891642-122178384116843777-8-mvy4y8z6973.png",
+      "tone": "",
+      "project": "https://docs.google.com/presentation/d/1UVp1QidcKOqxo2j6DZDXXPkBhIy4m385/edit?rtpof=true&sd=true",
+      "url": ""
+    },
+    {
+      "name": "Gheya Roof - Cafe & Restaurant",
+      "logo": "assets/images/475964170-122120564726608496-3-mvy4yyv0zfx.png",
+      "tone": "",
+      "project": "https://docs.google.com/presentation/d/1g3pPMWq-hfJn-z4SlHGe5pZgh5JAC0Wz/edit?rtpof=true&sd=true",
+      "url": ""
+    },
+    {
+      "name": "Raw Kitchens",
+      "logo": "assets/images/574905912-1375428307473781-348-mvy4zlbju2r.png",
+      "tone": "",
+      "project": "https://drive.google.com/file/d/1vPMbyFeZd-yrAHqKHwoYypF8YQf0qpm-/view",
+      "url": ""
+    },
+    {
+      "name": "فندق آفينو العرب - Avenue Al Arab Hotel",
+      "logo": "assets/images/466178143-122107036778606276-8-mvy50o0opyi.png",
+      "tone": "",
+      "project": "",
+      "url": ""
+    },
+    {
+      "name": "Antika Radio",
+      "logo": "assets/images/482235760-1148603777279383-426-mvy5131uz9y.png",
+      "tone": "",
+      "project": "",
+      "url": ""
+    },
+    {
+      "name": "Fady El Fahdy - فادي الفهدي﻿",
+      "logo": "assets/images/459923832-122093793080537078-5-mvy51frao2i.png",
+      "tone": "",
+      "project": "https://docs.google.com/document/d/1dbTu-RntWPwnzlvG2DXg7-BQ5YVr8lGJHh07CbHOOhw/edit?tab=t.0",
+      "url": ""
+    },
+    {
+      "name": "Beeviro",
+      "logo": "assets/images/435988278-122102398742266874-7-mvy52afgfop.png",
+      "tone": "",
+      "project": "facebook.com/reel/4765905923675917/?rdid=6LjNuDDENKRBQy3s&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1HqoiUinRE%2F#",
+      "url": ""
+    }
+  ],
+  "display": {
+    "boardColumns": "5",
+    "photoColumns": "4"
+  },
+  "shoots": [
+    {
+      "name": "7ba kamla",
+      "desc": "Palmé Bakery",
+      "photos": [
+        {
+          "src": "assets/images/836261623-2198880897685818-293-mviw5pz9.jpg",
+          "caption": "7ba kamla",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/839916383-1084956211208202-512-mviw5q0u.jpg",
+          "caption": "cookies 7ba kamla",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/840961855-28584242707896001-85-mviw5q2c.jpg",
+          "caption": "mnen 7ba kamla",
+          "w": 1080,
+          "h": 1080
         }
       ]
     },
     {
-      "title": "Old Cairo",
-      "related": "Old Cairo",
-      "desc": "A visual reference board focused on architectural framing, natural light, shadow, and the textures of Old Cairo.",
-      "items": [
+      "name": "Old Cairo",
+      "desc": "",
+      "photos": [
         {
-          "type": "image",
-          "tag": "Lighting",
+          "src": "assets/images/img-9612-1-mviunt8v.jpg",
+          "caption": "The Mosque-Madrasa of Sultan Hasan",
+          "w": 1099,
+          "h": 1600
+        },
+        {
           "src": "assets/images/img-9587-mviun22x.jpg",
-          "caption": "Passage to Light"
+          "caption": "Passage to Light",
+          "w": 1044,
+          "h": 1600
         },
         {
-          "type": "image",
-          "tag": "Composition",
-          "src": "assets/images/img-9628-mviun180.jpg",
-          "caption": "Framed Heritage"
+          "src": "assets/images/img-9610-mviumzvk.jpg",
+          "caption": "Play of Natural Light",
+          "w": 1176,
+          "h": 1600
         },
         {
-          "type": "image",
-          "tag": "Composition",
-          "src": "assets/images/img-9624-mviun1hk.jpg",
-          "caption": "Citadel Horizons"
-        },
-        {
-          "type": "image",
-          "tag": "Lighting",
-          "src": "assets/images/img-9582-mviun2cq.jpg",
-          "caption": "Echoes of Shadows"
-        },
-        {
-          "type": "image",
-          "tag": "Inspiration",
           "src": "assets/images/img-9504-1-mviun0r7.jpg",
-          "caption": "Spiritual Serenity"
+          "caption": "Spiritual Serenity",
+          "w": 1600,
+          "h": 1214
+        },
+        {
+          "src": "assets/images/img-9628-mviun180.jpg",
+          "caption": "Framed Heritage",
+          "w": 1544,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9624-mviun1hk.jpg",
+          "caption": "Citadel Horizons",
+          "w": 1195,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9582-mviun2cq.jpg",
+          "caption": "Echoes of Shadows",
+          "w": 1132,
+          "h": 1600
+        }
+      ]
+    },
+    {
+      "name": "Ya 7alawet el shar2y",
+      "desc": "",
+      "photos": [
+        {
+          "src": "assets/images/876262718-1927908091951760-327-mvy4lu5dnty.jpg",
+          "caption": "Ya 7alawet el shar2y",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/871000228-3537204196460245-415-mvy4m3upn73.jpg",
+          "caption": "details",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/863778383-2021416939021164-168-mvy4m446gl4.jpg",
+          "caption": "3’waysh ",
+          "w": 1080,
+          "h": 1080
+        }
+      ]
+    },
+    {
+      "name": "mango",
+      "desc": "",
+      "photos": [
+        {
+          "src": "assets/images/752488790-1054729074166150-803-mvy4r13ncck.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/751726514-1019264260695511-740-mvy4r1en6d2.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/750020816-2955908948084849-533-mvy4r1ghyyy.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/752279233-2260586761364166-279-mvy4r1i0quf.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/757850833-1364100509212208-112-mvy4r1jhmsc.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
         }
       ]
     }
