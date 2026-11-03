@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Yousef Ahmed — Content Creator & Reel Maker, Social Media Specialist & Script Writer</title>
-<meta name="description" content="Portfolio of Yousef Ahmed, a Cairo-based content creator, reel maker, social media specialist and script writer.">
+<title>Yousef Ahmed — Content Creator, Social Media Specialist & Script Writer</title>
+<meta name="description" content="Portfolio of Yousef Ahmed, a Cairo-based content creator, social media specialist and script writer.">
 <meta name="theme-color" content="#0B0B0C">
 <meta name="author" content="Yousef Ahmed">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Yousef Ahmed — Content Creator & Reel Maker, Social Media Specialist & Script Writer">
-<meta property="og:description" content="Portfolio of Yousef Ahmed, a Cairo-based content creator, reel maker, social media specialist and script writer.">
+<meta property="og:title" content="Yousef Ahmed — Content Creator, Social Media Specialist & Script Writer">
+<meta property="og:description" content="Portfolio of Yousef Ahmed, a Cairo-based content creator, social media specialist and script writer.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B0B0C'/><circle cx='16' cy='16' r='7' fill='%23E63B1F'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,9 +68,9 @@ h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .card p{margin-top:8px;color:#cfc9bf;font-size:15px}
 .about{display:grid;gap:36px}
 @media(min-width:861px){.about{grid-template-columns:1fr 1.5fr}}
-.portrait{position:relative;aspect-ratio:4/5;background:#141416;max-width:420px;overflow:hidden}
-.portrait img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center center}
-.portrait.has{aspect-ratio:4/5}
+.portrait{position:relative;aspect-ratio:4/5;background:#141416;max-width:420px}
+.portrait img{width:100%;height:auto;display:block;object-fit:contain}
+.portrait.has{aspect-ratio:auto}
 .bio p{font-size:19px;margin-bottom:16px}
 .draft{display:inline-block;font:11px var(--m);color:var(--red);border:1px solid var(--red);padding:4px 10px;margin-bottom:18px;letter-spacing:.1em}
 .facts{margin:24px 0;border-top:1px solid var(--line)}
@@ -118,22 +118,6 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 .gi figcaption{padding:10px 2px 0;color:var(--ink)}
 .gn{display:block;font:400 clamp(19px,2vw,24px)/1.1 var(--d);letter-spacing:.05em;overflow-wrap:anywhere}
 .gt{display:block;margin-top:4px;font:10px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-.shoot{border-top:1px solid var(--line)}
-.shoot:last-of-type{border-bottom:1px solid var(--line)}
-.shoot summary{list-style:none;display:flex;align-items:center;gap:18px;padding:24px 4px;cursor:pointer}
-.shoot summary::-webkit-details-marker{display:none}
-.shoot summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-.fi{position:relative;flex:none;width:38px;height:28px;border:2px solid var(--gold);border-radius:2px 5px 5px 5px;margin-top:8px}
-.fi::before{content:"";position:absolute;left:-2px;top:-9px;width:16px;height:7px;border:2px solid var(--gold);border-bottom:0;border-radius:3px 3px 0 0;background:var(--bg)}
-.sn{flex:1;min-width:0}.sn .slate{display:block}
-.sn b{display:block;font:400 clamp(30px,5vw,52px)/1 var(--d);letter-spacing:.03em}
-.sn em{display:block;font:italic 17px var(--s);color:var(--mute);margin-top:4px}
-.sc{font:11px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
-.chev{flex:none;width:11px;height:11px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s;margin:0 8px 5px 4px}
-.shoot[open] .chev{transform:rotate(-135deg);margin-bottom:-4px}
-.shoot summary:hover b{color:var(--red)}
-.shoot .gal{padding:4px 0 36px}
-@media(max-width:560px){.sc{font-size:10px;letter-spacing:.08em}.fi{width:30px;height:22px}}
 .feat{display:grid;gap:24px}
 .feat.v{grid-template-columns:minmax(0,360px) 1fr;align-items:center;gap:40px}
 @media(max-width:700px){.feat.v{grid-template-columns:1fr}}
@@ -144,8 +128,8 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 @media(min-width:600px){.clients{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.clients{grid-template-columns:repeat(4,1fr)}}
 .cl{position:relative;display:grid;place-items:center;aspect-ratio:3/2;padding:18px 18px 30px;border:1px solid var(--line);background:#111113;color:var(--ink);text-decoration:none;overflow:hidden}
-.cl.light{background:#151517;color:var(--ink)}
-.cl img{max-width:84%;max-height:72%;width:auto;height:auto;object-fit:contain;mix-blend-mode:normal}
+.cl.light{background:var(--ink);color:#111}
+.cl img{max-width:80%;max-height:68%;width:auto;height:auto;object-fit:contain}
 .cl .nm{font:400 clamp(24px,3.2vw,34px)/1 var(--d);letter-spacing:.06em;text-align:center}
 .cl .go{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:10px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 a.cl:hover{border-color:var(--red)}a.cl:hover .go{color:var(--red)}
@@ -213,9 +197,6 @@ const cell = (it, i, label) => {
   return it.src ? `<figure class="gi" data-lb="${esc(it.src)}"><div class="gf"><img loading="lazy" src="${esc(it.src)}" alt="${esc(it.caption || it.tag || "")}"></div>${gcap(it.caption, it.tag)}</figure>` : phCell(label || (it.tag || "Image").toUpperCase(), "Image placeholder");
 };
 const board = (b, i) => { b = b || {}; return `<article class="board">${b.title || b.related || b.desc ? `<div class="rv">${b.related ? `<span class="slate">FOR ${esc(b.related.toUpperCase())}</span>` : ""}${b.title ? `<h3>${esc(b.title)}</h3>` : ""}${b.desc ? `<p class="sub">${esc(b.desc)}</p>` : ""}</div>` : ""}<div class="gal mb rv">${(b.items && b.items.length ? b.items : BD).map((x, k) => cell(x, k)).join("")}</div></article>`; };
-const shoots = (S.shoots || (S.photos && S.photos.length ? [{ name: "", photos: S.photos }] : [])).filter(x => x && (x.name || (x.photos || []).length));
-const shoot = (x, i) => { const ph = (x.photos || []).filter(q => q && q.src);
-  return `<details class="shoot rv" open><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
 const pIdx = c => c.project ? S.projects.findIndex(p => p.title && p.title.toLowerCase() === c.project.toLowerCase()) : -1;
 const client = c => { const tone = c.tone || (c.logo ? "light" : "dark"), pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
   const inner = `${c.logo ? `<img loading="lazy" src="${esc(c.logo)}" alt="${esc(c.name || "Client logo")}">` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
@@ -253,8 +234,8 @@ ${sec("strategy", head(REEL(), "STRATEGY &amp; CAMPAIGNS", "How the ideas are pl
   `<div class="tags rv">${S.services.map(s => `<span>${esc(s)}</span>`).join("")}</div><div class="cases">${list(S.cases, 1, cse)}</div>`)}
 ${S.moodboard && S.moodboard.length ? sec("direction", head(REEL(), "CREATIVE DIRECTION", "Moodboards, references and visual concepts.") +
   `<div class="gal rv">${list(S.moodboard, 6, (p, i) => cell(p && p.src ? p : null, i, "IMAGE " + pad(i)))}</div>`) : ""}
-${sec("photos", head(REEL(), "PHOTOGRAPHY &amp; BEHIND THE SCENES", "Stills and set moments, grouped by shoot. Open a folder to see its photos.") +
-  (shoots.length ? shoots.map(shoot).join("") : `<div class="gal photos rv">${[0, 1, 2, 3].map(k => cell(null, k, "PHOTO " + pad(k))).join("")}</div>`))}
+${sec("photos", head(REEL(), "PHOTOGRAPHY &amp; BEHIND THE SCENES", "Stills and set moments, each one named.") +
+  `<div class="gal photos rv">${list(S.photos, 6, (p, i) => cell(p && p.src ? p : null, i, "PHOTO " + pad(i)))}</div>`)}
 ${sec("boards", head(REEL(), "MOODBOARD", "The references behind my work: images, color, light, texture and composition.") + list((S.boards || []).slice(0, 1), 1, board))}
 <section class="sec contact" id="contact"><div class="wrap"><div class="slate rv">CLOSING CREDITS</div>
 <h2 class="rv">LET’S MAKE<br>SOMETHING.</h2>
@@ -268,10 +249,7 @@ if (!(S.clients || []).filter(c => c && (c.name || c.logo)).length) document.get
 $("#yr").textContent = new Date().getFullYear();
 $("#fn").textContent = S.name.toUpperCase(); $("#fl").textContent = S.location.toUpperCase(); document.querySelector(".logo").textContent = S.name.toUpperCase();
 document.title = S.name + " — " + S.roles.slice(0, 3).join(", ");
-document.querySelectorAll(".card h3,.card p,.case h3,.case dd,.bio p,.board h3,.board .sub,.gf.note p,.gn,.sn b,.sn em,.finfo h3,.finfo p,.doc .dt").forEach(e => e.dir = "auto");
-
-// Keep every photography folder expanded; clicking a folder heading will not collapse it.
-document.querySelectorAll("details.shoot").forEach(folder => { folder.open = true; folder.addEventListener("toggle", () => { if (!folder.open) folder.open = true; }); });
+document.querySelectorAll(".card h3,.card p,.case h3,.case dd,.bio p,.board h3,.board .sub,.gf.note p,.gn,.finfo h3,.finfo p,.doc .dt").forEach(e => e.dir = "auto");
 
 function openCV() {
   if (navigator.pdfViewerEnabled === false || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) { window.open(S.cv, "_blank", "noopener"); return; }
