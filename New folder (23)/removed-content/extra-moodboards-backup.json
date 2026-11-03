@@ -1,0 +1,52 @@
+{
+  "note": "Backup of moodboards removed so the website has ONE moodboard. Not part of the public website.",
+  "boards": [
+    {
+      "title": "Old Cairo",
+      "related": "Old Cairo",
+      "desc": "",
+      "items": [
+        {
+          "type": "image",
+          "tag": "Lighting",
+          "src": "assets/images/img-9587-mviun22x.jpg",
+          "caption": "Passage to Light",
+          "w": 1044,
+          "h": 1600
+        },
+        {
+          "type": "image",
+          "tag": "Composition",
+          "src": "assets/images/img-9628-mviun180.jpg",
+          "caption": "Framed Heritage",
+          "w": 1544,
+          "h": 1600
+        },
+        {
+          "type": "image",
+          "tag": "Composition",
+          "src": "assets/images/img-9624-mviun1hk.jpg",
+          "caption": "Citadel Horizons",
+          "w": 1195,
+          "h": 1600
+        },
+        {
+          "type": "image",
+          "tag": "Lighting",
+          "src": "assets/images/img-9582-mviun2cq.jpg",
+          "caption": "Echoes of Shadows",
+          "w": 1132,
+          "h": 1600
+        },
+        {
+          "type": "image",
+          "tag": "Inspiration",
+          "src": "assets/images/img-9504-1-mviun0r7.jpg",
+          "caption": "Spiritual Serenity",
+          "w": 1600,
+          "h": 1214
+        }
+      ]
+    }
+  ]
+}
