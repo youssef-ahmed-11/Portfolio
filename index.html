@@ -112,6 +112,7 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 .gal.photos{--cols:var(--pcols,4)}.gal.mb{--cols:var(--bcols,5)}
 .gi{margin:0;min-width:0}.gi[data-lb]{cursor:zoom-in}
 .gf{position:relative;aspect-ratio:3/4;background:#0f0f10;border:1px solid var(--line);overflow:hidden}
+.gf.amb::before{content:"";position:absolute;inset:-30px;background:var(--bg) center/cover no-repeat;filter:blur(26px) brightness(.45) saturate(1.15)}
 .gf img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .gi:hover .gf{border-color:#4a4a4d}
 .gf.note{padding:16px;overflow:auto}.gf.note p{font:italic 18px/1.35 var(--s);white-space:pre-line}
@@ -146,6 +147,7 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 .cl{position:relative;display:grid;place-items:center;aspect-ratio:3/2;padding:18px 18px 30px;border:1px solid var(--line);background:#111113;color:var(--ink);text-decoration:none;overflow:hidden}
 .cl.light{background:var(--ink);color:#111}
 .cl img{max-width:80%;max-height:68%;width:auto;height:auto;object-fit:contain}
+.cl img.lw{filter:brightness(0) invert(.95)}
 .cl .nm{font:400 clamp(24px,3.2vw,34px)/1 var(--d);letter-spacing:.06em;text-align:center}
 .cl .go{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:10px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 a.cl:hover{border-color:var(--red)}a.cl:hover .go{color:var(--red)}
@@ -203,6 +205,7 @@ ${c.results ? `<dt class="meta">Results</dt><dd>${esc(c.results)}</dd>` : (c.bra
 const ink = c => { const h = c.replace("#", ""), f = h.length < 6 ? h.split("").map(x => x + x).join("") : h, [r, g, b] = [0, 2, 4].map(i => parseInt(f.substr(i, 2), 16)); return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? "#111" : "#fff"; };
 const hexes = a => (a || []).map(c => String(c).trim()).filter(c => /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.test(c)).map(c => c[0] === "#" ? c : "#" + c);
 const BD = [{ tag: "Reference" }, { type: "palette" }, { tag: "Lighting" }, { tag: "Composition" }, { tag: "Texture" }];
+const cssUrl = u => encodeURI(u).replace(/'/g, "%27");
 const gcap = (n, t) => n || t ? `<figcaption>${n ? `<span class="gn">${esc(n)}</span>` : ""}${t ? `<span class="gt">${esc(t)}</span>` : ""}</figcaption>` : "";
 const phCell = (a, b) => `<figure class="gi"><div class="gf"><div class="ph"><span>${esc(a)}</span><small>${esc(b)}</small></div></div></figure>`;
 const cell = (it, i, label) => {
@@ -210,15 +213,15 @@ const cell = (it, i, label) => {
   if (t === "palette") { const cs = hexes(it.colors);
     return cs.length ? `<figure class="gi"><div class="gf"><div class="sw">${cs.map(c => `<span style="background:${c};color:${ink(c)}"><em>${c.toUpperCase()}</em></span>`).join("")}</div></div>${gcap("Color palette", it.caption)}</figure>` : phCell("COLOR PALETTE", "Add hex colors in the editor"); }
   if (t === "note") return it.text ? `<figure class="gi"><div class="gf note"><p>${esc(it.text)}</p></div>${gcap(it.caption || it.tag || "Note", it.caption ? it.tag : "")}</figure>` : phCell("NOTE", "Add a lighting, composition or idea note");
-  return it.src ? `<figure class="gi" data-lb="${esc(it.src)}"><div class="gf"><img loading="lazy" src="${esc(it.src)}" alt="${esc(it.caption || it.tag || "")}"></div>${gcap(it.caption, it.tag)}</figure>` : phCell(label || (it.tag || "Image").toUpperCase(), "Image placeholder");
+  return it.src ? `<figure class="gi" data-lb="${esc(it.src)}"><div class="gf amb" style="--bg:url('${esc(cssUrl(it.src))}')"><img loading="lazy" src="${esc(it.src)}" alt="${esc(it.caption || it.tag || "")}"></div>${gcap(it.caption, it.tag)}</figure>` : phCell(label || (it.tag || "Image").toUpperCase(), "Image placeholder");
 };
 const board = (b, i) => { b = b || {}; return `<article class="board">${b.title || b.related || b.desc ? `<div class="rv">${b.related ? `<span class="slate">FOR ${esc(b.related.toUpperCase())}</span>` : ""}${b.title ? `<h3>${esc(b.title)}</h3>` : ""}${b.desc ? `<p class="sub">${esc(b.desc)}</p>` : ""}</div>` : ""}<div class="gal mb rv">${(b.items && b.items.length ? b.items : BD).map((x, k) => cell(x, k)).join("")}</div></article>`; };
 const shoots = (S.shoots || (S.photos && S.photos.length ? [{ name: "", photos: S.photos }] : [])).filter(x => x && (x.name || (x.photos || []).length));
 const shoot = (x, i) => { const ph = (x.photos || []).filter(q => q && q.src);
   return `<details class="shoot rv"${i === 0 ? " open" : ""}><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
 const pIdx = c => c.project ? S.projects.findIndex(p => p.title && p.title.toLowerCase() === c.project.toLowerCase()) : -1;
-const client = c => { const tone = c.tone || (c.logo ? "light" : "dark"), pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
-  const inner = `${c.logo ? `<img loading="lazy" src="${esc(c.logo)}" alt="${esc(c.name || "Client logo")}">` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
+const client = c => { const tone = c.tone === "light" ? "light" : "dark", pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
+  const inner = `${c.logo ? `<img${c.logoStyle === "white" ? ' class="lw"' : ""} loading="lazy" src="${esc(c.logo)}" alt="${esc(c.name || "Client logo")}">` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
   return href ? `<a class="cl ${tone}" href="${esc(href)}"${pi < 0 ? ' target="_blank" rel="noopener"' : ""} aria-label="${esc(c.name || "Client")}">${inner}</a>` : `<div class="cl ${tone}">${inner}</div>`; };
 let _r = 0; const REEL = () => "REEL " + pad(_r++);
 const row = (label, v, href) => v
