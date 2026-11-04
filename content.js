@@ -4,7 +4,8 @@ const SITE = {
   "roles": [
     "Content Creator",
     "Social Media Specialist",
-    "Script Writer"
+    "Script Writer",
+    "Reel Maker"
   ],
   "location": "Cairo, Egypt",
   "openTo": "Full-time roles at creative agencies · Freelance projects",
@@ -271,54 +272,6 @@ const SITE = {
       ]
     },
     {
-      "name": "Old Cairo",
-      "desc": "",
-      "photos": [
-        {
-          "src": "assets/images/img-9612-1-mviunt8v.jpg",
-          "caption": "The Mosque-Madrasa of Sultan Hasan",
-          "w": 1099,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9587-mviun22x.jpg",
-          "caption": "Passage to Light",
-          "w": 1044,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9610-mviumzvk.jpg",
-          "caption": "Play of Natural Light",
-          "w": 1176,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9504-1-mviun0r7.jpg",
-          "caption": "Spiritual Serenity",
-          "w": 1600,
-          "h": 1214
-        },
-        {
-          "src": "assets/images/img-9628-mviun180.jpg",
-          "caption": "Framed Heritage",
-          "w": 1544,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9624-mviun1hk.jpg",
-          "caption": "Citadel Horizons",
-          "w": 1195,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9582-mviun2cq.jpg",
-          "caption": "Echoes of Shadows",
-          "w": 1132,
-          "h": 1600
-        }
-      ]
-    },
-    {
       "name": "Ya 7alawet el shar2y",
       "desc": "",
       "photos": [
@@ -375,6 +328,54 @@ const SITE = {
           "caption": "",
           "w": 1080,
           "h": 1080
+        }
+      ]
+    },
+    {
+      "name": "Old Cairo",
+      "desc": "",
+      "photos": [
+        {
+          "src": "assets/images/img-9612-1-mviunt8v.jpg",
+          "caption": "The Mosque-Madrasa of Sultan Hasan",
+          "w": 1099,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9587-mviun22x.jpg",
+          "caption": "Passage to Light",
+          "w": 1044,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9610-mviumzvk.jpg",
+          "caption": "Play of Natural Light",
+          "w": 1176,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9504-1-mviun0r7.jpg",
+          "caption": "Spiritual Serenity",
+          "w": 1600,
+          "h": 1214
+        },
+        {
+          "src": "assets/images/img-9628-mviun180.jpg",
+          "caption": "Framed Heritage",
+          "w": 1544,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9624-mviun1hk.jpg",
+          "caption": "Citadel Horizons",
+          "w": 1195,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9582-mviun2cq.jpg",
+          "caption": "Echoes of Shadows",
+          "w": 1132,
+          "h": 1600
         }
       ]
     }
