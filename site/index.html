@@ -118,6 +118,22 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 .gi figcaption{padding:10px 2px 0;color:var(--ink)}
 .gn{display:block;font:400 clamp(19px,2vw,24px)/1.1 var(--d);letter-spacing:.05em;overflow-wrap:anywhere}
 .gt{display:block;margin-top:4px;font:10px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.shoot{border-top:1px solid var(--line)}
+.shoot:last-of-type{border-bottom:1px solid var(--line)}
+.shoot summary{list-style:none;display:flex;align-items:center;gap:18px;padding:24px 4px;cursor:pointer}
+.shoot summary::-webkit-details-marker{display:none}
+.shoot summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.fi{position:relative;flex:none;width:38px;height:28px;border:2px solid var(--gold);border-radius:2px 5px 5px 5px;margin-top:8px}
+.fi::before{content:"";position:absolute;left:-2px;top:-9px;width:16px;height:7px;border:2px solid var(--gold);border-bottom:0;border-radius:3px 3px 0 0;background:var(--bg)}
+.sn{flex:1;min-width:0}.sn .slate{display:block}
+.sn b{display:block;font:400 clamp(30px,5vw,52px)/1 var(--d);letter-spacing:.03em}
+.sn em{display:block;font:italic 17px var(--s);color:var(--mute);margin-top:4px}
+.sc{font:11px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.chev{flex:none;width:11px;height:11px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s;margin:0 8px 5px 4px}
+.shoot[open] .chev{transform:rotate(-135deg);margin-bottom:-4px}
+.shoot summary:hover b{color:var(--red)}
+.shoot .gal{padding:4px 0 36px}
+@media(max-width:560px){.sc{font-size:10px;letter-spacing:.08em}.fi{width:30px;height:22px}}
 .feat{display:grid;gap:24px}
 .feat.v{grid-template-columns:minmax(0,360px) 1fr;align-items:center;gap:40px}
 @media(max-width:700px){.feat.v{grid-template-columns:1fr}}
@@ -197,6 +213,9 @@ const cell = (it, i, label) => {
   return it.src ? `<figure class="gi" data-lb="${esc(it.src)}"><div class="gf"><img loading="lazy" src="${esc(it.src)}" alt="${esc(it.caption || it.tag || "")}"></div>${gcap(it.caption, it.tag)}</figure>` : phCell(label || (it.tag || "Image").toUpperCase(), "Image placeholder");
 };
 const board = (b, i) => { b = b || {}; return `<article class="board">${b.title || b.related || b.desc ? `<div class="rv">${b.related ? `<span class="slate">FOR ${esc(b.related.toUpperCase())}</span>` : ""}${b.title ? `<h3>${esc(b.title)}</h3>` : ""}${b.desc ? `<p class="sub">${esc(b.desc)}</p>` : ""}</div>` : ""}<div class="gal mb rv">${(b.items && b.items.length ? b.items : BD).map((x, k) => cell(x, k)).join("")}</div></article>`; };
+const shoots = (S.shoots || (S.photos && S.photos.length ? [{ name: "", photos: S.photos }] : [])).filter(x => x && (x.name || (x.photos || []).length));
+const shoot = (x, i) => { const ph = (x.photos || []).filter(q => q && q.src);
+  return `<details class="shoot rv"${i === 0 ? " open" : ""}><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
 const pIdx = c => c.project ? S.projects.findIndex(p => p.title && p.title.toLowerCase() === c.project.toLowerCase()) : -1;
 const client = c => { const tone = c.tone || (c.logo ? "light" : "dark"), pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
   const inner = `${c.logo ? `<img loading="lazy" src="${esc(c.logo)}" alt="${esc(c.name || "Client logo")}">` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
@@ -234,8 +253,8 @@ ${sec("strategy", head(REEL(), "STRATEGY &amp; CAMPAIGNS", "How the ideas are pl
   `<div class="tags rv">${S.services.map(s => `<span>${esc(s)}</span>`).join("")}</div><div class="cases">${list(S.cases, 1, cse)}</div>`)}
 ${S.moodboard && S.moodboard.length ? sec("direction", head(REEL(), "CREATIVE DIRECTION", "Moodboards, references and visual concepts.") +
   `<div class="gal rv">${list(S.moodboard, 6, (p, i) => cell(p && p.src ? p : null, i, "IMAGE " + pad(i)))}</div>`) : ""}
-${sec("photos", head(REEL(), "PHOTOGRAPHY &amp; BEHIND THE SCENES", "Stills and set moments, each one named.") +
-  `<div class="gal photos rv">${list(S.photos, 6, (p, i) => cell(p && p.src ? p : null, i, "PHOTO " + pad(i)))}</div>`)}
+${sec("photos", head(REEL(), "PHOTOGRAPHY &amp; BEHIND THE SCENES", "Stills and set moments, grouped by shoot. Open a folder to see its photos.") +
+  (shoots.length ? shoots.map(shoot).join("") : `<div class="gal photos rv">${[0, 1, 2, 3].map(k => cell(null, k, "PHOTO " + pad(k))).join("")}</div>`))}
 ${sec("boards", head(REEL(), "MOODBOARD", "The references behind my work: images, color, light, texture and composition.") + list((S.boards || []).slice(0, 1), 1, board))}
 <section class="sec contact" id="contact"><div class="wrap"><div class="slate rv">CLOSING CREDITS</div>
 <h2 class="rv">LET’S MAKE<br>SOMETHING.</h2>
@@ -249,7 +268,7 @@ if (!(S.clients || []).filter(c => c && (c.name || c.logo)).length) document.get
 $("#yr").textContent = new Date().getFullYear();
 $("#fn").textContent = S.name.toUpperCase(); $("#fl").textContent = S.location.toUpperCase(); document.querySelector(".logo").textContent = S.name.toUpperCase();
 document.title = S.name + " — " + S.roles.slice(0, 3).join(", ");
-document.querySelectorAll(".card h3,.card p,.case h3,.case dd,.bio p,.board h3,.board .sub,.gf.note p,.gn,.finfo h3,.finfo p,.doc .dt").forEach(e => e.dir = "auto");
+document.querySelectorAll(".card h3,.card p,.case h3,.case dd,.bio p,.board h3,.board .sub,.gf.note p,.gn,.sn b,.sn em,.finfo h3,.finfo p,.doc .dt").forEach(e => e.dir = "auto");
 
 function openCV() {
   if (navigator.pdfViewerEnabled === false || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) { window.open(S.cv, "_blank", "noopener"); return; }

@@ -17,8 +17,10 @@ EDIT
                           Anything you attach is PUBLIC once the site is online.
    - First video ........ "5 · Featured video": paste a YouTube link (Shorts are fine) or upload an
                           MP4/WebM file. Pick the video shape so it is never cropped.
-   - Images ............. Photography, the moodboard and logos: add, replace, reorder, remove. Photos and
-                          moodboard images sit side by side, each with its NAME under it (the "Name" field).
+   - Photography ....... "Photography shoots (folders)": each shoot is a FOLDER with a name and its own
+                          photos. "+ Add shoot (folder)", then "+ Add several photos" inside it. Give every
+                          photo a NAME. Visitors open a folder to see its photos side by side.
+   - Images ............. The moodboard and logos: add, replace, reorder, remove.
                           "Image display settings" sets how many images appear per row.
    - Moodboard .......... there is ONE moodboard: "6 · Moodboard" (images, color palettes, notes).
    - Start a project .... the button opens WhatsApp with your number and a ready message.
