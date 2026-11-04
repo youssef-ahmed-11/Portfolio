@@ -68,9 +68,9 @@ h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .card p{margin-top:8px;color:#cfc9bf;font-size:15px}
 .about{display:grid;gap:36px}
 @media(min-width:861px){.about{grid-template-columns:1fr 1.5fr}}
-.portrait{position:relative;aspect-ratio:4/5;background:#141416;max-width:420px}
-.portrait img{width:100%;height:auto;display:block;object-fit:contain}
-.portrait.has{aspect-ratio:auto}
+.portrait{position:relative;aspect-ratio:4/5;background:#141416;max-width:420px;overflow:hidden}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center center}
+.portrait.has{aspect-ratio:4/5}
 .bio p{font-size:19px;margin-bottom:16px}
 .draft{display:inline-block;font:11px var(--m);color:var(--red);border:1px solid var(--red);padding:4px 10px;margin-bottom:18px;letter-spacing:.1em}
 .facts{margin:24px 0;border-top:1px solid var(--line)}
@@ -144,8 +144,8 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 @media(min-width:600px){.clients{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.clients{grid-template-columns:repeat(4,1fr)}}
 .cl{position:relative;display:grid;place-items:center;aspect-ratio:3/2;padding:18px 18px 30px;border:1px solid var(--line);background:#111113;color:var(--ink);text-decoration:none;overflow:hidden}
-.cl.light{background:var(--ink);color:#111}
-.cl img{max-width:80%;max-height:68%;width:auto;height:auto;object-fit:contain}
+.cl.light{background:#151517;color:var(--ink)}
+.cl img{max-width:84%;max-height:72%;width:auto;height:auto;object-fit:contain;mix-blend-mode:normal}
 .cl .nm{font:400 clamp(24px,3.2vw,34px)/1 var(--d);letter-spacing:.06em;text-align:center}
 .cl .go{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:10px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 a.cl:hover{border-color:var(--red)}a.cl:hover .go{color:var(--red)}
@@ -215,7 +215,7 @@ const cell = (it, i, label) => {
 const board = (b, i) => { b = b || {}; return `<article class="board">${b.title || b.related || b.desc ? `<div class="rv">${b.related ? `<span class="slate">FOR ${esc(b.related.toUpperCase())}</span>` : ""}${b.title ? `<h3>${esc(b.title)}</h3>` : ""}${b.desc ? `<p class="sub">${esc(b.desc)}</p>` : ""}</div>` : ""}<div class="gal mb rv">${(b.items && b.items.length ? b.items : BD).map((x, k) => cell(x, k)).join("")}</div></article>`; };
 const shoots = (S.shoots || (S.photos && S.photos.length ? [{ name: "", photos: S.photos }] : [])).filter(x => x && (x.name || (x.photos || []).length));
 const shoot = (x, i) => { const ph = (x.photos || []).filter(q => q && q.src);
-  return `<details class="shoot rv"${i === 0 ? " open" : ""}><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
+  return `<details class="shoot rv" open><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
 const pIdx = c => c.project ? S.projects.findIndex(p => p.title && p.title.toLowerCase() === c.project.toLowerCase()) : -1;
 const client = c => { const tone = c.tone || (c.logo ? "light" : "dark"), pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
   const inner = `${c.logo ? `<img loading="lazy" src="${esc(c.logo)}" alt="${esc(c.name || "Client logo")}">` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
@@ -269,6 +269,9 @@ $("#yr").textContent = new Date().getFullYear();
 $("#fn").textContent = S.name.toUpperCase(); $("#fl").textContent = S.location.toUpperCase(); document.querySelector(".logo").textContent = S.name.toUpperCase();
 document.title = S.name + " — " + S.roles.slice(0, 3).join(", ");
 document.querySelectorAll(".card h3,.card p,.case h3,.case dd,.bio p,.board h3,.board .sub,.gf.note p,.gn,.sn b,.sn em,.finfo h3,.finfo p,.doc .dt").forEach(e => e.dir = "auto");
+
+// Keep every photography folder expanded; clicking a folder heading will not collapse it.
+document.querySelectorAll("details.shoot").forEach(folder => { folder.open = true; folder.addEventListener("toggle", () => { if (!folder.open) folder.open = true; }); });
 
 function openCV() {
   if (navigator.pdfViewerEnabled === false || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) { window.open(S.cv, "_blank", "noopener"); return; }

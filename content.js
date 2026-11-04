@@ -179,34 +179,76 @@ const SITE = {
   "clients": [
     {
       "name": "Palmé Bakery",
-      "logo": "",
-      "tone": "",
-      "project": "Palmé Bakery",
+      "logo": "assets/images/480275833-1048736137293938-756-mvy4wcvovvh.png",
+      "tone": "light",
+      "project": "https://docs.google.com/presentation/d/1xj6908bGpFRJGZN7nAPCXutIVIUQkIg0/edit?usp=drive_link&ouid=104096890300727777494&rtpof=true&sd=true",
       "url": ""
     },
     {
-      "name": "Nut Roasters",
-      "logo": "",
-      "tone": "",
-      "project": "Pumpkin seeds",
+      "name": "Rosto Restaurant مطعم روستو",
+      "logo": "assets/images/273410118-2605646486246427-558-mvy4xagxx8d.png",
+      "tone": "light",
+      "project": "https://drive.google.com/file/d/1UquHX-T8OwnEEj5FyDH76lpub9RWCrOO/view?usp=drive_link",
       "url": ""
     },
     {
-      "name": "rosto",
-      "logo": "",
-      "tone": "",
+      "name": "Qr tably",
+      "logo": "assets/images/705891642-122178384116843777-8-mvy4y8z6973.png",
+      "tone": "light",
+      "project": "https://docs.google.com/presentation/d/1UVp1QidcKOqxo2j6DZDXXPkBhIy4m385/edit?rtpof=true&sd=true",
+      "url": ""
+    },
+    {
+      "name": "Gheya Roof - Cafe & Restaurant",
+      "logo": "assets/images/475964170-122120564726608496-3-mvy4yyv0zfx.png",
+      "tone": "light",
+      "project": "https://docs.google.com/presentation/d/1g3pPMWq-hfJn-z4SlHGe5pZgh5JAC0Wz/edit?rtpof=true&sd=true",
+      "url": ""
+    },
+    {
+      "name": "Raw Kitchens",
+      "logo": "assets/images/574905912-1375428307473781-348-mvy4zlbju2r.png",
+      "tone": "light",
+      "project": "https://drive.google.com/file/d/1vPMbyFeZd-yrAHqKHwoYypF8YQf0qpm-/view",
+      "url": ""
+    },
+    {
+      "name": "فندق آفينو العرب - Avenue Al Arab Hotel",
+      "logo": "assets/images/466178143-122107036778606276-8-mvy50o0opyi.png",
+      "tone": "light",
       "project": "",
+      "url": ""
+    },
+    {
+      "name": "Antika Radio",
+      "logo": "assets/images/482235760-1148603777279383-426-mvy5131uz9y.png",
+      "tone": "light",
+      "project": "",
+      "url": ""
+    },
+    {
+      "name": "Fady El Fahdy - فادي الفهدي﻿",
+      "logo": "assets/images/459923832-122093793080537078-5-mvy51frao2i.png",
+      "tone": "light",
+      "project": "https://docs.google.com/document/d/1dbTu-RntWPwnzlvG2DXg7-BQ5YVr8lGJHh07CbHOOhw/edit?tab=t.0",
+      "url": ""
+    },
+    {
+      "name": "Beeviro",
+      "logo": "assets/images/435988278-122102398742266874-7-mvy52afgfop.png",
+      "tone": "light",
+      "project": "facebook.com/reel/4765905923675917/?rdid=6LjNuDDENKRBQy3s&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1HqoiUinRE%2F#",
       "url": ""
     }
   ],
   "display": {
-    "boardColumns": "5",
-    "photoColumns": "4"
+    "boardColumns": "6",
+    "photoColumns": "6"
   },
   "shoots": [
     {
-      "name": "Palmé Bakery",
-      "desc": "",
+      "name": "7ba kamla",
+      "desc": "Palmé Bakery",
       "photos": [
         {
           "src": "assets/images/836261623-2198880897685818-293-mviw5pz9.jpg",
@@ -273,6 +315,66 @@ const SITE = {
           "caption": "Echoes of Shadows",
           "w": 1132,
           "h": 1600
+        }
+      ]
+    },
+    {
+      "name": "Ya 7alawet el shar2y",
+      "desc": "",
+      "photos": [
+        {
+          "src": "assets/images/876262718-1927908091951760-327-mvy4lu5dnty.jpg",
+          "caption": "Ya 7alawet el shar2y",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/871000228-3537204196460245-415-mvy4m3upn73.jpg",
+          "caption": "details",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/863778383-2021416939021164-168-mvy4m446gl4.jpg",
+          "caption": "3’waysh ",
+          "w": 1080,
+          "h": 1080
+        }
+      ]
+    },
+    {
+      "name": "mango",
+      "desc": "",
+      "photos": [
+        {
+          "src": "assets/images/752488790-1054729074166150-803-mvy4r13ncck.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/751726514-1019264260695511-740-mvy4r1en6d2.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/750020816-2955908948084849-533-mvy4r1ghyyy.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/752279233-2260586761364166-279-mvy4r1i0quf.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
+        },
+        {
+          "src": "assets/images/757850833-1364100509212208-112-mvy4r1jhmsc.jpg",
+          "caption": "",
+          "w": 1080,
+          "h": 1080
         }
       ]
     }
