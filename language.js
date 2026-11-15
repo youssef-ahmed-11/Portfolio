@@ -20,6 +20,7 @@
   const css = document.createElement("style");
   css.textContent = `
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+    .goog-te-banner-frame,.goog-te-balloon-frame{display:none!important}body{top:0!important}.goog-tooltip,.goog-tooltip:hover{display:none!important}.goog-text-highlight{background:transparent!important;box-shadow:none!important}
     .lang-switch{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 11px;font:11px var(--m);letter-spacing:.12em;cursor:pointer;white-space:nowrap}
     .lang-switch button{border:0;background:none;color:var(--mute);font:inherit;padding:0;cursor:pointer}
     .lang-switch button[aria-pressed="true"]{color:var(--red);font-weight:bold}
