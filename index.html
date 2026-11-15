@@ -1698,7 +1698,55 @@ if ("IntersectionObserver" in window) {
 
 
 
-<style id="comic-panels-style-v2">.comic-panels{max-width:1600px;width:calc(100% - 24px);margin:22px auto 44px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.comic-panel{min-height:150px;display:flex;align-items:flex-end;justify-content:space-between;padding:22px 24px;text-decoration:none;color:#f7e8cf;border:4px solid #f3dfbd;outline:3px solid #17100e;box-shadow:7px 7px 0 #080706;overflow:hidden;transform:skew(-2deg);background:radial-gradient(circle at 75% 25%,rgba(223,41,39,.7),transparent 48%),linear-gradient(135deg,#15100e,#4d1111)}.comic-panel:nth-child(2){background:radial-gradient(circle at 75% 30%,rgba(239,189,85,.5),transparent 45%),linear-gradient(135deg,#211713,#090807)}.comic-panel:nth-child(3){background:repeating-linear-gradient(135deg,rgba(223,41,39,.28) 0 5px,transparent 5px 12px),linear-gradient(135deg,#3c0e0e,#100c0b)}.comic-panel span{font:italic 900 clamp(25px,3.2vw,44px)/.9 var(--d);text-shadow:3px 3px 0 #17100e}.comic-panel b{font:900 34px var(--d);color:#efbd55}.comic-panel:hover{transform:translate(3px,3px) skew(-2deg);box-shadow:3px 3px 0 #080706}@media(max-width:700px){.comic-panels{grid-template-columns:1fr;gap:10px;margin:16px auto 30px}.comic-panel{min-height:105px;padding:16px 18px}.comic-panel span{font-size:30px}}</style>
+<style id="comic-panels-style-v2">.comic-panels{max-width:1600px;width:calc(100% - 24px);margin:22px auto 44px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.comic-panel{min-height:150px;display:flex;align-items:flex-end;justify-content:space-between;padding:22px 24px;text-decoration:none;color:#f7e8cf;border:4px solid #f3dfbd;outline:3px solid #17100e;box-shadow:7px 7px 0 #080706;overflow:hidden;transform:skew(-2deg);background:radial-gradient(circle at 75% 25%,rgba(223,41,39,.7),transparent 48%),linear-gradient(135deg,#15100e,#4d1111)}.comic-panel:nth-child(2){background:radial-gradient(circle at 75% 30%,rgba(239,189,85,.5),transparent 45%),linear-gradient(135deg,#211713,#090807)}.comic-panel:nth-child(3){background:repeating-linear-gradient(135deg,rgba(223,41,39,.28) 0 5px,transparent 5px 12px),linear-gradient(135deg,#3c0e0e,#100c0b)}.comic-panel span{font:italic 900 clamp(25px,3.2vw,44px)/.9 var(--d);text-shadow:3px 3px 0 #17100e}.comic-panel b{font:900 34px var(--d);color:#efbd55}.comic-panel:hover{transform:translate(3px,3px) skew(-2deg);box-shadow:3px 3px 0 #080706}@media(max-width:700px){.comic-panels{grid-template-columns:1fr;gap:10px;margin:16px auto 30px}.comic-panel{min-height:105px;padding:16px 18px}.comic-panel span{font-size:30px}}
+/* MOBILE LANGUAGE SWITCH — keep EN / AR visible and reachable on narrow screens */
+@media(max-width:760px){
+  .tabbar{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:4px!important;
+    padding:10px 7px calc(10px + env(safe-area-inset-bottom))!important;
+    min-height:58px;
+  }
+  .tabbar>a{
+    display:block!important;
+    flex:1 1 0!important;
+    min-width:0!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+    font-size:clamp(8px,2.45vw,11px)!important;
+    letter-spacing:0!important;
+    line-height:1.3!important;
+  }
+  .tabbar .lang-switch{
+    display:inline-flex!important;
+    flex:0 0 auto!important;
+    align-items:center!important;
+    justify-content:center!important;
+    visibility:visible!important;
+    opacity:1!important;
+    margin:0 0 0 3px!important;
+    padding:7px 8px!important;
+    gap:4px!important;
+    min-width:67px!important;
+    min-height:34px!important;
+    background:#17100e!important;
+    border:2px solid var(--ink)!important;
+    box-shadow:2px 2px 0 var(--red)!important;
+    z-index:30!important;
+  }
+  .tabbar .lang-switch button{
+    display:inline-block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    font-size:11px!important;
+    line-height:1!important;
+    padding:2px!important;
+  }
+}
+
+</style>
 <script id="comic-panels-script-v2">(()=>{const h=document.querySelector(".hero");if(!h||document.querySelector(".comic-panels"))return;const p=document.createElement("nav");p.className="comic-panels";p.setAttribute("aria-label","Explore portfolio");p.innerHTML='<a class="comic-panel" href="#clients"><span>OUR<br>CLIENTS</span><b>→</b></a><a class="comic-panel" href="#work"><span>EXPLORE<br>MY WORK</span><b>→</b></a><a class="comic-panel" href="#strategy"><span>CASE<br>STUDIES</span><b>→</b></a>';h.insertAdjacentElement("afterend",p)})();</script>
 </body>
 </html>
