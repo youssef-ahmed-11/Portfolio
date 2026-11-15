@@ -919,6 +919,33 @@ footer{color:#fff4df!important;opacity:1!important}
 }
 @media(prefers-reduced-motion:reduce){.hero-art img,.hero-prop{animation:none!important}}
 
+
+/* MOODBOARD COPY — stronger ink contrast and legibility */
+#boards .head .sub,
+#boards .board .sub,
+#boards .board p,
+#boards .gi figcaption,
+#boards .gi .gn,
+#boards .gi .gt{
+  color:#211719!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#211719!important;
+  text-shadow:none!important;
+}
+#boards .head .sub,
+#boards .board .sub{
+  font-size:clamp(16px,1.5vw,19px)!important;
+  font-weight:700!important;
+  line-height:1.8!important;
+  letter-spacing:0!important;
+}
+#boards .gi figcaption{font-weight:700!important}
+#boards .gi .gt{color:#6e2528!important;font-weight:800!important}
+#boards .gf.note p{color:#211719!important;font-weight:700!important}
+@media(max-width:600px){
+ #boards .head .sub,#boards .board .sub{font-size:15px!important;line-height:1.85!important}
+}
+
 </style>
 </head>
 <body>
@@ -1134,6 +1161,6 @@ if ("IntersectionObserver" in window) {
 })();
 </script>
 
-<script src="language.js?v=20261115-9"></script>
+<script src="language.js?v=20261115-10"></script>
 </body>
 </html>
