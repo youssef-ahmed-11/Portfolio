@@ -1364,6 +1364,57 @@ body{background-image:radial-gradient(rgba(247,232,207,.13) 1px,transparent 1px)
 a.cl:hover .go{background:#df2927!important;color:#fff!important}
 @media(max-width:600px){.cl{min-height:160px!important;padding-bottom:46px!important}.cl .nm{font-size:17px!important}.cl .go{font-size:10px!important}}
 </style>
+
+<style id="client-resource-label-visibility-fix">
+/* Keep Strategy / Plan / Video / Script labels readable on comic client cards. */
+#app .clients .mat,
+#app .clients .doc{
+  background:#211614!important;
+  color:#fff4df!important;
+  border-color:#f3dfbd!important;
+}
+#app .clients .mat .mt,
+#app .clients .mat .mt b,
+#app .clients .doc .dt{
+  color:#fff4df!important;
+  opacity:1!important;
+  visibility:visible!important;
+  text-shadow:none!important;
+}
+#app .clients .mat .mt small,
+#app .clients .doc .k{
+  display:block!important;
+  color:#f0bd67!important;
+  font-size:11px!important;
+  line-height:1.5!important;
+  font-weight:700!important;
+  letter-spacing:.12em!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow-wrap:anywhere;
+}
+#app .clients .mat .mt b,
+#app .clients .doc .dt{
+  display:block!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+#app .clients .mat .go,
+#app .clients .doc a{
+  color:#fff4df!important;
+  opacity:1!important;
+}
+@media(max-width:600px){
+  #app .clients .mat{gap:9px;padding:11px 10px!important}
+  #app .clients .mat .mt small,
+  #app .clients .doc .k{font-size:10px!important;letter-spacing:.08em!important}
+  #app .clients .mat .mt b,
+  #app .clients .doc .dt{font-size:13px!important;line-height:1.4!important}
+}
+</style>
+
 </head>
 <body>
 <header class="nav">
