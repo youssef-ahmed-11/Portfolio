@@ -156,9 +156,9 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 @media(max-width:599px){.cw.has{grid-column:1/-1}}
 @media(min-width:600px){.clients{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.clients{grid-template-columns:repeat(4,1fr)}}
-.cl{position:relative;display:grid;place-items:center;aspect-ratio:3/2;padding:18px 18px 30px;border:1px solid var(--line);background:#111113;color:var(--ink);text-decoration:none;overflow:hidden}
+.cl{position:relative;display:grid;place-items:center;aspect-ratio:3/2;padding:18px 18px 30px;border:1px solid var(--line);background:#111113;color:var(--ink);text-decoration:none;overflow:hidden;transition:background .2s,border-color .2s}
 .cl.light{background:var(--ink);color:#111}
-.cl img{max-width:80%;max-height:68%;width:auto;height:auto;object-fit:contain}
+.cl img{display:block;max-width:80%;max-height:68%;width:auto;height:auto;object-fit:contain;opacity:1!important;filter:none!important;mix-blend-mode:multiply}
 .cl{isolation:isolate}
 .cl img{opacity:0;transition:opacity .25s}.cl img.rdy{opacity:1}
 .cl img.lw{filter:brightness(0) invert(.95)}
@@ -235,7 +235,7 @@ const shoots = (S.shoots || (S.photos && S.photos.length ? [{ name: "", photos: 
 const shoot = (x, i) => { const ph = (x.photos || []).filter(q => q && q.src);
   return `<details class="shoot rv"${i === 0 ? " open" : ""}><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
 const pIdx = c => c.project ? S.projects.findIndex(p => p.title && p.title.toLowerCase() === c.project.toLowerCase()) : -1;
-const client = (c, n) => { const tone = "dark", pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
+const client = (c, n) => { const tone = c.tone || "dark", pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
   const inner = `${n ? `<span class="bdg">${n} LINK${n > 1 ? "S" : ""}</span>` : ""}${c.logo ? `<img data-ls="${esc(c.logoStyle || "")}" loading="lazy" src="${esc(c.logo)}" data-fallback="${esc(({"273410118":"assets/clients/273410118-2605646486246427-55843526-mvmbwd6v.jpg","435988278":"assets/clients/435988278-122102398742266874-723167-mvmf1m7f.jpg","459923832":"assets/clients/459923832-122093793080537078-529815-mvmey2uf.jpg","466178143":"assets/clients/466178143-122107036778606276-886761-mvmet7x7.jpg","475964170":"assets/clients/475964170-122120564726608496-396432-mvmc9cos.jpg","480275833":"assets/clients/480275833-1048736137293938-75629595-mvmbtnqg.jpg","482235760":"assets/clients/482235760-1148603777279383-42644372-mvmewveb.jpg","574905912":"assets/clients/574905912-1375428307473781-34834358-mvmbrmq9.jpg","705891642":"assets/clients/705891642-122178384116843777-892103-mvmc5j4r.jpg"})[String(c.logo).match(/[0-9]+/)?.[0]] || "")}" alt="${esc(c.name || "Client logo")}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback=&#39;&#39;;}else{this.style.display=&#39;none&#39;;this.nextElementSibling.style.display=&#39;block&#39;;}"><span class="nm" style="display:none">${esc(c.name || "Client")}</span>` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
   return href ? `<a class="cl ${tone}" href="${esc(href)}"${pi < 0 ? ' target="_blank" rel="noopener"' : ""} aria-label="${esc(c.name || "Client")}">${inner}</a>` : `<div class="cl ${tone}">${inner}</div>`; };
 const nk = t => String(t || "").toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]+/g, "");
@@ -298,31 +298,18 @@ ${waOk ? `<a class="btn red" href="https://wa.me/${waNum}?text=${esc(encodeURICo
 if (!(S.moodboard && S.moodboard.length)) document.getElementById("navdir")?.remove();
 if (!(S.clients || []).filter(c => c && (c.name || c.logo)).length) document.getElementById("navcl")?.remove();
 { const d = S.display || {}, st = document.documentElement.style; st.setProperty("--pcols", String(d.photoColumns || 4)); st.setProperty("--bcols", String(d.boardColumns || 5)); }
-/* Client logos: remove white backgrounds so every logo sits on the dark tile like the rest of the site */
+/* Client logos: keep original artwork intact, use each logo's intended tile tone, and fall back cleanly if a source path fails. */
 document.querySelectorAll(".cl img").forEach(img => {
-  const run = () => {
-    if (img.dataset.done) return; img.dataset.done = "1";
-    try {
-      const w = img.naturalWidth, h = img.naturalHeight; if (!w || !h) { img.classList.add("rdy"); return; }
-      const sc = Math.min(1, 700 / Math.max(w, h)), cw = Math.max(1, Math.round(w * sc)), ch = Math.max(1, Math.round(h * sc));
-      const c = document.createElement("canvas"); c.width = cw; c.height = ch; const x = c.getContext("2d"); x.drawImage(img, 0, 0, cw, ch);
-      const im = x.getImageData(0, 0, cw, ch), d = im.data, white = i => d[i + 3] > 200 && d[i] > 226 && d[i + 1] > 226 && d[i + 2] > 226;
-      if ([0, (cw - 1) * 4, (ch - 1) * cw * 4, ((ch - 1) * cw + cw - 1) * 4].every(white)) {
-        const seen = new Uint8Array(cw * ch), st = [], push = (xx, yy) => { const k = yy * cw + xx; if (!seen[k] && white(k * 4)) { seen[k] = 1; st.push(k); } };
-        for (let xx = 0; xx < cw; xx++) { push(xx, 0); push(xx, ch - 1); } for (let yy = 0; yy < ch; yy++) { push(0, yy); push(cw - 1, yy); }
-        while (st.length) { const k = st.pop(), xx = k % cw, yy = (k / cw) | 0; d[k * 4 + 3] = 0; if (xx > 0) push(xx - 1, yy); if (xx < cw - 1) push(xx + 1, yy); if (yy > 0) push(xx, yy - 1); if (yy < ch - 1) push(xx, yy + 1); }
-        for (let k = 0; k < cw * ch; k++) { const i = k * 4; if (d[i + 3] === 255 && d[i] > 200 && d[i + 1] > 200 && d[i + 2] > 200) { const xx = k % cw, yy = (k / cw) | 0; if ((xx > 0 && d[i - 1] === 0) || (xx < cw - 1 && d[i + 7] === 0) || (yy > 0 && d[i - cw * 4 + 3] === 0) || (yy < ch - 1 && d[i + cw * 4 + 3] === 0)) d[i + 3] = Math.max(0, 255 - ((d[i] + d[i + 1] + d[i + 2]) / 3 - 200) * 4.6); } }
-        x.putImageData(im, 0, 0);
-      }
-      let sum = 0, n = 0; for (let i = 0; i < d.length; i += 16) if (d[i + 3] > 128) { sum += .299 * d[i] + .587 * d[i + 1] + .114 * d[i + 2]; n++; }
-      const ls = img.dataset.ls, lum = n ? sum / n : 255;
-      if (ls === "white" || (ls !== "original" && lum < 120)) img.classList.add("lw");
-      img.src = c.toDataURL("image/png");
-    } catch (err) { const ls = img.dataset.ls; if (ls === "white") img.classList.add("lw"); else if (ls !== "original") img.classList.add("inv"); }   // double-click local preview: the browser blocks reading pixels, so use a simple blend instead
-    img.classList.add("rdy");
-  };
-  img.complete && img.naturalWidth ? run() : img.addEventListener("load", run, { once: true });
-  img.addEventListener("error", () => img.classList.add("rdy"), { once: true });
+  img.addEventListener("error", () => {
+    if (img.dataset.fallback && !img.dataset.fallbackUsed) {
+      img.dataset.fallbackUsed = "1";
+      img.src = img.dataset.fallback;
+      return;
+    }
+    img.style.display = "none";
+    const label = img.nextElementSibling;
+    if (label) label.style.display = "block";
+  });
 });
 $("#yr").textContent = new Date().getFullYear();
 $("#fn").textContent = S.name.toUpperCase(); $("#fl").textContent = S.location.toUpperCase(); document.querySelector(".logo").textContent = S.name.toUpperCase();
