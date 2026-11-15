@@ -1696,14 +1696,9 @@ if ("IntersectionObserver" in window) {
     };
     requestAnimationFrame(tick);
   };
-  const panel = document.querySelector(".metrics");
-  if (!panel) return;
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) { counters.forEach(run); observer.disconnect(); }
-    }, {threshold: 0.35});
-    observer.observe(panel);
-  } else counters.forEach(run);
+  if (!counters.length) return;
+  /* Start immediately: the counter must not depend on scroll/visibility observers. */
+  counters.forEach(run);
 })();
 </script>
 
