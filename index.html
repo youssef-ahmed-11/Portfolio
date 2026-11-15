@@ -967,15 +967,7 @@ footer{color:#fff4df!important;opacity:1!important}
 
 
 
-/* KEY METRICS — editorial comic panels */
-.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:34px auto 10px;max-width:1200px;padding:0 20px}
-.metric-panel{position:relative;min-height:150px;padding:20px 18px;background:#f2e6d1;color:#17100e;border:3px solid #17100e;box-shadow:6px 6px 0 #df2927;overflow:hidden}
-.metric-panel:nth-child(2){background:#df2927;color:#fffaf0;box-shadow:6px 6px 0 #c9a24b}
-.metric-panel:after{content:"";position:absolute;inset:7px;border:1px solid currentColor;opacity:.35;pointer-events:none}
-.metric-number{display:block;font:clamp(54px,11vw,92px)/.85 var(--d);letter-spacing:-.02em}
-.metric-label{display:block;margin-top:12px;font:10px var(--m);letter-spacing:.15em;text-transform:uppercase}
-@media(max-width:420px){.metrics{gap:10px;padding:0 16px}.metric-panel{min-height:126px;padding:17px 12px}.metric-number{font-size:clamp(46px,12vw,66px)}.metric-label{font-size:9px;letter-spacing:.1em}}
-
+/* Social-proof metrics removed to restore the original section flow. */
 </style>
 <style id="mobile-language-and-marvel-props">
 /* Keep the mobile quick bar fixed and its EN/AR controls visible above the safe area. */
@@ -1613,7 +1605,6 @@ ${(() => { const F = S.featured || {}, fid = yt(F.youtube), ff = F.file || "", h
   const player = ff ? `<video class="fv" controls playsinline preload="metadata" src="${esc(ff)}"></video>` : vid(fid, F.title, fmt === "vertical" ? "vertical" : fmt === "wide" ? "" : "cine");
   return sec("featured", head("FEATURED PROJECT", "NOW SHOWING", has ? "A featured reel to start with." : "A placeholder for your showreel or strongest piece.") +
   `<div class="feat${fmt === "vertical" && !ff ? " v" : ""} rv"><div class="fp">${has ? player : vid("", "", "cine")}</div><div class="finfo">${has ? `<span class="slate">FEATURED REEL</span><h3>${val(F.title, "Title")}</h3>${F.desc ? `<p>${esc(F.desc)}</p>` : ""}` : `<p class="meta">FEATURED PLACEHOLDER — ${esc(F.note || "")}</p>`}</div></div>`); })()}
-<div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">1M+</span><span class="metric-label">VIEWS</span></div></div>
  ${(S.clients || []).filter(c => c && (c.name || c.logo)).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Selected brands behind the work." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo)).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
 ${sec("work", head(REEL(), "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
   `<div class="grid">${list(S.projects, 3, project)}</div>`)}
