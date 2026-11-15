@@ -737,6 +737,23 @@ footer{color:#fff4df!important;opacity:1!important}
  .hero-art img,.hero-prop,.hero-art .art-burst,.hero-art .art-stamp{animation:none!important}
 }
 
+
+/* Make the CV preview action unmistakable beside the download button */
+.bio .cta .cv-preview{
+ display:inline-flex!important;align-items:center;justify-content:center;gap:9px;
+ min-height:48px;padding:12px 20px!important;
+ background:#211315!important;color:#fff4df!important;
+ border:3px solid #211315!important;box-shadow:5px 5px 0 #d9272e!important;
+ font-weight:900!important;letter-spacing:.1em!important;
+}
+.bio .cta .cv-preview span{font-size:19px;line-height:1;color:#f1dfbd!important}
+.bio .cta .cv-preview small{
+ display:inline-block;padding:4px 6px;background:#f1dfbd;color:#211315;
+ font:900 9px/1 var(--m);letter-spacing:.08em
+}
+.bio .cta .cv-preview:hover{background:#d9272e!important;color:#fff!important;transform:translateY(-2px)}
+@media(max-width:480px){.bio .cta .cv-preview{width:100%}}
+
 </style>
 </head>
 <body>
@@ -836,7 +853,7 @@ $("#app").innerHTML = `
 ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   `<div class="about rv"><div class="portrait${S.photo ? " has" : ""}">${S.photo ? `<img src="${esc(S.photo)}" alt="Portrait of ${esc(S.name)}">` : `<div class="ph"><span>PORTRAIT PLACEHOLDER</span><small>Add a professional photo</small></div>`}</div>
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
-  <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn" data-cv>Preview CV</button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
+  <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
 ${(() => { const F = S.featured || {}, fid = yt(F.youtube), ff = F.file || "", has = !!(fid || ff), fmt = F.format || (/shorts\//.test(F.youtube || "") ? "vertical" : "cine");
   const player = ff ? `<video class="fv" controls playsinline preload="metadata" src="${esc(ff)}"></video>` : vid(fid, F.title, fmt === "vertical" ? "vertical" : fmt === "wide" ? "" : "cine");
   return sec("featured", head("FEATURED PROJECT", "NOW SHOWING", has ? "A featured reel to start with." : "A placeholder for your showreel or strongest piece.") +
