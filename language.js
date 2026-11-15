@@ -308,6 +308,17 @@
   const mobile = $(".tabbar");
   if (mobile && !$(".tabbar .lang-switch")) mobile.append(switcher());
 
+  // Bind both the original HTML controls and any switchers created above.
+  $("[data-lang]").forEach(button => {
+    if (button.dataset.languageBound === "true") return;
+    button.dataset.languageBound = "true";
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      apply(button.dataset.lang === "ar" ? "ar" : "en");
+    });
+  });
+
   const entries = [];
   (S.clients || []).forEach(client => (client.links || []).forEach(link => {
     if (!link || !link.url) return;
