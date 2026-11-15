@@ -1881,80 +1881,99 @@ if ("IntersectionObserver" in window) {
   if (!player) return;
   const button = player.querySelector("button");
   const small = player.querySelector("small");
-  let ctx, master, timer = null, nextStep = 0, nextTime = 0, bar = 0;
-  const bpm = 100, stepTime = 60 / bpm / 4;
-  const progression = [
-    {root:48, chord:[60,63,67,70]},
-    {root:44, chord:[56,60,63,67]},
-    {root:39, chord:[51,55,58,63]},
-    {root:46, chord:[58,62,65,68]}
+  let audio = null, timer = null, step = 0, bar = 0;
+  const bpm = 104, interval = 60000 / bpm / 2;
+  const chords = [
+    [48, 60, 63, 67], [44, 56, 60, 63],
+    [39, 51, 55, 58], [46, 58, 62, 65]
   ];
-  const arp = [0,2,3,2,1,3,2,1,0,2,3,2,1,2,3,2];
-  function tone(freq, start, duration, type, volume, filterFreq, detune=0) {
-    const osc = ctx.createOscillator(), gain = ctx.createGain(), filter = ctx.createBiquadFilter();
-    osc.type = type; osc.frequency.setValueAtTime(freq, start); osc.detune.value = detune;
-    filter.type = "lowpass"; filter.frequency.setValueAtTime(filterFreq, start);
-    gain.gain.setValueAtTime(.0001, start);
-    gain.gain.exponentialRampToValueAtTime(Math.max(.0002,volume), start + .025);
-    gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
-    osc.connect(filter); filter.connect(gain); gain.connect(master);
-    osc.start(start); osc.stop(start + duration + .04);
+  const pattern = [0,2,3,2,1,2,3,2];
+  const hz = n => 440 * Math.pow(2, (n - 69) / 12);
+  function makeVoice(freq, type, volume, duration, cutoff, detune=0) {
+    const now = audio.ctx.currentTime;
+    const osc = audio.ctx.createOscillator();
+    const filter = audio.ctx.createBiquadFilter();
+    const amp = audio.ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, now);
+    osc.detune.value = detune;
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(cutoff, now);
+    amp.gain.setValueAtTime(0.0001, now);
+    amp.gain.exponentialRampToValueAtTime(volume, now + 0.025);
+    amp.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+    osc.connect(filter);
+    filter.connect(amp);
+    amp.connect(audio.master);
+    osc.start(now);
+    osc.stop(now + duration + 0.03);
   }
-  function kick(t) {
-    const o=ctx.createOscillator(), g=ctx.createGain();
-    o.type="sine"; o.frequency.setValueAtTime(115,t); o.frequency.exponentialRampToValueAtTime(42,t+.16);
-    g.gain.setValueAtTime(.22,t); g.gain.exponentialRampToValueAtTime(.0001,t+.2);
-    o.connect(g); g.connect(master); o.start(t); o.stop(t+.22);
+  function drum(kick) {
+    const now = audio.ctx.currentTime;
+    const osc = audio.ctx.createOscillator();
+    const amp = audio.ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(kick ? 125 : 720, now);
+    osc.frequency.exponentialRampToValueAtTime(kick ? 42 : 180, now + (kick ? .16 : .055));
+    amp.gain.setValueAtTime(kick ? .24 : .035, now);
+    amp.gain.exponentialRampToValueAtTime(.0001, now + (kick ? .19 : .065));
+    osc.connect(amp); amp.connect(audio.master);
+    osc.start(now); osc.stop(now + (kick ? .2 : .08));
   }
-  function noise(t, duration, volume, highpass) {
-    const length=Math.ceil(ctx.sampleRate*duration), buffer=ctx.createBuffer(1,length,ctx.sampleRate), data=buffer.getChannelData(0);
-    for(let i=0;i<length;i++) data[i]=Math.random()*2-1;
-    const src=ctx.createBufferSource(), filter=ctx.createBiquadFilter(), gain=ctx.createGain();
-    src.buffer=buffer; filter.type="highpass"; filter.frequency.value=highpass;
-    gain.gain.setValueAtTime(volume,t); gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
-    src.connect(filter); filter.connect(gain); gain.connect(master); src.start(t);
-  }
-  function scheduleStep(t, index, currentBar) {
-    const p=progression[currentBar%4], beat=index%4;
-    if(index===0){
-      p.chord.forEach((n,i)=>tone(440*Math.pow(2,(n-69)/12),t,2.25,"sawtooth",.018,850,i%2?7:-7));
-      tone(440*Math.pow(2,(p.root-12-69)/12),t,2.2,"triangle",.075,220);
+  function tick() {
+    const chord = chords[bar % chords.length];
+    if (step === 0) {
+      chord.forEach((note,i) => makeVoice(hz(note), "sawtooth", .012, 1.05, 950, i%2 ? 6 : -6));
+      makeVoice(hz(chord[0]-12), "triangle", .075, .9, 260);
     }
-    if(index%4===0) kick(t);
-    if(index%4===2) noise(t,.16,.055,900);
-    if(index%2===0) noise(t,.045,.012,6500);
-    const note=p.chord[arp[index]];
-    tone(440*Math.pow(2,(note+12-69)/12),t,.12,"triangle",.026,2600);
-    if(index%4===1 || index%4===3) tone(440*Math.pow(2,(p.root-69)/12),t,.2,"sawtooth",.035,500);
+    if (step % 4 === 0) drum(true);
+    if (step % 4 === 2) drum(false);
+    makeVoice(hz(chord[pattern[step]]+12), "triangle", .035, .19, 2800);
+    if (step % 2 === 1) makeVoice(hz(chord[0]), "sawtooth", .025, .22, 650);
+    step++;
+    if (step === 8) { step = 0; bar++; }
   }
-  function scheduler(){
-    while(nextTime < ctx.currentTime + .12){
-      scheduleStep(nextTime,nextStep,bar);
-      nextStep++;
-      if(nextStep===16){nextStep=0;bar=(bar+1)%4;}
-      nextTime+=stepTime;
+  async function start() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) { small.textContent = "AUDIO NOT SUPPORTED"; return; }
+    if (!audio) {
+      const ctx = new AudioContextClass();
+      const master = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      const compressor = ctx.createDynamicsCompressor();
+      filter.type = "lowpass";
+      filter.frequency.value = 5200;
+      master.gain.value = .8;
+      master.connect(filter);
+      filter.connect(compressor);
+      compressor.connect(ctx.destination);
+      audio = {ctx, master};
     }
+    if (audio.ctx.state !== "running") await audio.ctx.resume();
+    step = 0; bar = 0;
+    tick();
+    timer = window.setInterval(tick, interval);
+    player.classList.add("is-playing");
+    button.setAttribute("aria-pressed", "true");
+    button.setAttribute("aria-label", "Pause original Synthwave soundtrack");
+    small.textContent = "SOUND ON · SYNTHWAVE";
   }
-  async function start(){
-    const AudioContextClass=window.AudioContext||window.webkitAudioContext;
-    if(!AudioContextClass){small.textContent="AUDIO NOT SUPPORTED";return;}
-    ctx=ctx||new AudioContextClass();
-    await ctx.resume();
-    if(!master){master=ctx.createGain();master.gain.value=.62;const comp=ctx.createDynamicsCompressor();master.connect(comp);comp.connect(ctx.destination);}
-    nextTime=ctx.currentTime+.06; nextStep=0; bar=0;
-    scheduler(); timer=window.setInterval(scheduler,25);
-    player.classList.add("is-playing");button.setAttribute("aria-pressed","true");
-    button.setAttribute("aria-label","Pause original Synthwave soundtrack");
-    small.textContent="SOUND ON · SYNTHWAVE";
+  function stop() {
+    if (timer !== null) { window.clearInterval(timer); timer = null; }
+    if (audio) {
+      const now = audio.ctx.currentTime;
+      audio.master.gain.cancelScheduledValues(now);
+      audio.master.gain.setTargetAtTime(.0001, now, .045);
+    }
+    player.classList.remove("is-playing");
+    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-label", "Play original Synthwave soundtrack");
+    small.textContent = "SOUND OFF · SYNTHWAVE";
   }
-  function stop(){
-    if(timer!==null){window.clearInterval(timer);timer=null;}
-    if(master && ctx){master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.0001,ctx.currentTime,.035);}
-    player.classList.remove("is-playing");button.setAttribute("aria-pressed","false");
-    button.setAttribute("aria-label","Play original Synthwave soundtrack");small.textContent="SOUND OFF · SYNTHWAVE";
-    if(master && ctx){window.setTimeout(()=>{if(timer===null && master){try{master.disconnect();}catch(e){} master=null;}},180);}
-  }
-  button.addEventListener("click",()=>{if(timer!==null)stop();else start().catch(()=>{small.textContent="TAP TO ENABLE SOUND";});});
+  button.addEventListener("click", () => {
+    if (timer !== null) stop();
+    else start().catch(() => { small.textContent = "TAP TO ENABLE SOUND"; });
+  });
 })();
 </script>
 
