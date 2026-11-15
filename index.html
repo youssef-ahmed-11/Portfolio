@@ -1868,13 +1868,13 @@ if ("IntersectionObserver" in window) {
 <script id="comic-panels-script-v2">(()=>{const h=document.querySelector(".hero");if(!h||document.querySelector(".comic-panels"))return;const p=document.createElement("nav");p.className="comic-panels";p.setAttribute("aria-label","Explore portfolio");p.innerHTML='<a class="comic-panel" href="#clients"><span>OUR<br>CLIENTS</span><b>→</b></a><a class="comic-panel" href="#work"><span>EXPLORE<br>MY WORK</span><b>→</b></a><a class="comic-panel" href="#strategy"><span>CASE<br>STUDIES</span><b>→</b></a>';h.insertAdjacentElement("afterend",p)})();</script>
 
 <div id="neon-sound-player">
-  <button class="neon-toggle" type="button" aria-label="Play Egyptian cinematic soundtrack" aria-pressed="false">
+  <button class="neon-toggle" type="button" aria-label="Play original cinematic soundtrack" aria-pressed="false">
     <span class="gramophone-art" aria-hidden="true">
       <span class="gramophone-horn"></span><span class="gramophone-neck"></span>
       <span class="gramophone-arm"></span><span class="neon-disc"></span>
       <span class="gramophone-base"></span>
     </span>
-    <span class="neon-label"><b>CAIRO AFTER DARK</b><small>SOUND OFF</small></span>
+    <span class="neon-label"><b>THE HERO RISES</b><small>SOUND OFF</small></span>
   </button>
 </div>
 <script id="neon-sound-script">
@@ -1884,13 +1884,12 @@ if ("IntersectionObserver" in window) {
   const button = player.querySelector("button");
   const small = player.querySelector("small");
   let audio = null, timer = null, step = 0, bar = 0;
-  const bpm = 96, interval = 60000 / bpm / 2;
-  // Original Egyptian-cinematic motif: Hijaz color, plucked-string phrases,
-  // warm synth pads, low pulse and restrained tabla/darbuka-like percussion.
-  const scale = [0,1,4,5,7,8,11,12];
-  const roots = [50,46,43,45]; // D, Bb, G, A
+  const bpm = 72, interval = 60000 / bpm / 2;
+  // Original dark-superhero opening: suspense first, then a rising orchestral-synth fanfare.
+  const scale = [0,2,3,5,7,8,10,12];
+  const roots = [50,46,48,45]; // Dm, Bb, C, A
   const hz = n => 440 * Math.pow(2, (n - 69) / 12);
-  const phrase = [0,2,3,2,4,3,2,1,0,2,4,5,4,3,2,1];
+  const phrase = [0,2,3,2,4,3,5,4,3,2,4,5,6,5,4,2];
   function voice(freq, type, volume, duration, cutoff, detune=0, attack=.018) {
     const now = audio.ctx.currentTime;
     const osc = audio.ctx.createOscillator(), filter = audio.ctx.createBiquadFilter(), amp = audio.ctx.createGain();
@@ -1909,7 +1908,7 @@ if ("IntersectionObserver" in window) {
     voice(hz(note+19), "sine", volume*.055, duration*.48, bright*1.5, -3, .004);
   }
   function pad(root) {
-    [root,root+7,root+12].forEach((n,i) => voice(hz(n), "sawtooth", .008, 1.7, 720, i===1?7:-7, .22));
+    [root,root+7,root+12].forEach((n,i) => voice(hz(n), "sawtooth", .025, 2.9, 1050, i===1?7:-7, .5));
   }
   function percussion(position) {
     const now = audio.ctx.currentTime;
@@ -1931,13 +1930,23 @@ if ("IntersectionObserver" in window) {
   }
   function tick() {
     const root = roots[bar % roots.length];
-    if (step===0) { pad(root); voice(hz(root-12),"triangle",.065,1.1,240); }
-    percussion(step);
     const degree = phrase[(bar*4+step*2)%phrase.length];
-    const octave = bar%2 ? 12 : 0;
-    if (step%2===0) pluck(root+scale[degree]+12+octave, .043, .28, 2500);
-    if (step===3 || step===7) pluck(root+scale[(degree+2)%scale.length]+24, .022, .22, 3300);
-    if (step===1 || step===5) voice(hz(root-12),"sawtooth",.018,.2,380);
+    // First four bars stay tense and spacious; the heroic layers enter gradually.
+    if (step===0) {
+      pad(root);
+      voice(hz(root-12),"sine",bar<2?.12:.19,2.1,260,0,.35);
+      if(bar>=2) voice(hz(root+12),"sawtooth",.035,1.8,1250,5,.35);
+    }
+    if(bar>=4) percussion(step);
+    else if(bar>=2 && (step===0 || step===4)) percussion(step);
+    if(step%2===0 && bar>=2) pluck(root+scale[degree]+12,bar<4?.055:.075,.48,2900);
+    if(bar>=4 && (step===3 || step===7)) pluck(root+scale[(degree+2)%scale.length]+24,.045,.38,3600);
+    // Wide, brass-like synth hits mark the reveal without copying a film theme.
+    if((bar===4 || bar===6) && step===0) {
+      [root,root+7,root+12,root+19].forEach((n,i)=>voice(hz(n),"sawtooth",.075,2.4,1900,i%2?8:-8,.12));
+      voice(hz(root-24),"triangle",.24,1.1,190,.025);
+    }
+    if(bar>=4 && (step===1 || step===5)) voice(hz(root-12),"sawtooth",.045,.32,520);
     step++;
     if(step===8){step=0;bar++;}
   }
@@ -1946,24 +1955,26 @@ if ("IntersectionObserver" in window) {
     if(!AudioContextClass){small.textContent="AUDIO NOT SUPPORTED";return;}
     if(!audio){
       const ctx=new AudioContextClass(), master=ctx.createGain(), filter=ctx.createBiquadFilter(), comp=ctx.createDynamicsCompressor();
-      filter.type="lowpass";filter.frequency.value=6200;master.gain.value=1.25;
+      filter.type="lowpass";filter.frequency.value=10500;
+      comp.threshold.value=-22;comp.knee.value=8;comp.ratio.value=12;comp.attack.value=.003;comp.release.value=.22;
+      master.gain.value=1.45;
       master.connect(filter);filter.connect(comp);comp.connect(ctx.destination);audio={ctx,master};
     }
     if(audio.ctx.state!=="running") await audio.ctx.resume();
     const now=audio.ctx.currentTime;
     audio.master.gain.cancelScheduledValues(now);
-    audio.master.gain.setTargetAtTime(1.25,now,.035);
+    audio.master.gain.setTargetAtTime(1.45,now,.035);
     step=0;bar=0;tick();timer=window.setInterval(tick,interval);
     player.classList.add("is-playing");button.setAttribute("aria-pressed","true");
-    button.setAttribute("aria-label","Pause Egyptian cinematic soundtrack");
-    small.textContent="SOUND ON · CAIRO AFTER DARK";
+    button.setAttribute("aria-label","Pause original cinematic soundtrack");
+    small.textContent="SOUND ON · THE HERO RISES";
   }
   function stop(){
     if(timer!==null){window.clearInterval(timer);timer=null;}
     if(audio){const now=audio.ctx.currentTime;audio.master.gain.cancelScheduledValues(now);audio.master.gain.setTargetAtTime(.0001,now,.045);}
     player.classList.remove("is-playing");button.setAttribute("aria-pressed","false");
-    button.setAttribute("aria-label","Play Egyptian cinematic soundtrack");
-    small.textContent="SOUND OFF · CAIRO AFTER DARK";
+    button.setAttribute("aria-label","Play original cinematic soundtrack");
+    small.textContent="SOUND OFF · THE HERO RISES";
   }
   button.addEventListener("click",()=>{if(timer!==null)stop();else start().catch(()=>{small.textContent="TAP TO ENABLE SOUND";});});
 })();
