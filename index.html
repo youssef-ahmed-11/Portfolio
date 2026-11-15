@@ -175,6 +175,73 @@ a.cl:hover{border-color:var(--red)}a.cl:hover .go{color:var(--red)}
 .doc a:hover{color:var(--red)}
 .rv{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.mq-t,.rec i{animation:none}html{scroll-behavior:auto}}
+
+/* COMIC BOOK ART DIRECTION */
+:root{--bg:#100e0d;--ink:#f6e8cf;--red:#e63227;--gold:#e5b86b;--line:#55443a;--mute:#b6a18b;--d:'Bebas Neue',Impact,sans-serif;--s:'Playfair Display',Georgia,serif;--b:Inter,system-ui,sans-serif;--m:'Space Mono',ui-monospace,monospace}
+body{background-color:#100e0d;background-image:radial-gradient(rgba(230,50,39,.16) .8px,transparent .8px),linear-gradient(135deg,#100e0d 0%,#17110f 55%,#0c0b0a 100%);background-size:7px 7px,auto}
+body::after{opacity:.11;mix-blend-mode:screen}
+.nav{background:rgba(15,12,11,.94);border-bottom:2px solid var(--ink);box-shadow:0 5px 0 rgba(230,50,39,.7)}
+.logo{font-size:25px;letter-spacing:.04em;line-height:.85;text-shadow:2px 2px 0 var(--red);transform:skew(-7deg)}
+.nav nav a,.tabbar a{font-family:var(--d);font-size:16px;letter-spacing:.08em;color:var(--ink)}
+.btn{font-family:var(--d);font-size:17px;letter-spacing:.08em;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red);transform:skew(-3deg);transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translate(2px,2px) skew(-3deg);box-shadow:1px 1px 0 var(--red)}
+.btn.red{background:var(--red);border-color:var(--ink);color:#fff}
+.hero{position:relative;isolation:isolate;max-width:none;width:100%;min-height:min(850px,calc(100svh - 60px));padding:clamp(55px,8vw,110px) max(6vw,24px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);align-items:center;gap:3vw;overflow:hidden;border-bottom:4px solid var(--ink);background:radial-gradient(ellipse at 72% 45%,rgba(230,50,39,.42),transparent 48%),linear-gradient(115deg,rgba(12,10,9,.98) 0 48%,rgba(80,17,14,.75) 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background-image:radial-gradient(#f5d9b5 1px,transparent 1.4px);background-size:6px 6px;mask-image:linear-gradient(90deg,transparent,#000 65%)}
+.hero::after{content:"";position:absolute;z-index:-1;right:-6vw;top:8%;width:54vw;height:78%;border:3px solid rgba(246,232,207,.7);border-radius:48% 0 0 48%;background:linear-gradient(145deg,rgba(230,50,39,.72),rgba(92,18,15,.28));transform:rotate(-5deg);box-shadow:14px 14px 0 rgba(0,0,0,.35)}
+.comic-copy{position:relative;z-index:2;max-width:720px}
+.hero .rec{font:13px var(--m);color:var(--gold);letter-spacing:.16em;display:inline-flex;align-items:center;padding:8px 12px;border:1px solid var(--gold);background:#17100e;transform:rotate(-2deg)}
+.hero .rec i{background:var(--red);box-shadow:0 0 12px var(--red)}
+.hero h1{font:400 clamp(76px,12vw,180px)/.78 var(--d);letter-spacing:-.035em;margin:30px 0 22px;text-shadow:5px 5px 0 var(--red),10px 10px 0 #080706;transform:rotate(-3deg);transform-origin:left center}
+.hero h1 br+*{color:var(--red)}
+.hero .cred{font:italic 700 clamp(18px,2.4vw,29px) var(--s);color:var(--ink);text-shadow:2px 2px 0 #7d1712;margin:0 0 8px}
+.hero .roles{font:15px/1.9 var(--m);letter-spacing:.09em;color:var(--gold);max-width:560px;margin:10px 0 28px;text-transform:uppercase}
+.hero-art{position:relative;z-index:1;align-self:stretch;min-height:430px;display:flex;align-items:center;justify-content:center;transform:rotate(2deg)}
+.hero-art::before{content:"";position:absolute;inset:5% 0 5% 4%;border:3px solid var(--ink);background:repeating-linear-gradient(135deg,rgba(15,10,9,.08) 0 8px,rgba(15,10,9,.32) 8px 12px);clip-path:polygon(8% 0,100% 5%,94% 100%,0 92%)}
+.hero-art img{position:relative;width:min(100%,560px);height:100%;max-height:620px;object-fit:contain;filter:grayscale(1) sepia(.3) contrast(1.2);mix-blend-mode:screen;mask-image:linear-gradient(180deg,#000 0 83%,transparent 100%);z-index:1}
+.hero-art .art-stamp{position:absolute;z-index:3;right:-1%;bottom:9%;padding:13px 18px;background:var(--ink);color:#17100e;border:2px solid #17100e;box-shadow:5px 5px 0 var(--red);font:20px/1 var(--d);transform:rotate(-8deg)}
+.hero-art .art-burst{position:absolute;z-index:2;top:10%;right:3%;font:clamp(50px,8vw,100px)/1 var(--d);color:var(--ink);text-shadow:4px 4px 0 var(--red);transform:rotate(12deg)}
+.hero .cta{gap:18px}
+.mq{background:var(--red);border-block:3px solid var(--ink);padding:12px 0;transform:rotate(-1deg) scale(1.02);box-shadow:0 5px 0 #090807}
+.mq-t{font:28px var(--d);color:#fff;letter-spacing:.1em}
+.mq-t b{color:#21100d}
+.sec{position:relative;border-bottom:2px solid var(--line);padding:clamp(58px,8vw,100px) 0}
+.slate{font:12px var(--m);color:var(--gold);letter-spacing:.18em}
+h2{font:400 clamp(48px,8vw,100px)/.86 var(--d);text-shadow:3px 3px 0 var(--red);letter-spacing:.01em}
+.sub{font:italic 18px var(--s);color:#c6b39a}
+.head{position:relative;padding-left:18px;border-left:5px solid var(--red)}
+.head::after{content:"";position:absolute;left:-5px;bottom:-12px;width:90px;height:4px;background:var(--gold);transform:rotate(-3deg)}
+.card,.case,.board{border:2px solid #6c5444;background:linear-gradient(145deg,rgba(38,27,22,.95),rgba(16,13,12,.98));box-shadow:7px 7px 0 rgba(230,50,39,.35);padding:18px;position:relative}
+.card::before,.case::before{content:"";position:absolute;top:-7px;left:18px;width:42px;height:12px;background:var(--gold);opacity:.8;transform:rotate(-5deg)}
+.card h3,.case h3,.board h3,.finfo h3{font:400 clamp(30px,4vw,46px)/.92 var(--d);color:var(--ink);text-shadow:2px 2px 0 var(--red)}
+.vid{border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red)}
+.play{background:var(--red);border:2px solid var(--ink);box-shadow:3px 3px 0 #100e0d}
+.cl{border:2px solid var(--ink);background:#211a16;box-shadow:4px 4px 0 rgba(230,50,39,.55);clip-path:polygon(3% 0,100% 3%,97% 100%,0 96%)}
+.cl:hover{background:#3a1b17}
+.mat,.doc{border:1px solid #79614b;background:#1b1512}
+.mat{border-left:4px solid var(--red)}
+.facts div,.shoot{border-color:#55443a}
+.shoot summary{background:rgba(37,25,20,.72);border:1px solid #594535;margin:8px 0;box-shadow:4px 4px 0 rgba(230,50,39,.25)}
+.shoot[open] summary{border-color:var(--red)}
+.gi .gf{border:2px solid #6c5444;box-shadow:3px 3px 0 rgba(230,50,39,.28)}
+.contact h2{font-size:clamp(58px,12vw,160px);text-shadow:5px 5px 0 var(--red)}
+.rows>*{border-bottom:2px solid #604b3c;font:32px var(--d)}
+footer{border-top:2px solid var(--red);background:#0b0908}
+.tabbar{border-top:2px solid var(--red);background:rgba(15,12,11,.98)}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr;gap:12px;padding:64px 24px 38px;min-height:auto}
+ .hero::after{right:-30%;top:22%;width:100%;height:48%;opacity:.8}
+ .hero h1{font-size:clamp(76px,18vw,132px);margin:26px 0 20px}
+ .hero-art{min-height:280px;max-height:380px;margin-top:0}
+ .hero-art img{max-height:380px;width:90%}
+ .hero-art .art-stamp{right:4%;bottom:5%}
+ .hero-art .art-burst{right:8%;top:3%}
+ .hero .roles{font-size:11px}
+ .nav{padding:12px 14px}
+ .logo{font-size:21px}
+}
+@media(prefers-reduced-motion:reduce){.hero .rec i{animation:none}}
+
 </style>
 </head>
 <body>
@@ -342,6 +409,31 @@ if ("IntersectionObserver" in window) {
   els.forEach(x => io.observe(x));
 } else els.forEach(x => x.classList.add("in"));
 </script>
+
+<script>
+/* Build the comic-book hero from the existing portfolio content. */
+(() => {
+  const hero=document.querySelector(".hero");
+  if(!hero || hero.dataset.comicReady) return;
+  hero.dataset.comicReady="1";
+  const copy=document.createElement("div");
+  copy.className="comic-copy";
+  [...hero.children].forEach(el=>copy.appendChild(el));
+  hero.appendChild(copy);
+  const art=document.createElement("div");
+  art.className="hero-art";
+  const portrait=(window.SITE && SITE.photo) ? SITE.photo : "";
+  art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait">' : '')+
+    '<span class="art-burst" aria-hidden="true">POW!</span><span class="art-stamp">CREATE · PLAN · SHOOT · DELIVER</span>';
+  hero.appendChild(art);
+  const issue=document.createElement("span");
+  issue.className="comic-issue";
+  issue.textContent="ISSUE 01 · CAIRO, EGYPT";
+  copy.insertBefore(issue,copy.firstChild);
+  hero.querySelector(".rec")?.setAttribute("aria-label","Recording in Cairo, Egypt");
+})();
+</script>
+
 <script src="language.js?v=20261115-3"></script>
 </body>
 </html>
