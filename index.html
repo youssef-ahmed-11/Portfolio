@@ -1322,6 +1322,17 @@ body{background-image:radial-gradient(rgba(247,232,207,.13) 1px,transparent 1px)
   #boards .board .gi figcaption .gn{font-size:16px!important}
 }
 </style>
+<style id="client-label-visibility-fix">
+/* Improve readability of the text labels beneath every client logo */
+.cl{aspect-ratio:3/2!important;min-height:190px!important;padding:16px 16px 48px!important;gap:8px!important;background:#f3dfbd!important;color:#17100e!important;border:3px solid #17100e!important;box-shadow:5px 5px 0 #df2927!important;overflow:visible!important}
+.cl.light{background:#f3dfbd!important;color:#17100e!important}
+.cl img{max-height:68%!important;max-width:90%!important}
+.cl .nm{display:block!important;width:100%!important;color:#17100e!important;font:800 clamp(17px,1.7vw,23px)/1.12 var(--b)!important;letter-spacing:.015em!important;text-align:center!important;overflow-wrap:anywhere!important;text-shadow:none!important}
+.cl .go{position:absolute!important;left:10px!important;right:10px!important;bottom:8px!important;display:block!important;padding:7px 8px!important;background:#17100e!important;color:#fff0d8!important;border:2px solid #df2927!important;font:800 11px/1.2 var(--m)!important;letter-spacing:.09em!important;text-transform:uppercase!important;text-align:center!important;white-space:normal!important;opacity:1!important;visibility:visible!important;z-index:3!important}
+.cl .bdg{z-index:4!important}
+a.cl:hover .go{background:#df2927!important;color:#fff!important}
+@media(max-width:600px){.cl{min-height:160px!important;padding-bottom:46px!important}.cl .nm{font-size:17px!important}.cl .go{font-size:10px!important}}
+</style>
 </head>
 <body>
 <header class="nav">
