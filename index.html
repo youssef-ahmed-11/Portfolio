@@ -1874,7 +1874,7 @@ if ("IntersectionObserver" in window) {
       <span class="gramophone-arm"></span><span class="neon-disc"></span>
       <span class="gramophone-base"></span>
     </span>
-    <span class="neon-label"><b>WARDA NIGHTS</b><small>SOUND OFF</small></span>
+    <span class="neon-label"><b>ARCADE ROCK</b><small>SOUND OFF</small></span>
   </button>
 </div>
 <script id="neon-sound-script">
@@ -1884,67 +1884,54 @@ if ("IntersectionObserver" in window) {
   const button = player.querySelector("button");
   const small = player.querySelector("small");
   let audio = null, timer = null, step = 0, bar = 0;
-  const bpm = 84, interval = 60000 / bpm / 2;
-  // Original Egyptian tarab-inspired instrumental: oud-like plucks, lush strings and a dramatic brass lift.
-  // This is an original synthesized motif, not a Warda recording or a copy of an existing song.
-  const maqam = [0,1,4,5,7,8,11,12];
-  const roots = [57,53,55,52]; // Am, F, G, E
-  const melody = [0,2,3,2,4,3,5,4,3,2,1,2,4,5,6,5,4,3,2,1,0,2,4,3,5,6,5,4,2,3,1,0];
+  const bpm = 148, interval = 60000 / bpm / 2;
+  // Original, nonstop 8-bit arcade rock loop: energetic square-wave lead, crunchy power chords and driving drums.
+  // It evokes retro platform-game energy without using a Mario melody or copyrighted game audio.
+  const roots = [45,41,43,40]; // A, F, G, E
+  const riff = [0,7,12,7,3,7,10,7,0,7,12,15,10,7,3,7];
   const hz = n => 440 * Math.pow(2, (n - 69) / 12);
-  function voice(freq, type, volume, duration, cutoff, detune=0, attack=.025, destination=audio.master) {
-    const now = audio.ctx.currentTime;
-    const osc = audio.ctx.createOscillator(), filter = audio.ctx.createBiquadFilter(), amp = audio.ctx.createGain();
-    osc.type = type; osc.frequency.setValueAtTime(freq, now); osc.detune.value = detune;
-    filter.type = "lowpass"; filter.frequency.setValueAtTime(cutoff, now); filter.Q.value = .8;
-    amp.gain.setValueAtTime(.0001, now);
-    amp.gain.exponentialRampToValueAtTime(Math.max(.0002,volume), now + attack);
-    amp.gain.exponentialRampToValueAtTime(.0001, now + duration);
-    osc.connect(filter); filter.connect(amp); amp.connect(destination);
-    osc.start(now); osc.stop(now + duration + .03);
+  function tone(note, type, volume, duration, cutoff=9000, attack=.008, dest=audio.master) {
+    const now=audio.ctx.currentTime;
+    const osc=audio.ctx.createOscillator(), filter=audio.ctx.createBiquadFilter(), amp=audio.ctx.createGain();
+    osc.type=type;osc.frequency.setValueAtTime(hz(note),now);
+    filter.type="lowpass";filter.frequency.value=cutoff;filter.Q.value=.8;
+    amp.gain.setValueAtTime(.0001,now);
+    amp.gain.exponentialRampToValueAtTime(Math.max(.0002,volume),now+attack);
+    amp.gain.exponentialRampToValueAtTime(.0001,now+duration);
+    osc.connect(filter);filter.connect(amp);amp.connect(dest);
+    osc.start(now);osc.stop(now+duration+.015);
   }
-  function pluck(note, volume=.065, duration=.42) {
-    // A bright, short pluck with harmonics suggests qanun/oud without sampling a recording.
-    voice(hz(note), "triangle", volume, duration, 2600, 0, .006);
-    voice(hz(note+12), "sine", volume*.28, duration*.65, 4200, 2, .004);
-    voice(hz(note+19), "sine", volume*.10, duration*.42, 5000, -2, .004);
+  function kick() {
+    const now=audio.ctx.currentTime,o=audio.ctx.createOscillator(),g=audio.ctx.createGain();
+    o.type="sine";o.frequency.setValueAtTime(145,now);o.frequency.exponentialRampToValueAtTime(43,now+.13);
+    g.gain.setValueAtTime(.34,now);g.gain.exponentialRampToValueAtTime(.0001,now+.16);
+    o.connect(g);g.connect(audio.master);o.start(now);o.stop(now+.17);
   }
-  function strings(root, lift=false) {
-    const chord = lift ? [root,root+4,root+7,root+12] : [root,root+7,root+12];
-    chord.forEach((n,i) => {
-      voice(hz(n), "sawtooth", lift?.042:.027, 2.7, 1800, i%2?7:-6, .42);
-      voice(hz(n-12), "triangle", .018, 2.4, 850, i%2?-4:4, .55);
-    });
+  function snare() {
+    const now=audio.ctx.currentTime,o=audio.ctx.createOscillator(),g=audio.ctx.createGain(),f=audio.ctx.createBiquadFilter();
+    o.type="triangle";o.frequency.setValueAtTime(210,now);o.frequency.exponentialRampToValueAtTime(95,now+.08);
+    f.type="highpass";f.frequency.value=850;g.gain.setValueAtTime(.19,now);g.gain.exponentialRampToValueAtTime(.0001,now+.12);
+    o.connect(f);f.connect(g);g.connect(audio.master);o.start(now);o.stop(now+.13);
   }
-  function lowPulse(note, volume=.12) {
-    voice(hz(note), "sine", volume, .62, 240, 0, .025);
-  }
-  function beat(pos) {
-    const now = audio.ctx.currentTime;
-    if (pos===0 || pos===4) lowPulse(roots[bar%4]-12, pos===0?.18:.12);
-    if (pos===2 || pos===6) {
-      const o=audio.ctx.createOscillator(),g=audio.ctx.createGain(),f=audio.ctx.createBiquadFilter();
-      o.type="triangle";o.frequency.setValueAtTime(190,now);o.frequency.exponentialRampToValueAtTime(85,now+.09);
-      f.type="highpass";f.frequency.value=650;g.gain.setValueAtTime(.025,now);g.gain.exponentialRampToValueAtTime(.0001,now+.11);
-      o.connect(f);f.connect(g);g.connect(audio.master);o.start(now);o.stop(now+.12);
-    }
+  function hat() {
+    const now=audio.ctx.currentTime,o=audio.ctx.createOscillator(),g=audio.ctx.createGain(),f=audio.ctx.createBiquadFilter();
+    o.type="square";o.frequency.value=7200;f.type="highpass";f.frequency.value=6200;
+    g.gain.setValueAtTime(.028,now);g.gain.exponentialRampToValueAtTime(.0001,now+.035);
+    o.connect(f);f.connect(g);g.connect(audio.master);o.start(now);o.stop(now+.04);
   }
   function tick() {
-    const root = roots[bar % roots.length];
-    const degree = melody[(bar*2 + step/2) % melody.length];
-    if (step===0) {
-      strings(root, bar>=4);
-      lowPulse(root-12, bar<2?.12:.17);
-      if (bar>=4) {
-        [root+12,root+16,root+19].forEach((n,i)=>voice(hz(n),"sawtooth",.035,1.9,2200,i?7:-7,.18));
-      }
+    const root=roots[bar%4], note=root+12+riff[(bar*4+step)%riff.length];
+    // Every subdivision carries a melodic or harmonic event: no silent bars or deliberate breaks.
+    tone(note,"square",.095,.19,7200,.004);
+    tone(root-12+(step%4===2?7:0),"triangle",.12,.19,900,.006);
+    if(step%2===0) {
+      tone(root+7,"sawtooth",.035,.23,1800,.012);
+      tone(root+12,"sawtooth",.03,.23,2200,.012);
     }
-    if (bar>=2) beat(step);
-    if (step%2===0) pluck(root + maqam[degree] + 12, bar<3?.055:.078, .48);
-    if (step===3 || step===7) pluck(root + maqam[(degree+2)%maqam.length] + 24, .042, .3);
-    if (bar>=4 && (step===0 || step===4)) {
-      [root,root+4,root+7,root+12].forEach((n,i)=>voice(hz(n),"sawtooth",.055,1.65,2400,i%2?9:-9,.11));
-      lowPulse(root-24,.22);
-    }
+    if(step===0||step===4) kick();
+    if(step===2||step===6) snare();
+    hat();
+    if(step===7) tone(root+24,"square",.045,.16,6500,.003);
     step++;
     if(step===8){step=0;bar++;}
   }
@@ -1952,27 +1939,27 @@ if ("IntersectionObserver" in window) {
     const AudioContextClass=window.AudioContext||window.webkitAudioContext;
     if(!AudioContextClass){small.textContent="AUDIO NOT SUPPORTED";return;}
     if(!audio){
-      const ctx=new AudioContextClass(), master=ctx.createGain(), filter=ctx.createBiquadFilter(), comp=ctx.createDynamicsCompressor();
-      filter.type="lowpass";filter.frequency.value=11500;
-      comp.threshold.value=-20;comp.knee.value=10;comp.ratio.value=12;comp.attack.value=.004;comp.release.value=.24;
-      master.gain.value=1.5;
-      master.connect(filter);filter.connect(comp);comp.connect(ctx.destination);audio={ctx,master};
+      const ctx=new AudioContextClass(),master=ctx.createGain(),comp=ctx.createDynamicsCompressor(),limiter=ctx.createDynamicsCompressor();
+      comp.threshold.value=-24;comp.knee.value=8;comp.ratio.value=16;comp.attack.value=.003;comp.release.value=.16;
+      limiter.threshold.value=-8;limiter.knee.value=0;limiter.ratio.value=20;limiter.attack.value=.001;limiter.release.value=.1;
+      master.gain.value=1.7;
+      master.connect(comp);comp.connect(limiter);limiter.connect(ctx.destination);audio={ctx,master};
     }
     if(audio.ctx.state!=="running") await audio.ctx.resume();
     const now=audio.ctx.currentTime;
     audio.master.gain.cancelScheduledValues(now);
-    audio.master.gain.setTargetAtTime(1.5,now,.04);
+    audio.master.gain.setTargetAtTime(1.7,now,.025);
     step=0;bar=0;tick();timer=window.setInterval(tick,interval);
     player.classList.add("is-playing");button.setAttribute("aria-pressed","true");
-    button.setAttribute("aria-label","Pause original Egyptian tarab-inspired soundtrack");
-    small.textContent="SOUND ON · WARDA NIGHTS";
+    button.setAttribute("aria-label","Pause original arcade rock soundtrack");
+    small.textContent="SOUND ON · ARCADE ROCK";
   }
   function stop(){
     if(timer!==null){window.clearInterval(timer);timer=null;}
-    if(audio){const now=audio.ctx.currentTime;audio.master.gain.cancelScheduledValues(now);audio.master.gain.setTargetAtTime(.0001,now,.05);}
+    if(audio){const now=audio.ctx.currentTime;audio.master.gain.cancelScheduledValues(now);audio.master.gain.setTargetAtTime(.0001,now,.035);}
     player.classList.remove("is-playing");button.setAttribute("aria-pressed","false");
-    button.setAttribute("aria-label","Play original Egyptian tarab-inspired soundtrack");
-    small.textContent="SOUND OFF · WARDA NIGHTS";
+    button.setAttribute("aria-label","Play original arcade rock soundtrack");
+    small.textContent="SOUND OFF · ARCADE ROCK";
   }
   button.addEventListener("click",()=>{if(timer!==null)stop();else start().catch(()=>{small.textContent="TAP TO ENABLE SOUND";});});
 })();
