@@ -108,8 +108,34 @@
   add(".head .slate,.head h2,.head .sub,.contact .slate,.contact h2,.finfo .slate,.finfo h3,.finfo p,.bio .facts .meta,.case dt", dict);
   add(".doc a,.doc .k", dict);
 
+  const ensureGoogleTranslate = () => {
+    if (document.getElementById("google_translate_element")) return;
+    const host = document.createElement("div");
+    host.id = "google_translate_element";
+    host.style.cssText = "position:fixed;left:-9999px;top:-9999px";
+    document.body.appendChild(host);
+    window.googleTranslateElementInit = () => {
+      if (!window.google?.translate?.TranslateElement) return;
+      new google.translate.TranslateElement({pageLanguage:"en",includedLanguages:"ar",autoDisplay:false}, "google_translate_element");
+      if (window.__portfolioLang === "ar") setTimeout(() => triggerGoogleTranslate("ar"), 400);
+    };
+    if (!document.querySelector('script[data-google-translate]')) {
+      const s = document.createElement("script");
+      s.dataset.googleTranslate = "1";
+      s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.head.appendChild(s);
+    }
+  };
+  const triggerGoogleTranslate = lang => {
+    const combo = document.querySelector(".goog-te-combo");
+    if (!combo) return false;
+    combo.value = lang === "ar" ? "ar" : "";
+    combo.dispatchEvent(new Event("change"));
+    return true;
+  };
   const apply = lang => {
     const ar = lang === "ar";
+    window.__portfolioLang = ar ? "ar" : "en";
     document.documentElement.lang = ar ? "ar" : "en";
     document.documentElement.dir = ar ? "rtl" : "ltr";
     document.body.dataset.language = lang;
@@ -119,6 +145,13 @@
     });
     $$(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
+    ensureGoogleTranslate();
+    let tries = 0;
+    const retry = () => {
+      if (triggerGoogleTranslate(lang) || tries++ > 24) return;
+      setTimeout(retry, 250);
+    };
+    retry();
   };
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-lang]");
