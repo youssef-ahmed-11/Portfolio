@@ -19,6 +19,21 @@
     "Written, shot & strategized by":"كتابة وتصوير وتخطيط","Based in":"الموقع","Industries":"المجالات","Open to":"متاح لـ","Challenge":"التحدي","Idea":"الفكرة","Execution":"التنفيذ","Results":"النتائج","Email":"البريد الإلكتروني","WhatsApp":"واتساب","LinkedIn":"لينكد إن","Instagram":"إنستجرام",
     "View Strategy PDF ↗":"عرض ملف الاستراتيجية ↗","View Content Plan PDF ↗":"عرض خطة المحتوى ↗","View Script ↗":"عرض السكريبت ↗","View Execution ↗":"مشاهدة التنفيذ ↗"
   };
+    "Plan":"خطة",
+    "Video":"فيديو",
+    "Script":"سكريبت",
+    "Content Plan":"خطة المحتوى",
+    "Open Strategy PDF ↗":"عرض ملف الاستراتيجية ↗",
+    "Open Content Plan PDF ↗":"عرض ملف خطة المحتوى ↗",
+    "Open Script ↗":"عرض السكريبت ↗",
+    "Open Video ↗":"مشاهدة الفيديو ↗",
+    "View Strategy PDF ↗":"عرض ملف الاستراتيجية ↗",
+    "View Content Plan PDF ↗":"عرض ملف خطة المحتوى ↗",
+    "View Script ↗":"عرض السكريبت ↗",
+    "View Video ↗":"مشاهدة الفيديو ↗",
+    "Download":"تحميل",
+    "View":"عرض",
+    "Open":"فتح",
   const contentAr = new Map([
     [S.location || "Cairo, Egypt", "القاهرة، مصر"],
     [S.openTo || "", "متاح لفرص العمل بدوام كامل في الوكالات الإبداعية والمشروعات المستقلة"],
