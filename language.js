@@ -95,7 +95,7 @@
     ["Ya 7alawet el shar2y", "يا حلاوة الشرقي"],
     ["About Me", "نبذة عني"],
     ["About me", "نبذة عني"],
-    ["LinkedIn", "لينكدإن"],
+    ["LinkedIn", "لينكد إن"],
     ["WhatsApp", "واتساب"],
     ["details", "تفاصيل"],
     ["3’waysh", "قراميش"],
