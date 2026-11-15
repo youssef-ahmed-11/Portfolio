@@ -687,6 +687,56 @@ footer{color:#fff4df!important;opacity:1!important}
   -webkit-text-stroke:0!important;
 }
 
+
+
+/* SUPERHERO COMIC LAYER — separate hero treatment; About portrait remains untouched */
+.hero-art{isolation:isolate}
+.hero-art img{
+  filter:grayscale(.18) contrast(1.34) saturate(1.22) sepia(.16) hue-rotate(-8deg)
+    drop-shadow(5px 5px 0 #211315) drop-shadow(10px 10px 0 #e63227)!important;
+  transform:scale(1.035);
+  animation:heroPortraitIn .9s cubic-bezier(.2,.8,.2,1) both, heroFloat 6s ease-in-out 1s infinite;
+}
+.hero-art::before{box-shadow:inset 0 0 0 7px rgba(255,244,223,.28),9px 9px 0 #211315!important}
+.hero-art .art-burst{animation:burstBob 4.5s ease-in-out infinite}
+.hero-art .art-stamp{animation:stampBob 5.5s ease-in-out infinite}
+.hero-props{position:absolute;inset:0;z-index:4;pointer-events:none}
+.hero-prop{
+  position:absolute;display:grid;place-items:center;width:66px;height:66px;
+  background:#f1dfbd;border:3px solid #211315;box-shadow:5px 5px 0 #211315;
+  font-size:36px;line-height:1;transform:rotate(var(--tilt,-8deg));
+  animation:propDrift var(--speed,5s) ease-in-out infinite;
+}
+.hero-prop small{
+  position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);
+  white-space:nowrap;padding:4px 6px;background:#211315;color:#fff4df;
+  font:800 8px/1.1 var(--m);letter-spacing:.08em
+}
+.hero-prop.web{top:8%;left:2%;font-size:42px;background:#fff4df}
+.hero-prop.armor{top:12%;right:2%;--tilt:9deg}
+.hero-prop.hammer{bottom:18%;left:1%;--tilt:-13deg}
+.hero-prop.shield{bottom:14%;right:3%;border-radius:50%;background:#d9272e;color:#fff4df;border:5px solid #f1dfbd;outline:3px solid #211315}
+.hero-prop.gauntlet{top:48%;left:-1%;--tilt:12deg}
+.hero-prop.gem{top:3%;left:48%;width:38px;height:38px;font-size:23px;border-radius:50%;--tilt:0deg}
+@keyframes heroPortraitIn{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1.035)}}
+@keyframes heroFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes propDrift{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -9px;rotate:3deg}}
+@keyframes burstBob{0%,100%{translate:0 0}50%{translate:0 -6px}}
+@keyframes stampBob{0%,100%{translate:0 0}50%{translate:0 4px}}
+@media(max-width:760px){
+ .hero-prop{width:48px;height:48px;font-size:27px;box-shadow:3px 3px 0 #211315}
+ .hero-prop small{font-size:6px}
+ .hero-prop.web{top:0;left:0}
+ .hero-prop.armor{top:0;right:0}
+ .hero-prop.hammer{bottom:17%;left:0}
+ .hero-prop.shield{bottom:14%;right:0}
+ .hero-prop.gauntlet{top:42%;left:-2%}
+ .hero-prop.gem{top:0;left:45%;width:30px;height:30px;font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-art img,.hero-prop,.hero-art .art-burst,.hero-art .art-stamp{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -873,6 +923,18 @@ if ("IntersectionObserver" in window) {
   art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait">' : '')+
     '<span class="art-burst" aria-hidden="true">POW!</span><span class="art-stamp">CREATE · PLAN · SHOOT · DELIVER</span>';
   hero.appendChild(art);
+  /* Floating comic props: web, armored gauntlet, thunder hammer, shield and cosmic gauntlet. */
+  const props=document.createElement("div");
+  props.className="hero-props";
+  props.setAttribute("aria-hidden","true");
+  props.innerHTML=
+    '<span class="hero-prop web" style="--speed:6s">🕸️<small>WEB SLINGER</small></span>'+
+    '<span class="hero-prop armor" style="--speed:5.2s">🦾<small>ARMORED UP</small></span>'+
+    '<span class="hero-prop hammer" style="--speed:6.8s">🔨<small>THUNDER</small></span>'+
+    '<span class="hero-prop shield" style="--speed:5.8s">★<small>THE SHIELD</small></span>'+
+    '<span class="hero-prop gauntlet" style="--speed:7s">🧤<small>INFINITY POWER</small></span>'+
+    '<span class="hero-prop gem" style="--speed:4.8s">💎</span>';
+  hero.appendChild(props);
   const issue=document.createElement("span");
   issue.className="comic-issue";
   issue.textContent="ISSUE 01 · CAIRO, EGYPT";
