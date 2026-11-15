@@ -1614,7 +1614,7 @@ ${(() => { const F = S.featured || {}, fid = yt(F.youtube), ff = F.file || "", h
   const player = ff ? `<video class="fv" controls playsinline preload="metadata" src="${esc(ff)}"></video>` : vid(fid, F.title, fmt === "vertical" ? "vertical" : fmt === "wide" ? "" : "cine");
   return sec("featured", head("FEATURED PROJECT", "NOW SHOWING", has ? "A featured reel to start with." : "A placeholder for your showreel or strongest piece.") +
   `<div class="feat${fmt === "vertical" && !ff ? " v" : ""} rv"><div class="fp">${has ? player : vid("", "", "cine")}</div><div class="finfo">${has ? `<span class="slate">FEATURED REEL</span><h3>${val(F.title, "Title")}</h3>${F.desc ? `<p>${esc(F.desc)}</p>` : ""}` : `<p class="meta">FEATURED PLACEHOLDER — ${esc(F.note || "")}</p>`}</div></div>`); })()}
-<div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number" data-count="25" data-suffix="+">0</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number" data-count="1000000" data-format="million" data-suffix="+">0</span><span class="metric-label">VIEWS</span></div></div>
+<div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">1M+</span><span class="metric-label">VIEWS</span></div></div>
   ${(S.clients || []).filter(c => c && (c.name || c.logo)).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Selected brands behind the work." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo)).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
 ${sec("work", head(REEL(), "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
   `<div class="grid">${list(S.projects, 3, project)}</div>`)}
@@ -1678,28 +1678,7 @@ if ("IntersectionObserver" in window) {
   els.forEach(x => io.observe(x));
 } else els.forEach(x => x.classList.add("in"));
 
-/* Animate only the social-proof numbers when the panels enter view. */
-(() => {
-  const counters = document.querySelectorAll(".metric-number[data-count]");
-  const run = el => {
-    if (el.dataset.done) return;
-    el.dataset.done = "1";
-    const target = Number(el.dataset.count) || 0;
-    const start = performance.now();
-    const duration = target >= 1000000 ? 650 : 450;
-    const format = n => el.dataset.format === "million" ? (n >= 1000000 ? "1M" : Math.floor(n / 1000).toLocaleString("en-US") + "K") : Math.floor(n).toLocaleString("en-US");
-    const tick = now => {
-      const p = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 4);
-      el.textContent = format(target * eased) + (p === 1 ? (el.dataset.suffix || "") : "");
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-  if (!counters.length) return;
-  /* Start immediately: the counter must not depend on scroll/visibility observers. */
-  counters.forEach(run);
-})();
+/* Social-proof metrics are intentionally static: 25+ clients and 1M+ views. */
 </script>
 
 <script>
