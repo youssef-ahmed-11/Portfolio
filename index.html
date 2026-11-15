@@ -1278,6 +1278,50 @@ body{background-image:radial-gradient(rgba(247,232,207,.13) 1px,transparent 1px)
 .portrait{border:4px solid #f3dfbd!important;box-shadow:8px 8px 0 #df2927!important}.tabbar{background:#f3dfbd!important;border-top:3px solid #17100e!important}.tabbar a{color:#17100e!important}footer{color:#f3dfbd!important}
 @media(max-width:760px){.nav{margin:7px 7px 0!important;padding:10px!important;gap:8px!important}.nav nav{display:none!important}.hero{width:calc(100% - 14px)!important;grid-template-columns:1fr!important;min-height:auto!important;padding:34px 22px 28px!important;gap:6px!important;margin:10px auto 20px!important}.hero::after{right:-9%!important;top:43%!important;width:95%!important;height:49%!important}.hero h1{font-size:clamp(70px,17vw,122px)!important;margin:22px 0!important}.hero-art{min-height:330px!important;max-height:420px!important;margin-top:8px!important}.hero-art img{width:92%!important;max-height:420px!important}.cover-lines{left:0!important;top:5%!important;max-width:44%!important;padding:8px!important}.cover-lines b{font-size:clamp(17px,5vw,26px)!important}.cover-kicker,.cover-lines i,.cover-edition{font-size:6px!important}.cover-corner{top:0!important;right:0!important;padding:5px 7px!important}.hero .roles{font-size:9px!important;letter-spacing:.04em!important}.hero-art .art-stamp{font-size:14px!important}.sec>.wrap{padding:0 14px!important}.head{padding:14px!important}}
 </style>
+
+<style>
+<!-- MOODBOARD CAPTION VISIBILITY FIX -->
+/* Make every moodboard image caption readable beneath its image. */
+#boards .board .gi figcaption{
+  display:block!important;
+  position:relative!important;
+  min-height:48px!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:11px 12px 12px!important;
+  background:#f5e8ce!important;
+  border-left:4px solid #b91f2a!important;
+  color:#211315!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  text-align:left!important;
+}
+#boards .board .gi figcaption .gn{
+  display:block!important;
+  color:#211315!important;
+  font:700 18px/1.25 var(--b)!important;
+  letter-spacing:0!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow-wrap:anywhere!important;
+}
+#boards .board .gi figcaption .gt{
+  display:block!important;
+  margin-top:5px!important;
+  color:#9f2028!important;
+  font:800 10px/1.5 var(--m)!important;
+  letter-spacing:.1em!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow-wrap:anywhere!important;
+}
+#boards .board .gi .gf{margin:0!important}
+@media(max-width:600px){
+  #boards .board .gi figcaption{padding:10px!important;min-height:44px!important}
+  #boards .board .gi figcaption .gn{font-size:16px!important}
+}
+</style>
 </head>
 <body>
 <header class="nav">
