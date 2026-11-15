@@ -1869,9 +1869,9 @@ if ("IntersectionObserver" in window) {
 <script id="comic-panels-script-v2">(()=>{const h=document.querySelector(".hero");if(!h||document.querySelector(".comic-panels"))return;const p=document.createElement("nav");p.className="comic-panels";p.setAttribute("aria-label","Explore portfolio");p.innerHTML='<a class="comic-panel" href="#clients"><span>OUR<br>CLIENTS</span><b>→</b></a><a class="comic-panel" href="#work"><span>EXPLORE<br>MY WORK</span><b>→</b></a><a class="comic-panel" href="#strategy"><span>CASE<br>STUDIES</span><b>→</b></a>';h.insertAdjacentElement("afterend",p)})();</script>
 
 <div id="neon-sound-player">
-  <button class="neon-toggle" type="button" aria-label="Play original Synthwave soundtrack" aria-pressed="false">
+  <button class="neon-toggle" type="button" aria-label="Play Egyptian cinematic soundtrack" aria-pressed="false">
     <span class="neon-disc" aria-hidden="true"></span>
-    <span class="neon-label"><b>THE NEON OPENING</b><small>SOUND OFF · SYNTHWAVE</small></span>
+    <span class="neon-label"><b>CAIRO AFTER DARK</b><small>SOUND OFF · EGYPTIAN CINEMATIC</small></span>
     <span class="neon-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
   </button>
 </div>
@@ -1882,98 +1882,88 @@ if ("IntersectionObserver" in window) {
   const button = player.querySelector("button");
   const small = player.querySelector("small");
   let audio = null, timer = null, step = 0, bar = 0;
-  const bpm = 104, interval = 60000 / bpm / 2;
-  const chords = [
-    [48, 60, 63, 67], [44, 56, 60, 63],
-    [39, 51, 55, 58], [46, 58, 62, 65]
-  ];
-  const pattern = [0,2,3,2,1,2,3,2];
+  const bpm = 96, interval = 60000 / bpm / 2;
+  // Original Egyptian-cinematic motif: Hijaz color, plucked-string phrases,
+  // warm synth pads, low pulse and restrained tabla/darbuka-like percussion.
+  const scale = [0,1,4,5,7,8,11,12];
+  const roots = [50,46,43,45]; // D, Bb, G, A
   const hz = n => 440 * Math.pow(2, (n - 69) / 12);
-  function makeVoice(freq, type, volume, duration, cutoff, detune=0) {
+  const phrase = [0,2,3,2,4,3,2,1,0,2,4,5,4,3,2,1];
+  function voice(freq, type, volume, duration, cutoff, detune=0, attack=.018) {
     const now = audio.ctx.currentTime;
-    const osc = audio.ctx.createOscillator();
-    const filter = audio.ctx.createBiquadFilter();
-    const amp = audio.ctx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, now);
-    osc.detune.value = detune;
-    filter.type = "lowpass";
-    filter.frequency.setValueAtTime(cutoff, now);
-    amp.gain.setValueAtTime(0.0001, now);
-    amp.gain.exponentialRampToValueAtTime(volume, now + 0.025);
-    amp.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-    osc.connect(filter);
-    filter.connect(amp);
-    amp.connect(audio.master);
-    osc.start(now);
-    osc.stop(now + duration + 0.03);
+    const osc = audio.ctx.createOscillator(), filter = audio.ctx.createBiquadFilter(), amp = audio.ctx.createGain();
+    osc.type = type; osc.frequency.setValueAtTime(freq, now); osc.detune.value = detune;
+    filter.type = "lowpass"; filter.frequency.setValueAtTime(cutoff, now); filter.Q.value = .7;
+    amp.gain.setValueAtTime(.0001, now);
+    amp.gain.exponentialRampToValueAtTime(volume, now + attack);
+    amp.gain.exponentialRampToValueAtTime(.0001, now + duration);
+    osc.connect(filter); filter.connect(amp); amp.connect(audio.master);
+    osc.start(now); osc.stop(now + duration + .025);
   }
-  function drum(kick) {
+  function pluck(note, volume=.045, duration=.34, bright=2100) {
+    // Layered triangle + softly detuned partial gives a warm oud/qanun-like pluck.
+    voice(hz(note), "triangle", volume, duration, bright, 0, .006);
+    voice(hz(note+12), "sine", volume*.16, duration*.72, bright*1.3, 2, .004);
+    voice(hz(note+19), "sine", volume*.055, duration*.48, bright*1.5, -3, .004);
+  }
+  function pad(root) {
+    [root,root+7,root+12].forEach((n,i) => voice(hz(n), "sawtooth", .008, 1.7, 720, i===1?7:-7, .22));
+  }
+  function percussion(position) {
     const now = audio.ctx.currentTime;
-    const osc = audio.ctx.createOscillator();
-    const amp = audio.ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(kick ? 125 : 720, now);
-    osc.frequency.exponentialRampToValueAtTime(kick ? 42 : 180, now + (kick ? .16 : .055));
-    amp.gain.setValueAtTime(kick ? .24 : .035, now);
-    amp.gain.exponentialRampToValueAtTime(.0001, now + (kick ? .19 : .065));
-    osc.connect(amp); amp.connect(audio.master);
-    osc.start(now); osc.stop(now + (kick ? .2 : .08));
+    const kick = (freq, end, vol, wave="sine") => {
+      const o=audio.ctx.createOscillator(), g=audio.ctx.createGain();
+      o.type=wave; o.frequency.setValueAtTime(freq,now); o.frequency.exponentialRampToValueAtTime(end,now+.11);
+      g.gain.setValueAtTime(vol,now); g.gain.exponentialRampToValueAtTime(.0001,now+.14);
+      o.connect(g);g.connect(audio.master);o.start(now);o.stop(now+.15);
+    };
+    if (position===0) kick(105,48,.16);
+    if (position===4) kick(82,42,.10);
+    if (position===2 || position===6) kick(460,210,.025,"triangle");
+    if (position===3 || position===7) {
+      const o=audio.ctx.createOscillator(), g=audio.ctx.createGain(), f=audio.ctx.createBiquadFilter();
+      o.type="triangle";o.frequency.setValueAtTime(170,now);o.frequency.exponentialRampToValueAtTime(90,now+.07);
+      f.type="highpass";f.frequency.value=900;g.gain.setValueAtTime(.018,now);g.gain.exponentialRampToValueAtTime(.0001,now+.075);
+      o.connect(f);f.connect(g);g.connect(audio.master);o.start(now);o.stop(now+.08);
+    }
   }
   function tick() {
-    const chord = chords[bar % chords.length];
-    if (step === 0) {
-      chord.forEach((note,i) => makeVoice(hz(note), "sawtooth", .012, 1.05, 950, i%2 ? 6 : -6));
-      makeVoice(hz(chord[0]-12), "triangle", .075, .9, 260);
-    }
-    if (step % 4 === 0) drum(true);
-    if (step % 4 === 2) drum(false);
-    makeVoice(hz(chord[pattern[step]]+12), "triangle", .035, .19, 2800);
-    if (step % 2 === 1) makeVoice(hz(chord[0]), "sawtooth", .025, .22, 650);
+    const root = roots[bar % roots.length];
+    if (step===0) { pad(root); voice(hz(root-12),"triangle",.065,1.1,240); }
+    percussion(step);
+    const degree = phrase[(bar*4+step*2)%phrase.length];
+    const octave = bar%2 ? 12 : 0;
+    if (step%2===0) pluck(root+scale[degree]+12+octave, .043, .28, 2500);
+    if (step===3 || step===7) pluck(root+scale[(degree+2)%scale.length]+24, .022, .22, 3300);
+    if (step===1 || step===5) voice(hz(root-12),"sawtooth",.018,.2,380);
     step++;
-    if (step === 8) { step = 0; bar++; }
+    if(step===8){step=0;bar++;}
   }
   async function start() {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) { small.textContent = "AUDIO NOT SUPPORTED"; return; }
-    if (!audio) {
-      const ctx = new AudioContextClass();
-      const master = ctx.createGain();
-      const filter = ctx.createBiquadFilter();
-      const compressor = ctx.createDynamicsCompressor();
-      filter.type = "lowpass";
-      filter.frequency.value = 5200;
-      master.gain.value = .8;
-      master.connect(filter);
-      filter.connect(compressor);
-      compressor.connect(ctx.destination);
-      audio = {ctx, master};
+    const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContextClass){small.textContent="AUDIO NOT SUPPORTED";return;}
+    if(!audio){
+      const ctx=new AudioContextClass(), master=ctx.createGain(), filter=ctx.createBiquadFilter(), comp=ctx.createDynamicsCompressor();
+      filter.type="lowpass";filter.frequency.value=6200;master.gain.value=.72;
+      master.connect(filter);filter.connect(comp);comp.connect(ctx.destination);audio={ctx,master};
     }
-    if (audio.ctx.state !== "running") await audio.ctx.resume();
-    step = 0; bar = 0;
-    tick();
-    timer = window.setInterval(tick, interval);
-    player.classList.add("is-playing");
-    button.setAttribute("aria-pressed", "true");
-    button.setAttribute("aria-label", "Pause original Synthwave soundtrack");
-    small.textContent = "SOUND ON · SYNTHWAVE";
+    if(audio.ctx.state!=="running") await audio.ctx.resume();
+    const now=audio.ctx.currentTime;
+    audio.master.gain.cancelScheduledValues(now);
+    audio.master.gain.setTargetAtTime(.72,now,.035);
+    step=0;bar=0;tick();timer=window.setInterval(tick,interval);
+    player.classList.add("is-playing");button.setAttribute("aria-pressed","true");
+    button.setAttribute("aria-label","Pause Egyptian cinematic soundtrack");
+    small.textContent="SOUND ON · CAIRO AFTER DARK";
   }
-  function stop() {
-    if (timer !== null) { window.clearInterval(timer); timer = null; }
-    if (audio) {
-      const now = audio.ctx.currentTime;
-      audio.master.gain.cancelScheduledValues(now);
-      audio.master.gain.setTargetAtTime(.0001, now, .045);
-    }
-    player.classList.remove("is-playing");
-    button.setAttribute("aria-pressed", "false");
-    button.setAttribute("aria-label", "Play original Synthwave soundtrack");
-    small.textContent = "SOUND OFF · SYNTHWAVE";
+  function stop(){
+    if(timer!==null){window.clearInterval(timer);timer=null;}
+    if(audio){const now=audio.ctx.currentTime;audio.master.gain.cancelScheduledValues(now);audio.master.gain.setTargetAtTime(.0001,now,.045);}
+    player.classList.remove("is-playing");button.setAttribute("aria-pressed","false");
+    button.setAttribute("aria-label","Play Egyptian cinematic soundtrack");
+    small.textContent="SOUND OFF · CAIRO AFTER DARK";
   }
-  button.addEventListener("click", () => {
-    if (timer !== null) stop();
-    else start().catch(() => { small.textContent = "TAP TO ENABLE SOUND"; });
-  });
+  button.addEventListener("click",()=>{if(timer!==null)stop();else start().catch(()=>{small.textContent="TAP TO ENABLE SOUND";});});
 })();
 </script>
 
