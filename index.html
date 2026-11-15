@@ -71,6 +71,24 @@ h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .portrait{position:relative;aspect-ratio:4/5;background:#141416;max-width:420px}
 .portrait img{width:100%;height:auto;display:block;object-fit:contain}
 .portrait.has{aspect-ratio:auto}
+.about-poster{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;max-width:420px;min-height:510px;aspect-ratio:4/5;padding:22px;background:#b91f2a;color:#f5e8ce;border:5px solid #211315;box-shadow:9px 9px 0 #211315,15px 15px 0 #e8bd70}
+.about-poster:before{content:"";position:absolute;inset:0;z-index:-2;opacity:.23;background:radial-gradient(circle,#f5e8ce 1px,transparent 1.8px) 0 0/7px 7px}
+.about-poster:after{content:"";position:absolute;inset:12px;z-index:-1;border:1px solid rgba(245,232,206,.65);pointer-events:none}
+.ap-top,.ap-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;font:9px var(--m);letter-spacing:.12em}
+.ap-art{position:absolute;inset:18% 8% 29%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#78151e,#211315);border:3px solid #211315;box-shadow:7px 7px 0 #e8bd70;clip-path:polygon(5% 0,100% 4%,94% 100%,0 94%)}
+.ap-art:before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(245,232,206,.16) 0 2deg,transparent 2deg 8deg)}
+.ap-orbit{position:absolute;width:68%;aspect-ratio:1;border:2px solid rgba(245,232,206,.75);border-radius:50%;box-shadow:0 0 0 18px rgba(245,232,206,.08),0 0 0 38px rgba(245,232,206,.06)}
+.ap-cross{position:absolute;width:140%;height:2px;background:rgba(245,232,206,.45);transform:rotate(42deg)}
+.ap-cross-two{transform:rotate(-42deg)}
+.ap-mark{font:clamp(100px,19vw,176px)/.8 var(--d);letter-spacing:-.09em;color:#f5e8ce;text-shadow:7px 7px 0 #b91f2a,11px 11px 0 #211315;transform:rotate(-8deg)}
+.ap-side{position:absolute;right:8px;top:12px;writing-mode:vertical-rl;font:8px var(--m);letter-spacing:.2em}
+.ap-name{position:relative;z-index:2;display:flex;flex-direction:column;margin-top:auto;font:clamp(66px,12vw,108px)/.76 var(--d);letter-spacing:-.025em;text-shadow:4px 4px 0 #211315}
+.ap-name span:last-child{color:#e8bd70;margin-left:12%}
+.ap-bottom{justify-content:flex-start;margin-top:18px;border-top:2px solid #f5e8ce;padding-top:10px}
+.ap-bottom i{width:4px;height:4px;border-radius:50%;background:#e8bd70}
+.ap-index{position:absolute;right:20px;top:48%;writing-mode:vertical-rl;font:8px var(--m);letter-spacing:.16em;color:#e8bd70}
+@media(max-width:860px){.about-poster{max-width:100%;min-height:420px;aspect-ratio:4/4.5}.ap-name{font-size:clamp(68px,17vw,108px)}}
+
 .bio p{font-size:19px;margin-bottom:16px}
 .draft{display:inline-block;font:11px var(--m);color:var(--red);border:1px solid var(--red);padding:4px 10px;margin-bottom:18px;letter-spacing:.1em}
 .facts{margin:24px 0;border-top:1px solid var(--line)}
@@ -1571,7 +1589,13 @@ $("#app").innerHTML = `
 </section>
 <div class="mq" aria-hidden="true"><div class="mq-t">${marq}${marq}</div></div>
 ${sec("about", head("THE LOGLINE", "ABOUT", "") +
-  `<div class="about rv"><div class="portrait${S.photo ? " has" : ""}">${S.photo ? `<img src="${esc(S.photo)}" alt="Portrait of ${esc(S.name)}">` : `<div class="ph"><span>PORTRAIT PLACEHOLDER</span><small>Add a professional photo</small></div>`}</div>
+  `<div class="about rv"><div class="about-poster" aria-label="Yousef Ahmed editorial identity poster">
+    <div class="ap-top"><span>INDEPENDENT CREATIVE</span><span>CAIRO · EGYPT</span></div>
+    <div class="ap-art" aria-hidden="true"><div class="ap-orbit"></div><div class="ap-cross ap-cross-one"></div><div class="ap-cross ap-cross-two"></div><span class="ap-mark">YA</span><span class="ap-side">IDEAS INTO STORIES</span></div>
+    <div class="ap-name"><span>YOUSEF</span><span>AHMED</span></div>
+    <div class="ap-bottom"><span>CONTENT</span><i></i><span>STORY</span><i></i><span>STRATEGY</span></div>
+    <div class="ap-index">CREATIVE PROFILE — 01</div>
+  </div>
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
 ${(() => { const F = S.featured || {}, fid = yt(F.youtube), ff = F.file || "", has = !!(fid || ff), fmt = F.format || (/shorts\//.test(F.youtube || "") ? "vertical" : "cine");
