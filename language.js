@@ -309,7 +309,7 @@
   if (mobile && !$(".tabbar .lang-switch")) mobile.append(switcher());
 
   // Bind both the original HTML controls and any switchers created above.
-  $("[data-lang]").forEach(button => {
+  $$("[data-lang]").forEach(button => {
     if (button.dataset.languageBound === "true") return;
     button.dataset.languageBound = "true";
     button.addEventListener("click", event => {
