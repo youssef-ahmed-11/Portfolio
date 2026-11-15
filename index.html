@@ -196,6 +196,15 @@ a.cl:hover{border-color:var(--red)}a.cl:hover .go{color:var(--red)}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.mq-t,.rec i{animation:none}html{scroll-behavior:auto}}
 
 
+
+/* Childhood inspiration heading above the About collage */
+.director-feature{max-width:420px}
+.director-heading{margin:0 0 18px;padding-left:3px}
+.director-heading>span{display:inline-block;font:10px var(--m);letter-spacing:.2em;color:var(--gold);border-left:3px solid var(--red);padding:5px 0 5px 10px}
+.director-heading h3{font:400 clamp(42px,7vw,66px)/.88 var(--d);letter-spacing:.015em;margin:12px 0 0;color:var(--ink);text-shadow:3px 3px 0 #5c1714}
+.director-heading h3 em{font-family:var(--s);font-size:.62em;color:var(--red);font-weight:400;letter-spacing:-.04em}
+@media(max-width:860px){.director-feature{max-width:100%}.director-heading h3{font-size:clamp(46px,11vw,66px)}}
+
 /* ABOUT — THE DIRECTOR'S MIND editorial collage */
 .director-collage{position:relative;isolation:isolate;overflow:hidden;max-width:420px;min-height:510px;aspect-ratio:4/5;padding:18px;background:#e9d8b9;color:#17100e;border:5px solid #17100e;box-shadow:9px 9px 0 #e63227,15px 15px 0 #e5b86b}
 .director-collage:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background-image:radial-gradient(#17100e .8px,transparent .9px);background-size:5px 5px}
@@ -1637,7 +1646,9 @@ $("#app").innerHTML = `
 </section>
 <div class="mq" aria-hidden="true"><div class="mq-t">${marq}${marq}</div></div>
 ${sec("about", head("THE LOGLINE", "ABOUT", "") +
-  `<div class="about rv"><div class="director-collage" aria-label="Editorial collage combining music, cinema and content creation">
+  `<div class="about rv"><div class="director-feature">
+    <div class="director-heading"><span>WHEN I WAS A KID</span><h3>HALF CINEMA,<br><em>HALF MUSIC.</em></h3></div>
+    <div class="director-collage" aria-label="Editorial collage combining music, cinema and content creation">
     <div class="dc-top"><span>THE DIRECTOR'S MIND</span><span>VOL. 01 / CAIRO</span></div>
     <div class="dc-stage">
       <div class="dc-record"><span class="dc-label"></span><span class="dc-record-core"></span></div>
@@ -1651,6 +1662,7 @@ ${sec("about", head("THE LOGLINE", "ABOUT", "") +
       <span class="dc-note">FRAME / SOUND / STORY</span>
     </div>
     <div class="dc-bottom"><b>HALF MUSIC.</b><b>HALF CINEMA.</b><span>ALL CREATIVITY — 01</span></div>
+    </div>
   </div>
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
