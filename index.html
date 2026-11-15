@@ -1977,5 +1977,69 @@ if ("IntersectionObserver" in window) {
 })();
 </script>
 
+
+<style id="editorial-heading-system">
+/* EDITORIAL TITLE SYSTEM — bold comic-magazine hierarchy */
+.head h2{
+  position:relative;
+  display:table;
+  width:fit-content;
+  max-width:100%;
+  padding:0 12px 9px 0;
+  letter-spacing:.025em;
+  text-transform:uppercase;
+}
+.head h2::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:clamp(54px,10vw,104px);
+  height:5px;
+  background:var(--red);
+  transform:skewX(-24deg);
+  box-shadow:5px 3px 0 var(--gold);
+}
+.head .slate{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:10px;
+  letter-spacing:.22em;
+}
+.head .slate::before{
+  content:"";
+  display:inline-block;
+  width:18px;
+  height:2px;
+  background:var(--red);
+}
+.finfo h3,.card h3,.case h3,.board h3{
+  position:relative;
+  width:fit-content;
+  max-width:100%;
+  padding-left:12px;
+  border-left:3px solid var(--red);
+  letter-spacing:.035em;
+  text-transform:uppercase;
+}
+.finfo h3{padding-left:15px}
+.card h3,.case h3{padding-top:2px;padding-bottom:2px}
+.board h3{padding-left:14px}
+.sn b{
+  text-transform:uppercase;
+  letter-spacing:.045em;
+}
+.director-heading h3{
+  text-shadow:none!important;
+  letter-spacing:.025em;
+}
+@media(max-width:560px){
+  .head h2{padding-bottom:8px}
+  .head h2::after{height:4px}
+  .finfo h3,.card h3,.case h3,.board h3{padding-left:10px}
+}
+</style>
+
 </body>
 </html>
