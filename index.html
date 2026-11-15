@@ -130,7 +130,7 @@ footer{padding:28px 20px;font:11px var(--m);letter-spacing:.1em;color:var(--mute
 .gal.photos{--cols:var(--pcols,4)}.gal.mb{--cols:var(--bcols,5)}
 .gi{margin:0;min-width:0}.gi[data-lb]{cursor:zoom-in}
 .gf{position:relative;aspect-ratio:3/4;background:#0f0f10;border:1px solid var(--line);overflow:hidden}
-.gf.amb::before{content:"";position:absolute;inset:-30px;background:var(--bg) center/cover no-repeat;filter:blur(26px) brightness(.45) saturate(1.15)}
+.gf.amb::before{content:"";position:absolute;inset:-30px;background:radial-gradient(ellipse at 50% 35%,#49302b 0%,#211719 48%,#0f0f10 100%);filter:blur(18px);pointer-events:none}
 .gf img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .gi:hover .gf{border-color:#4a4a4d}
 .gf.note{padding:16px;overflow:auto}.gf.note p{font:italic 18px/1.35 var(--s);white-space:pre-line}
