@@ -754,6 +754,36 @@ footer{color:#fff4df!important;opacity:1!important}
 .bio .cta .cv-preview:hover{background:#d9272e!important;color:#fff!important;transform:translateY(-2px)}
 @media(max-width:480px){.bio .cta .cv-preview{width:100%}}
 
+
+/* Client logos: logo first, brand name directly underneath, no white card */
+#clients .cl{
+  aspect-ratio:auto!important;min-height:190px!important;height:100%!important;
+  padding:18px 14px 14px!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;gap:12px!important;
+  background:transparent!important;border:2px solid rgba(33,19,21,.72)!important;
+  box-shadow:5px 5px 0 #211315!important;
+}
+#clients .cl img{
+  width:100%!important;height:112px!important;max-width:88%!important;max-height:112px!important;
+  flex:0 0 112px!important;object-fit:contain!important;object-position:center!important;
+  background:transparent!important;mix-blend-mode:multiply!important;
+}
+#clients .cl .nm{
+  display:block!important;position:static!important;width:100%!important;min-height:24px!important;
+  color:#211315!important;font:900 15px/1.35 var(--d)!important;text-align:center!important;
+  overflow-wrap:anywhere!important;
+}
+#clients .cl .go{
+  position:static!important;display:block!important;margin-top:0!important;color:#77151b!important;
+  font:900 10px/1.3 var(--m)!important;letter-spacing:.08em!important;
+}
+#clients .cl .bdg{top:7px!important;right:7px!important}
+@media(max-width:600px){
+  #clients .cl{min-height:168px!important;padding:14px 9px 11px!important;gap:9px!important}
+  #clients .cl img{height:94px!important;max-height:94px!important;flex-basis:94px!important}
+  #clients .cl .nm{font-size:13px!important}
+}
+
 </style>
 </head>
 <body>
@@ -815,7 +845,7 @@ const shoot = (x, i) => { const ph = (x.photos || []).filter(q => q && q.src);
   return `<details class="shoot rv"${i === 0 ? " open" : ""}><summary><span class="fi" aria-hidden="true"></span><span class="sn"><span class="slate">SHOOT ${pad(i)}</span><b>${val(x.name, "Shoot name")}</b>${x.desc ? `<em>${esc(x.desc)}</em>` : ""}</span><span class="sc">${ph.length} photo${ph.length === 1 ? "" : "s"}</span><span class="chev" aria-hidden="true"></span></summary><div class="gal photos">${ph.length ? ph.map((q, k) => cell(q, k)).join("") : cell(null, 0, "PHOTO 01")}</div></details>`; };
 const pIdx = c => c.project ? S.projects.findIndex(p => p.title && p.title.toLowerCase() === c.project.toLowerCase()) : -1;
 const client = (c, n) => { const tone = c.tone || "dark", pi = pIdx(c), href = pi >= 0 ? "#p-" + pi : c.url ? https(c.url) : "";
-  const inner = `${n ? `<span class="bdg">${n} LINK${n > 1 ? "S" : ""}</span>` : ""}${c.logo ? `<img data-ls="${esc(c.logoStyle || "")}" loading="lazy" src="${esc(c.logo)}" data-fallback="${esc(({"273410118":"assets/clients/273410118-2605646486246427-55843526-mvmbwd6v.jpg","435988278":"assets/clients/435988278-122102398742266874-723167-mvmf1m7f.jpg","459923832":"assets/clients/459923832-122093793080537078-529815-mvmey2uf.jpg","466178143":"assets/clients/466178143-122107036778606276-886761-mvmet7x7.jpg","475964170":"assets/clients/475964170-122120564726608496-396432-mvmc9cos.jpg","480275833":"assets/clients/480275833-1048736137293938-75629595-mvmbtnqg.jpg","482235760":"assets/clients/482235760-1148603777279383-42644372-mvmewveb.jpg","574905912":"assets/clients/574905912-1375428307473781-34834358-mvmbrmq9.jpg","705891642":"assets/clients/705891642-122178384116843777-892103-mvmc5j4r.jpg"})[String(c.logo).match(/[0-9]+/)?.[0]] || "")}" alt="${esc(c.name || "Client logo")}"><span class="nm" style="display:none">${esc(c.name || "Client")}</span>` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
+  const inner = `${n ? `<span class="bdg">${n} LINK${n > 1 ? "S" : ""}</span>` : ""}${c.logo ? `<img data-ls="${esc(c.logoStyle || "")}" loading="lazy" src="${esc(c.logo)}" data-fallback="${esc(({"273410118":"assets/clients/273410118-2605646486246427-55843526-mvmbwd6v.jpg","435988278":"assets/clients/435988278-122102398742266874-723167-mvmf1m7f.jpg","459923832":"assets/clients/459923832-122093793080537078-529815-mvmey2uf.jpg","466178143":"assets/clients/466178143-122107036778606276-886761-mvmet7x7.jpg","475964170":"assets/clients/475964170-122120564726608496-396432-mvmc9cos.jpg","480275833":"assets/clients/480275833-1048736137293938-75629595-mvmbtnqg.jpg","482235760":"assets/clients/482235760-1148603777279383-42644372-mvmewveb.jpg","574905912":"assets/clients/574905912-1375428307473781-34834358-mvmbrmq9.jpg","705891642":"assets/clients/705891642-122178384116843777-892103-mvmc5j4r.jpg"})[String(c.logo).match(/[0-9]+/)?.[0]] || "")}" alt="${esc(c.name || "Client logo")}"><span class="nm">${esc(c.name || "Client")}</span>` : `<span class="nm">${esc(c.name)}</span>`}${href ? `<span class="go">${pi >= 0 ? "View project ↓" : "Visit site ↗"}</span>` : ""}`;
   return href ? `<a class="cl ${tone}" href="${esc(href)}"${pi < 0 ? ' target="_blank" rel="noopener"' : ""} aria-label="${esc(c.name || "Client")}">${inner}</a>` : `<div class="cl ${tone}">${inner}</div>`; };
 const nk = t => String(t || "").toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]+/g, "");
 const clientDocs = c => {
