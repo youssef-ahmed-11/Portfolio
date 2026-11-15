@@ -1036,6 +1036,132 @@ footer{color:#fff4df!important;opacity:1!important}
 @media(prefers-reduced-motion:reduce){.hero-prop{animation:none!important}}
 
 </style>
+
+<style>
+<!-- ORIGINAL COMIC MAGAZINE ART DIRECTION -->
+/* Original comic-book editorial treatment: no copied Marvel artwork or logos. */
+:root{
+  --cover-red:#b91f2a;
+  --cover-red-dark:#74131c;
+  --cover-paper:#f5e8ce;
+  --cover-ink:#211315;
+}
+body{counter-reset:comic-page}
+.sec{counter-increment:comic-page}
+.hero{
+  isolation:isolate!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 76% 22%,rgba(245,232,206,.22) 0 1.2px,transparent 1.7px) 0 0/6px 6px,
+    repeating-conic-gradient(from 0deg at 80% 50%,rgba(245,232,206,.10) 0 2deg,transparent 2deg 7deg),
+    linear-gradient(112deg,#241013 0 43%,#8e1721 72%,#bd2830 100%)!important;
+  border:5px solid var(--cover-ink)!important;
+  box-shadow:10px 10px 0 var(--cover-ink),16px 16px 0 var(--cover-red)!important;
+}
+.hero::before{
+  inset:13px!important;
+  border:1px solid rgba(245,232,206,.52)!important;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23f5e8ce' stroke-width='1.7' opacity='.72'%3E%3Cpath d='M240 0L0 240M240 40L40 240M240 80L80 240M240 120L120 240M240 160L160 240M240 200L200 240M0 0L240 240M0 40L200 240M0 80L160 240M0 120L120 240M0 160L80 240M0 200L40 240'/%3E%3Cpath d='M0 0Q120 35 240 0M0 0Q35 120 0 240M0 0Q120 75 240 40M0 0Q75 120 40 240M0 0Q120 120 240 80M0 0Q120 165 240 120M0 0Q165 120 80 240'/%3E%3C/g%3E%3C/svg%3E") top right/210px 210px no-repeat,
+    linear-gradient(90deg,transparent 0 49.8%,rgba(245,232,206,.12) 50%,transparent 50.2%)!important;
+}
+.hero::after{
+  right:2%!important;top:7%!important;width:48%!important;height:84%!important;
+  border:4px solid var(--cover-paper)!important;
+  background:
+    radial-gradient(circle,rgba(245,232,206,.18) 1px,transparent 1.8px) 0 0/7px 7px,
+    linear-gradient(145deg,rgba(185,31,42,.88),rgba(48,12,18,.9))!important;
+  clip-path:polygon(7% 0,100% 4%,94% 100%,0 94%)!important;
+  box-shadow:9px 9px 0 var(--cover-ink)!important;
+}
+.hero .comic-issue{
+  background:var(--cover-paper)!important;color:var(--cover-ink)!important;
+  border:2px solid var(--cover-ink)!important;box-shadow:4px 4px 0 var(--cover-red)!important;
+  font-size:10px!important;letter-spacing:.18em!important;
+}
+.hero h1{
+  color:#fff7e8!important;
+  -webkit-text-stroke:1px var(--cover-ink)!important;
+  text-shadow:3px 3px 0 var(--cover-ink),7px 7px 0 var(--cover-red),10px 10px 0 var(--cover-ink)!important;
+}
+.hero h1 .last-name{color:var(--cover-paper)!important;-webkit-text-stroke:1px var(--cover-ink)!important}
+.hero .cred{
+  display:table!important;background:var(--cover-paper)!important;color:var(--cover-ink)!important;
+  border:2px solid var(--cover-ink)!important;padding:7px 12px!important;
+  box-shadow:4px 4px 0 var(--cover-red)!important;
+}
+.hero .roles{
+  display:inline-block!important;background:#e8bd70!important;color:var(--cover-ink)!important;
+  border:2px solid var(--cover-ink)!important;padding:8px 11px!important;
+  box-shadow:4px 4px 0 var(--cover-paper)!important;
+}
+.hero-art{isolation:isolate!important}
+.hero-art::before{
+  inset:3% 1% 4% 4%!important;
+  border:4px solid var(--cover-ink)!important;
+  background:linear-gradient(145deg,rgba(245,232,206,.13),rgba(20,8,10,.25))!important;
+  box-shadow:inset 0 0 0 5px var(--cover-paper),9px 9px 0 var(--cover-ink)!important;
+}
+.hero-art::after{
+  content:""!important;position:absolute!important;z-index:3!important;pointer-events:none!important;
+  top:3%!important;right:1%!important;left:auto!important;bottom:auto!important;
+  width:31%!important;height:31%!important;opacity:.68!important;
+  clip-path:none!important;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23fff0d8' stroke-width='2.2'%3E%3Cpath d='M240 0L0 240M240 40L40 240M240 80L80 240M240 120L120 240M240 160L160 240M240 200L200 240M0 0L240 240M0 40L200 240M0 80L160 240M0 120L120 240M0 160L80 240M0 200L40 240'/%3E%3Cpath d='M0 0Q120 35 240 0M0 0Q35 120 0 240M0 0Q120 75 240 40M0 0Q75 120 40 240M0 0Q120 120 240 80M0 0Q120 165 240 120'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask-image:linear-gradient(135deg,#000 0 70%,transparent 100%)!important;
+}
+.hero-art .art-burst{
+  background:#e8bd70!important;color:var(--cover-ink)!important;
+  border:3px solid var(--cover-ink)!important;
+  box-shadow:4px 4px 0 var(--cover-paper)!important;
+  text-shadow:1px 1px 0 var(--cover-paper)!important;
+}
+.hero-art .art-stamp{
+  background:var(--cover-red)!important;color:#fff7e8!important;
+  border:3px solid var(--cover-ink)!important;box-shadow:5px 5px 0 var(--cover-paper)!important;
+}
+/* An original arachnid insignia, not a copied Spider-Man mark. */
+.cover-corner::before{
+  content:"";display:block;flex:none;width:25px;height:25px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23fff4df' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cellipse cx='32' cy='34' rx='8' ry='12' fill='%23fff4df'/%3E%3Cpath d='M25 27L17 16 9 18M23 34L10 31 5 37M24 41L14 49 8 47M39 27L47 16 55 18M41 34L54 31 59 37M40 41L50 49 56 47M32 22V12M28 48L24 57M36 48L40 57'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+}
+.cover-corner{gap:8px!important;background:var(--cover-red)!important;border:3px solid var(--cover-ink)!important}
+.cover-lines{
+  background:var(--cover-paper)!important;color:var(--cover-ink)!important;
+  border:3px solid var(--cover-ink)!important;box-shadow:6px 6px 0 var(--cover-red)!important;
+}
+.cover-kicker{color:var(--cover-red-dark)!important}
+.cover-edition{border-color:var(--cover-red-dark)!important}
+.sec>.wrap::before{content:"FILE / 0" counter(comic-page)!important}
+.head{
+  background:var(--cover-paper)!important;border:3px solid var(--cover-ink)!important;
+  box-shadow:6px 6px 0 var(--cover-red),9px 9px 0 var(--cover-ink)!important;
+}
+.head .slate{color:var(--cover-red-dark)!important}
+.head h2{color:var(--cover-ink)!important;text-shadow:2px 2px 0 #e8bd70!important}
+.head .sub{color:#503b32!important}
+.card,.case,.board{
+  border:3px solid var(--cover-paper)!important;
+  background:linear-gradient(145deg,#35191b,#1c1112)!important;
+  box-shadow:6px 6px 0 var(--cover-red),9px 9px 0 var(--cover-ink)!important;
+}
+.card:nth-child(3n+2),.case:nth-child(3n+2){transform:rotate(.55deg)!important}
+.card:nth-child(3n),.case:nth-child(3n){transform:rotate(-.5deg)!important}
+.vid,.gi .gf{border:3px solid var(--cover-paper)!important;box-shadow:5px 5px 0 var(--cover-red)!important}
+.cl{background:var(--cover-paper)!important;border:3px solid var(--cover-ink)!important;box-shadow:5px 5px 0 var(--cover-red)!important}
+.shoot summary{border:3px solid var(--cover-ink)!important;box-shadow:5px 5px 0 var(--cover-red)!important}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr!important;padding:38px 22px 30px!important;min-height:auto!important}
+ .hero::after{right:-7%!important;top:39%!important;width:94%!important;height:43%!important}
+ .hero-art{min-height:330px!important;max-height:420px!important}
+ .hero-art img{max-height:420px!important;width:92%!important}
+ .hero-art::after{width:27%!important;height:25%!important;top:1%!important;right:0!important}
+ .cover-lines{max-width:43%!important}
+ .cover-corner::before{width:18px;height:18px}
+ .sec>.wrap::before{font-size:7px!important;width:64px!important}
+}
+@media(prefers-reduced-motion:reduce){.hero-art img,.hero-art .art-burst,.hero-art .art-stamp{animation:none!important}}
+</style>
 </head>
 <body>
 <header class="nav">
