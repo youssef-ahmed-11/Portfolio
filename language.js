@@ -200,7 +200,7 @@
     if (c.brand === "rosto") contentAr.set(c.brand, "روستو");
     if (c.campaign === "strategy 2025") contentAr.set(c.campaign, "استراتيجية 2025");
   });
-  const normalizeText = value => String(value ?? "").replace(/\\s+/g, " ").trim();
+  const normalizeText = value => String(value ?? "").replace(/\s+/g, " ").trim();
   const normalizedContentAr = new Map([...contentAr.entries()].map(([en, ar]) => [normalizeText(en), ar]));
   const normalizedDict = new Map(Object.entries(dict).map(([en, ar]) => [normalizeText(en), ar]));
   const applyContentTranslation = ar => {
@@ -213,8 +213,8 @@
       const key = normalizeText(originalNode);
       const translated = ar ? (normalizedContentAr.get(key) || normalizedDict.get(key) || null) : null;
       if (ar && translated !== null) {
-        const leading = (originalNode.match(/^\\s*/) || [""])[0];
-        const trailing = (originalNode.match(/\\s*$/) || [""])[0];
+        const leading = (originalNode.match(/^\s*/) || [""])[0];
+        const trailing = (originalNode.match(/\s*$/) || [""])[0];
         node.nodeValue = leading + translated + trailing;
       } else if (!ar) {
         node.nodeValue = originalNode;
