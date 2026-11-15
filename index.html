@@ -402,6 +402,43 @@ body{
 .rows>*{border-bottom-color:var(--comic-paper);text-shadow:1px 1px 0 var(--comic-red-deep)}
 footer{border-top-color:var(--comic-paper)}
 @media(max-width:760px){.nav{box-shadow:0 4px 0 var(--comic-red-deep)} }
+
+
+/* COMIC PAGE BACKDROP — printed-paper grain, halftone screens and panel gutters */
+body{
+  position:relative;
+  background-color:#1b222b;
+  background-image:
+    radial-gradient(circle at 12% 16%,rgba(178,141,88,.15) 0 1.2px,transparent 1.8px),
+    radial-gradient(circle at 88% 34%,rgba(228,216,194,.11) 0 1.3px,transparent 2px),
+    radial-gradient(circle at 18% 76%,rgba(135,68,63,.16) 0 1.2px,transparent 1.9px),
+    radial-gradient(ellipse at 5% 24%,rgba(178,141,88,.10),transparent 27%),
+    radial-gradient(ellipse at 96% 64%,rgba(135,68,63,.12),transparent 30%),
+    repeating-linear-gradient(0deg,transparent 0 318px,rgba(228,216,194,.075) 319px,transparent 321px 642px),
+    repeating-linear-gradient(90deg,transparent 0 48%,rgba(228,216,194,.045) 48.15%,transparent 48.35% 100%),
+    linear-gradient(135deg,#26313d 0%,#171d25 54%,#202a34 100%);
+  background-size:7px 7px,8px 8px,7px 7px,auto,auto,auto,auto,auto;
+  background-attachment:fixed;
+}
+/* faint angled ink frames sit behind the content like comic-page panel borders */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.28;
+  background:
+    linear-gradient(112deg,transparent 0 17.8%,rgba(228,216,194,.22) 17.9%,transparent 18.05% 100%) 0 0/100% 100%,
+    linear-gradient(72deg,transparent 0 81.8%,rgba(178,141,88,.2) 81.95%,transparent 82.1% 100%) 0 0/100% 100%,
+    repeating-linear-gradient(168deg,transparent 0 260px,rgba(10,13,17,.55) 261px,transparent 264px 520px);
+  mix-blend-mode:screen;
+}
+.sec{background:transparent}
+@media(max-width:760px){
+ body{background-attachment:scroll;background-size:7px 7px,8px 8px,7px 7px,auto,auto,auto,auto,auto}
+ body::before{opacity:.16}
+}
 </style>
 </head>
 <body>
