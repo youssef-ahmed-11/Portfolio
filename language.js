@@ -238,6 +238,25 @@
       }
     }
   };
+  const apply = lang => {
+    const ar = lang === "ar";
+    window.__portfolioLang = ar ? "ar" : "en";
+    document.documentElement.lang = ar ? "ar" : "en";
+    document.documentElement.dir = ar ? "rtl" : "ltr";
+    document.body.dataset.language = lang;
+    $("[data-en][data-ar]").forEach(el => {
+      const v = ar ? el.dataset.ar : el.dataset.en;
+      if (v != null) el.textContent = v;
+    });
+    $(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
+    applyContentTranslation(ar);
+  };
+  window.setPortfolioLanguage = apply;
+  // Keep the language action available even if optional portfolio sections fail.
+  let savedLanguage = "en";
+  try { savedLanguage = localStorage.getItem("portfolio-language") || "en"; } catch (_) {}
+  apply(window.__requestedPortfolioLanguage || (savedLanguage === "ar" ? "ar" : "en"));
   const arText = (s) => dict[s] || s;
   const css = document.createElement("style");
   css.textContent = `
@@ -331,24 +350,8 @@
   add(".head .slate,.head h2,.head .sub,.contact .slate,.contact h2,.finfo .slate,.finfo h3,.finfo p,.bio .facts .meta,.case dt", dict);
   add(".doc a,.doc .k", dict);
 
-  const apply = lang => {
-    const ar = lang === "ar";
-    window.__portfolioLang = ar ? "ar" : "en";
-    document.documentElement.lang = ar ? "ar" : "en";
-    document.documentElement.dir = ar ? "rtl" : "ltr";
-    document.body.dataset.language = lang;
-    $$("[data-en][data-ar]").forEach(el => {
-      const v = ar ? el.dataset.ar : el.dataset.en;
-      if (v != null) el.textContent = v;
-    });
-    $$(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-    try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
-    applyContentTranslation(ar);
-  };
-  window.setPortfolioLanguage = apply;
-  let saved = "en";
-  try { saved = localStorage.getItem("portfolio-language") || "en"; } catch (_) {}
-  apply(window.__requestedPortfolioLanguage || (saved === "ar" ? "ar" : "en"));
+  // Re-apply after the optional strategy cards and navigation links are inserted.
+  apply(window.__requestedPortfolioLanguage || window.__portfolioLang || "en");
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }));
     $$(".thinking-card.rv").forEach(x => io.observe(x));
