@@ -1164,66 +1164,89 @@ body{counter-reset:comic-page}
 </style>
 
 <style>
-<!-- CASE STUDY VISIBILITY FIX -->
-/* Keep case-study copy readable on the light comic panels. */
-#strategy .cases .case{
+/* CASE STUDY READABILITY — high contrast, full-width editorial layout */
+#strategy .cases{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:22px!important;
+  max-width:100%!important;
+}
+#strategy .cases .case,
+#strategy .cases .case.rv,
+#strategy .cases .case.rv.in{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
   background:#fff4df!important;
   color:#211719!important;
   border:3px solid #211315!important;
-  padding:clamp(20px,3vw,30px)!important;
+  border-left:9px solid #e63227!important;
+  border-radius:0!important;
+  padding:clamp(22px,3.5vw,38px)!important;
+  margin:0!important;
   overflow:visible!important;
   opacity:1!important;
   visibility:visible!important;
+  transform:none!important;
 }
 #strategy .cases .case .slate{
   display:block!important;
-  color:#8f171e!important;
+  color:#a51d24!important;
+  font:900 12px/1.5 var(--m)!important;
+  letter-spacing:.14em!important;
   opacity:1!important;
   visibility:visible!important;
-  font-weight:900!important;
 }
 #strategy .cases .case h3{
   display:block!important;
   color:#211315!important;
+  font:700 clamp(27px,3.2vw,38px)/1.2 var(--b)!important;
+  letter-spacing:0!important;
+  margin:12px 0 22px!important;
   opacity:1!important;
   visibility:visible!important;
-  line-height:1.25!important;
 }
 #strategy .cases .case dl{
-  display:block!important;
-  margin:18px 0 0!important;
+  display:grid!important;
+  grid-template-columns:minmax(115px,160px) minmax(0,1fr)!important;
+  column-gap:22px!important;
+  row-gap:12px!important;
+  margin:0!important;
   color:#211719!important;
 }
 #strategy .cases .case dt{
   display:block!important;
-  margin:18px 0 6px!important;
-  color:#8f171e!important;
+  align-self:start!important;
+  margin:0!important;
+  padding-top:3px!important;
+  color:#a51d24!important;
+  font:900 12px/1.6 var(--m)!important;
+  letter-spacing:.08em!important;
   opacity:1!important;
   visibility:visible!important;
-  font-size:12px!important;
-  font-weight:900!important;
-  letter-spacing:.1em!important;
-  text-transform:uppercase!important;
 }
 #strategy .cases .case dd{
   display:block!important;
-  margin:0!important;
-  padding:0 0 12px!important;
+  min-width:0!important;
+  margin:0 0 16px!important;
+  padding:0 0 16px!important;
+  border-bottom:1px solid rgba(33,23,25,.2)!important;
   color:#211719!important;
-  opacity:1!important;
-  visibility:visible!important;
-  font-size:15px!important;
-  font-weight:600!important;
-  line-height:1.85!important;
+  font:500 16px/1.9 var(--b)!important;
+  letter-spacing:0!important;
   white-space:pre-line!important;
   overflow-wrap:anywhere!important;
+  opacity:1!important;
+  visibility:visible!important;
   text-shadow:none!important;
 }
 #strategy .cases .case .tba{color:#6b5550!important}
 @media(max-width:600px){
-  #strategy .cases{grid-template-columns:minmax(0,1fr)!important}
   #strategy .cases .case{padding:18px!important}
-  #strategy .cases .case dd{font-size:14px!important;line-height:1.8!important}
+  #strategy .cases .case dl{grid-template-columns:1fr!important;row-gap:5px!important}
+  #strategy .cases .case dt{margin-top:12px!important}
+  #strategy .cases .case dd{font-size:15px!important;line-height:1.85!important}
 }
 </style>
 </head>
