@@ -946,6 +946,55 @@ footer{color:#fff4df!important;opacity:1!important}
  #boards .head .sub,#boards .board .sub{font-size:15px!important;line-height:1.85!important}
 }
 
+
+/* MARVEL-INSPIRED EDITORIAL INTEGRATION — graphic elements belong to the page, not floating stickers */
+:root{--page-red:#d9272e;--page-ink:#211315;--page-paper:#f1dfbd;--page-cream:#fff4df}
+#app .hero{isolation:isolate;overflow:hidden;position:relative}
+#app .hero .comic-copy{position:relative;z-index:5}
+#app .hero-art{position:relative;isolation:isolate}
+#app .hero-art .web-art{position:absolute;z-index:4;right:-3%;top:-5%;width:min(48%,280px);height:auto;overflow:visible;opacity:.92;pointer-events:none;filter:drop-shadow(2px 3px 0 rgba(20,10,10,.55))}
+#app .hero-art .web-art path{fill:none;stroke:#fff4df;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+#app .hero-art .web-art .web-bold{stroke:#d9272e;stroke-width:4}
+#app .hero-art .thwip-tag{position:absolute;z-index:6;left:0;top:13%;padding:8px 14px 7px;background:#fff4df;color:#211315;border:3px solid #211315;box-shadow:5px 5px 0 #d9272e;font:italic 900 clamp(19px,3vw,32px)/1 var(--d);letter-spacing:.03em;transform:rotate(-10deg);clip-path:polygon(5% 0,100% 8%,94% 100%,0 88%)}
+#app .hero .cover-corner{position:absolute;z-index:6;right:18px;top:18px;color:#fff4df;font:11px var(--m);letter-spacing:.14em;text-align:right;text-shadow:2px 2px #211315}
+#app .hero .cover-corner b{display:block;font:42px/.85 var(--d);color:#fff4df;-webkit-text-stroke:1px #211315;text-shadow:3px 3px #d9272e}
+#app .hero .cover-lines{position:absolute;z-index:3;right:2%;bottom:4%;width:min(76%,360px);padding:12px 15px;background:#f1dfbd;color:#211315;border:3px solid #211315;box-shadow:6px 6px 0 #d9272e;transform:rotate(-2deg);display:grid;gap:3px}
+#app .hero .cover-lines .cover-kicker,#app .hero .cover-lines .cover-edition{font:9px var(--m);letter-spacing:.15em}
+#app .hero .cover-lines b{font:italic 900 clamp(19px,2.6vw,30px)/.95 var(--d);letter-spacing:.01em}
+#app .hero .cover-lines i{font:10px var(--m);font-style:normal;letter-spacing:.1em}
+#app .sec>.wrap{overflow:hidden;isolation:isolate}
+#app .sec>.wrap::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:9px;border:1px solid rgba(33,19,21,.24);background:repeating-linear-gradient(135deg,transparent 0 23px,rgba(217,39,46,.035) 24px 25px,transparent 26px 48px)}
+#app .sec>.wrap::after{content:"";position:absolute;z-index:-1;pointer-events:none;right:-70px;top:-80px;width:190px;height:190px;border:2px solid rgba(217,39,46,.3);border-radius:50%;box-shadow:0 0 0 12px rgba(217,39,46,.05),0 0 0 26px rgba(33,19,21,.035)}
+#app .sec .head{position:relative;z-index:2}
+#app .sec .head::after{content:attr(data-panel);position:absolute;right:-12px;top:-18px;padding:5px 10px;background:#d9272e;color:#fff4df;border:2px solid #211315;box-shadow:3px 3px 0 #211315;font:10px var(--m);letter-spacing:.12em;transform:rotate(5deg)}
+#app .sec .head .slate{display:inline-block;padding:4px 8px;background:#211315;color:#fff4df!important;letter-spacing:.14em}
+#app .sec .head h2{position:relative;display:block}
+#app .sec .head h2::after{content:"";display:block;width:76px;height:5px;margin-top:10px;background:#d9272e;box-shadow:5px 3px 0 #211315;transform:skew(-24deg)}
+#app .card,#app .case{position:relative}
+#app .card::after,#app .case::after{content:"";position:absolute;right:10px;top:10px;width:13px;height:13px;border-top:3px solid #d9272e;border-right:3px solid #d9272e;pointer-events:none}
+#app .clients .cl{position:relative}
+#app .clients .cl::before{content:"";position:absolute;inset:7px;border:1px solid rgba(33,19,21,.3);pointer-events:none}
+#app .shoot summary{position:relative}
+#app .shoot summary::after{content:"OPEN FILE  ↗";margin-left:auto;font:9px var(--m);letter-spacing:.1em;color:#941b20}
+#app .contact .wrap{background:#211315!important;color:#fff4df!important;border-color:#fff4df!important;box-shadow:10px 10px 0 #d9272e!important}
+#app .contact .wrap::before{content:"";position:absolute;inset:14px;border:1px solid rgba(255,244,223,.25);pointer-events:none}
+#app .contact .wrap .slate,#app .contact .wrap .rows span,#app .contact .wrap h2{color:#fff4df!important}
+#app .contact .wrap .rows>*{border-color:#d9272e!important}
+#app .contact .wrap .btn{position:relative;z-index:2}
+@media(max-width:760px){
+ #app .hero .cover-lines{right:0;bottom:0;width:min(82%,300px);padding:8px 10px}
+ #app .hero-art .web-art{width:42%;right:-2%;top:-2%}
+ #app .hero-art .thwip-tag{top:4%;left:2%;font-size:20px}
+ #app .hero .cover-corner{right:10px;top:10px}
+ #app .sec>.wrap::after{width:120px;height:120px;right:-50px;top:-45px}
+ #app .sec .head::after{right:0;top:-14px}
+ #app .shoot summary::after{display:none}
+}
+@media(prefers-reduced-motion:no-preference){
+ #app .hero-art .web-art{animation:web-arrive .7s cubic-bezier(.2,.8,.2,1) both}
+ @keyframes web-arrive{from{opacity:0;transform:translate(28px,-18px) scale(.88)}to{opacity:.92;transform:none}}
+}
+
 </style>
 <style id="mobile-language-and-marvel-props">
 /* Keep the mobile quick bar fixed and its EN/AR controls visible above the safe area. */
@@ -1262,5 +1311,23 @@ if ("IntersectionObserver" in window) {
   }, true);
 })();
 </script>
+
+<script>
+/* Add comic-page graphic language as part of the existing hero and section layout. */
+(() => {
+ const art=document.querySelector("#app .hero-art");
+ if(art && !art.querySelector(".web-art")){
+  const web=document.createElementNS("http://www.w3.org/2000/svg","svg");
+  web.setAttribute("class","web-art");web.setAttribute("viewBox","0 0 260 260");web.setAttribute("aria-hidden","true");
+  web.innerHTML='<path class="web-bold" d="M260 0L130 130 260 130M260 0L130 130 130 0M260 0L130 130 195 0M260 0L130 130 260 65M260 0L130 130 65 0M260 0L130 130 0 130M260 0L130 130 195 260M260 0L130 130 65 260M260 0L130 130 0 195M260 0L130 130 260 195"/><path d="M224 0Q220 45 260 52M188 0Q185 76 260 91M150 0Q150 105 260 130M260 36Q210 50 176 83Q148 110 130 130M260 78Q218 91 190 110Q160 127 130 130M260 166Q215 150 181 145Q151 138 130 130M260 218Q210 184 174 163Q145 145 130 130M220 260Q197 205 167 171Q145 146 130 130M178 260Q168 205 151 169Q137 145 130 130M92 0Q105 68 117 103Q124 120 130 130M42 0Q70 65 101 108Q117 124 130 130"/>';
+  art.appendChild(web);
+  const tag=document.createElement("span");tag.className="thwip-tag";tag.textContent="THWIP!";tag.setAttribute("aria-hidden","true");art.appendChild(tag);
+ }
+ document.querySelectorAll("#app .sec .head").forEach((head,i)=>{
+  if(!head.dataset.panel)head.dataset.panel="PAGE "+String(i+2).padStart(2,"0");
+ });
+})();
+</script>
+
 </body>
 </html>
