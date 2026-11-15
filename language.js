@@ -1,6 +1,8 @@
 /* Bilingual layer + strategy/content/script showcase. Keeps the original portfolio engine and content intact. */
 (() => {
-  const S = window.SITE || {};
+  // content.js declares SITE as a top-level const (not window.SITE).
+  // Read that lexical global so translations can be built from the real portfolio content.
+  const S = (typeof SITE !== "undefined" ? SITE : window.SITE) || {};
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const dict = {
