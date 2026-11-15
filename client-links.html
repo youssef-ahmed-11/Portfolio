@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Links Helper — Yousef Ahmed</title>
+<style>
+body{font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f2ee;color:#1b1b1b;margin:0}
+header{position:sticky;top:0;z-index:5;background:#0B0B0C;color:#F2EDE4;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;gap:12px;flex-wrap:wrap}
+header span{display:flex;gap:8px;flex-wrap:wrap}
+main{max-width:920px;margin:0 auto;padding:20px}
+.card,.cl{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px 20px;margin-bottom:14px}
+.card ol{padding-left:20px}.card li{margin:6px 0}
+.cl h3{margin:0 0 10px;font-size:19px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid #bbb;background:#fff;border-radius:8px;padding:8px 14px;display:inline-block;color:#1b1b1b}
+.pri{background:#E63B1F;color:#fff;border-color:#E63B1F;font-weight:600}
+button:disabled{opacity:.4;cursor:not-allowed}
+.row{display:grid;grid-template-columns:150px 1fr 1.6fr auto;gap:8px;align-items:start;margin:8px 0}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+input,select{width:100%;box-sizing:border-box;font:inherit;padding:9px 10px;border:1px solid #bbb;border-radius:8px;background:#fff}
+.acts{display:flex;gap:6px}
+small,.hint{color:#666}.ok{color:#1a7f37}.bad{color:#b3261e}
+#msg{font-weight:600;color:#b3261e}
+[hidden]{display:none!important}
+#pv{position:fixed;inset:0;z-index:20;background:#2a2a2c;display:flex;flex-direction:column}
+.pvb{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;background:#0B0B0C;color:#F2EDE4;flex-wrap:wrap}
+.pvb span{display:flex;gap:8px}
+#pvf{flex:1;border:0;margin:0 auto;background:#0B0B0C;width:100%;max-width:100%}
+</style>
+</head>
+<body>
+<header><b>Client Links · Yousef Ahmed</b><span><button id="pvb" disabled>Preview website</button><button id="dl" class="pri" disabled>Download content.js</button></span></header>
+<div id="pv" hidden><div class="pvb"><b>Preview (nothing is saved until you download)</b><span><button data-w="100%">Desktop</button><button data-w="390px">Phone</button><button id="pvx">Close</button></span></div><iframe id="pvf" title="Website preview"></iframe></div>
+<main>
+<div class="card" id="start">
+<h2 style="margin-top:0">Add a video, strategy, content plan or script link to each client</h2>
+<ol>
+<li>Choose your website folder (the folder with <code>index.html</code> and <code>content.js</code>). Or choose only your <code>content.js</code>. Your browser may say “Upload”; nothing is uploaded anywhere.</li>
+<li>Under each client, click <b>+ Add a link</b>, pick the type, and paste the link (YouTube, Google Drive, Google Docs, any web link).</li>
+<li>Click <b>Download content.js</b>, then upload it to GitHub to <b>replace</b> the <code>content.js</code> that is already there. Netlify publishes it by itself.</li>
+</ol>
+<p class="hint">Use a computer. Your clients and everything else on the website stay exactly as they are.</p>
+<label class="btn pri">Choose your website folder<input type="file" id="dir" webkitdirectory hidden></label>
+<label class="btn">Or choose only content.js<input type="file" id="one" accept=".js" hidden></label>
+<p id="msg"></p>
+</div>
+<div id="ed" hidden></div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const KINDS = ["Video", "Strategy", "Content Plan", "Script"], files = new Map(), urls = new Map();
+let D = null, dirty = 0;
+const url = p => { if (!urls.has(p)) urls.set(p, URL.createObjectURL(files.get(p))); return urls.get(p); };
+const okUrl = v => !v || /^(https?:\/\/)?[^\s\/]+\.[^\s]{2,}/i.test(v.trim());
+const chk = v => !v ? "" : okUrl(v) ? '<span class="ok">✓ link looks fine</span>' : '<span class="bad">⚠ this doesn’t look like a web link</span>';
+const bad = t => { $("#msg").textContent = t; };
+
+function load(text) {
+  try { D = new Function(text + "\nreturn SITE;")(); } catch (e) { return bad("That file isn’t a valid content.js. Please choose the content.js of your website."); }
+  D.clients = D.clients || []; D.clients.forEach(c => c.links = c.links || []);
+  $("#start").hidden = true; $("#ed").hidden = false; $("#dl").disabled = false; render();
+}
+$("#dir").onchange = async e => {
+  files.clear(); urls.clear(); const all = new Map();
+  for (const f of e.target.files) { const p = f.webkitRelativePath.split("/").slice(1).join("/"); if (!p || /(^|\/)\./.test(p) || p.startsWith("__MACOSX")) continue; all.set(p, f); }
+  const pre = !all.has("content.js") && all.has("site/content.js") ? "site/" : "";
+  for (const [p, f] of all) if (p.startsWith(pre)) files.set(p.slice(pre.length), f);
+  if (!files.has("content.js")) return bad("I can’t find content.js in that folder. Please choose your website folder (the one with index.html and content.js).");
+  $("#pvb").disabled = !files.has("index.html"); load(await files.get("content.js").text());
+};
+$("#one").onchange = async e => { const f = e.target.files[0]; if (f) load(await f.text()); };
+
+function render() {
+  if (!D.clients.length) { $("#ed").innerHTML = '<div class="card">Your website has no clients yet. Add your clients first in editor.html (the Clients section), then come back here.</div>'; return; }
+  $("#ed").innerHTML = D.clients.map((c, i) => `<div class="cl"><h3>${esc(c.name || "(unnamed client)")}</h3>
+${c.links.map((l, k) => `<div class="row"><select data-k="${i}.${k}.kind">${KINDS.map(x => `<option${l.kind === x ? " selected" : ""}>${x}</option>`).join("")}</select>
+<input data-k="${i}.${k}.title" value="${esc(l.title)}" placeholder="Title shown to visitors (optional)">
+<div><input data-k="${i}.${k}.url" data-u value="${esc(l.url)}" placeholder="Paste the link (YouTube, Google Drive, Docs…)"><small class="chk">${chk(l.url)}</small></div>
+<div class="acts"><button data-a="up" data-i="${i}" data-j="${k}" title="Move up">↑</button><button data-a="dn" data-i="${i}" data-j="${k}" title="Move down">↓</button><button data-a="del" data-i="${i}" data-j="${k}" title="Remove">✕</button></div></div>`).join("")}
+<button data-a="add" data-i="${i}">+ Add a link (video, strategy, content plan or script)</button></div>`).join("");
+}
+document.addEventListener("input", e => {
+  const t = e.target; if (!t.dataset.k) return; dirty = 1;
+  const [i, k, f] = t.dataset.k.split("."); D.clients[i].links[k][f] = t.value;
+  if (t.dataset.u !== undefined) t.parentNode.querySelector(".chk").innerHTML = chk(t.value);
+});
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-a]"); if (!b) return;
+  const i = +b.dataset.i, j = +b.dataset.j, a = D.clients[i].links;
+  if (b.dataset.a === "add") a.push({ kind: "Video", title: "", url: "" });
+  else if (b.dataset.a === "del") a.splice(j, 1);
+  else { const n = b.dataset.a === "up" ? j - 1 : j + 1; if (n < 0 || n >= a.length) return; [a[j], a[n]] = [a[n], a[j]]; }
+  dirty = 1; render();
+});
+addEventListener("beforeunload", e => { if (dirty) e.preventDefault(); });
+
+/* the data that is saved: empty links are dropped, everything else is untouched */
+const clean = () => { const X = JSON.parse(JSON.stringify(D)); X.clients.forEach(c => { c.links = (c.links || []).filter(l => String(l.url || "").trim()).map(l => ({ kind: l.kind, title: String(l.title || "").trim(), url: String(l.url).trim() })); if (!c.links.length) delete c.links; }); return X; };
+$("#dl").onclick = () => {
+  const wrong = D.clients.flatMap(c => c.links).filter(l => String(l.url || "").trim() && !okUrl(l.url));
+  if (wrong.length) { alert("Some links are marked ⚠ because they do not look like web links. Please fix or remove them, then download again."); return; }
+  const text = "/* Site content. Edit it with editor.html, not by hand. */\nconst SITE = " + JSON.stringify(clean(), null, 2) + ";\n";
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: "text/javascript" })); a.download = "content.js"; a.click(); dirty = 0;
+  alert("Downloaded content.js\n\nUpload it to GitHub to REPLACE the content.js that is already there (same name). Netlify then publishes it by itself. If your browser saved it as “content (1).js”, rename it to content.js first.");
+};
+
+async function preview(w) {
+  const html0 = await files.get("index.html").text();
+  if (!html0.includes("clientLinks")) alert("Heads up: the index.html in this folder is an older version, so the links will not show in this preview. Copy the new index.html into your website folder, then choose the folder again.");
+  const map = v => typeof v === "string" ? (files.has(v) ? url(v) : v) : Array.isArray(v) ? v.map(map) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, map(x)])) : v;
+  const OT = "<" + "script", CT = "</" + "script>", html = html0.replace(OT + ' src="content.js">' + CT, () => OT + ">const SITE = " + JSON.stringify(map(clean())).replace(/</g, "\\u003c") + ";" + CT);
+  $("#pvf").srcdoc = html; $("#pvf").style.width = w || "100%"; $("#pv").hidden = false;
+}
+$("#pvb").onclick = () => preview();
+$("#pv").addEventListener("click", e => { const b = e.target.closest("[data-w]"); if (b) $("#pvf").style.width = b.dataset.w; if (e.target.id === "pvx") $("#pv").hidden = true; });
+addEventListener("keydown", e => { if (e.key === "Escape") $("#pv").hidden = true; });
+</script>
+</body>
+</html>

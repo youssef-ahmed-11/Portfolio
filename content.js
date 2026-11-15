@@ -4,8 +4,7 @@ const SITE = {
   "roles": [
     "Content Creator",
     "Social Media Specialist",
-    "Script Writer",
-    "Reel Maker"
+    "Script Writer"
   ],
   "location": "Cairo, Egypt",
   "openTo": "Full-time roles at creative agencies · Freelance projects",
@@ -183,63 +182,136 @@ const SITE = {
       "logo": "assets/images/480275833-1048736137293938-756-mvy4wcvovvh.png",
       "tone": "light",
       "project": "https://docs.google.com/presentation/d/1xj6908bGpFRJGZN7nAPCXutIVIUQkIg0/edit?usp=drive_link&ouid=104096890300727777494&rtpof=true&sd=true",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Strategy",
+          "title": "7wadet el mwild",
+          "url": "https://docs.google.com/presentation/d/1Wgvs4plyHdwaLFh5h4S_GqO7bBkIcFDd/edit?usp=sharing&ouid=104096890300727777494&rtpof=true&sd=true"
+        },
+        {
+          "kind": "Content Plan",
+          "title": "July content plan",
+          "url": "https://docs.google.com/presentation/d/1b8UVrs-8iNJiUrDe5mxW0RMxpUakRCnk/edit?slide=id.g3f0b7e74d46_0_14#slide=id.g3f0b7e74d46_0_14"
+        }
+      ]
     },
     {
       "name": "Rosto Restaurant مطعم روستو",
       "logo": "assets/images/273410118-2605646486246427-558-mvy4xagxx8d.png",
       "tone": "light",
       "project": "https://drive.google.com/file/d/1UquHX-T8OwnEEj5FyDH76lpub9RWCrOO/view?usp=drive_link",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Strategy",
+          "title": "last quarter",
+          "url": "https://drive.google.com/file/d/1UquHX-T8OwnEEj5FyDH76lpub9RWCrOO/view?usp=drive_link"
+        }
+      ]
     },
     {
       "name": "Qr tably",
       "logo": "assets/images/705891642-122178384116843777-8-mvy4y8z6973.png",
       "tone": "light",
       "project": "https://docs.google.com/presentation/d/1UVp1QidcKOqxo2j6DZDXXPkBhIy4m385/edit?rtpof=true&sd=true",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Content Plan",
+          "title": "",
+          "url": "https://docs.google.com/presentation/d/1UVp1QidcKOqxo2j6DZDXXPkBhIy4m385/edit?usp=drive_link&ouid=104096890300727777494&rtpof=true&sd=true"
+        }
+      ]
     },
     {
       "name": "Gheya Roof - Cafe & Restaurant",
       "logo": "assets/images/475964170-122120564726608496-3-mvy4yyv0zfx.png",
       "tone": "light",
       "project": "https://docs.google.com/presentation/d/1g3pPMWq-hfJn-z4SlHGe5pZgh5JAC0Wz/edit?rtpof=true&sd=true",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Content Plan",
+          "title": "ramadan",
+          "url": "https://docs.google.com/presentation/d/1g3pPMWq-hfJn-z4SlHGe5pZgh5JAC0Wz/edit?usp=drive_link&ouid=104096890300727777494&rtpof=true&sd=true"
+        }
+      ]
     },
     {
       "name": "Raw Kitchens",
       "logo": "assets/images/574905912-1375428307473781-348-mvy4zlbju2r.png",
       "tone": "light",
       "project": "https://drive.google.com/file/d/1vPMbyFeZd-yrAHqKHwoYypF8YQf0qpm-/view",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Strategy",
+          "title": "last quarter",
+          "url": "https://drive.google.com/file/d/1vPMbyFeZd-yrAHqKHwoYypF8YQf0qpm-/view?usp=drive_link"
+        }
+      ]
     },
     {
       "name": "فندق آفينو العرب - Avenue Al Arab Hotel",
       "logo": "assets/images/466178143-122107036778606276-8-mvy50o0opyi.png",
       "tone": "light",
       "project": "",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Video",
+          "title": "",
+          "url": "https://www.facebook.com/reel/1034366221846013"
+        }
+      ]
     },
     {
       "name": "Antika Radio",
       "logo": "assets/images/482235760-1148603777279383-426-mvy5131uz9y.png",
       "tone": "light",
       "project": "",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Content Plan",
+          "title": "",
+          "url": "https://www.facebook.com/share/p/1FBbqrmmuX/"
+        }
+      ]
     },
     {
       "name": "Fady El Fahdy - فادي الفهدي﻿",
       "logo": "assets/images/459923832-122093793080537078-5-mvy51frao2i.png",
       "tone": "light",
       "project": "https://docs.google.com/document/d/1dbTu-RntWPwnzlvG2DXg7-BQ5YVr8lGJHh07CbHOOhw/edit?tab=t.0",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Script",
+          "title": "grammar",
+          "url": "https://docs.google.com/document/d/1dbTu-RntWPwnzlvG2DXg7-BQ5YVr8lGJHh07CbHOOhw/edit?usp=drive_link"
+        },
+        {
+          "kind": "Video",
+          "title": "الصفارة",
+          "url": "https://www.instagram.com/reel/DJKmXqPBN8n/?utm_source=ig_web_copy_link&dlrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+        }
+      ]
     },
     {
       "name": "Beeviro",
       "logo": "assets/images/435988278-122102398742266874-7-mvy52afgfop.png",
       "tone": "light",
       "project": "facebook.com/reel/4765905923675917/?rdid=6LjNuDDENKRBQy3s&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1HqoiUinRE%2F#",
-      "url": ""
+      "url": "",
+      "links": [
+        {
+          "kind": "Video",
+          "title": "courses",
+          "url": "https://www.instagram.com/reel/Db03Gx_CuT_/?utm_source=ig_web_copy_link&mdxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+        }
+      ]
     }
   ],
   "display": {
@@ -268,6 +340,54 @@ const SITE = {
           "caption": "mnen 7ba kamla",
           "w": 1080,
           "h": 1080
+        }
+      ]
+    },
+    {
+      "name": "Old Cairo",
+      "desc": "",
+      "photos": [
+        {
+          "src": "assets/images/img-9612-1-mviunt8v.jpg",
+          "caption": "The Mosque-Madrasa of Sultan Hasan",
+          "w": 1099,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9587-mviun22x.jpg",
+          "caption": "Passage to Light",
+          "w": 1044,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9610-mviumzvk.jpg",
+          "caption": "Play of Natural Light",
+          "w": 1176,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9504-1-mviun0r7.jpg",
+          "caption": "Spiritual Serenity",
+          "w": 1600,
+          "h": 1214
+        },
+        {
+          "src": "assets/images/img-9628-mviun180.jpg",
+          "caption": "Framed Heritage",
+          "w": 1544,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9624-mviun1hk.jpg",
+          "caption": "Citadel Horizons",
+          "w": 1195,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/img-9582-mviun2cq.jpg",
+          "caption": "Echoes of Shadows",
+          "w": 1132,
+          "h": 1600
         }
       ]
     },
@@ -328,54 +448,6 @@ const SITE = {
           "caption": "",
           "w": 1080,
           "h": 1080
-        }
-      ]
-    },
-    {
-      "name": "Old Cairo",
-      "desc": "",
-      "photos": [
-        {
-          "src": "assets/images/img-9612-1-mviunt8v.jpg",
-          "caption": "The Mosque-Madrasa of Sultan Hasan",
-          "w": 1099,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9587-mviun22x.jpg",
-          "caption": "Passage to Light",
-          "w": 1044,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9610-mviumzvk.jpg",
-          "caption": "Play of Natural Light",
-          "w": 1176,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9504-1-mviun0r7.jpg",
-          "caption": "Spiritual Serenity",
-          "w": 1600,
-          "h": 1214
-        },
-        {
-          "src": "assets/images/img-9628-mviun180.jpg",
-          "caption": "Framed Heritage",
-          "w": 1544,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9624-mviun1hk.jpg",
-          "caption": "Citadel Horizons",
-          "w": 1195,
-          "h": 1600
-        },
-        {
-          "src": "assets/images/img-9582-mviun2cq.jpg",
-          "caption": "Echoes of Shadows",
-          "w": 1132,
-          "h": 1600
         }
       ]
     }
