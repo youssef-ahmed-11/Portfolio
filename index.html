@@ -1281,6 +1281,36 @@ body{background-image:radial-gradient(rgba(247,232,207,.13) 1px,transparent 1px)
 
 <style>
 <!-- MOODBOARD CAPTION VISIBILITY FIX -->
+
+/* Remove the brown comic panel around the moodboard itself; keep all caption text. */
+#boards .board{
+  border:0!important;
+  outline:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0!important;
+  clip-path:none!important;
+  transform:none!important;
+}
+#boards .board .gi figcaption{
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  padding:10px 2px 0!important;
+  min-height:0!important;
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+#boards .board .gi figcaption .gn,
+#boards .board .gi figcaption .gt{
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+
 /* Make every moodboard image caption readable beneath its image. */
 #boards .board .gi figcaption{
   display:block!important;
@@ -1346,7 +1376,7 @@ a.cl:hover .go{background:#df2927!important;color:#fff!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · <span id="fl">CAIRO, EGYPT</span></footer>
 
-<script src="content.js?v=20261115-2"></script>
+<script src="content.js?v=20261115-3"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
