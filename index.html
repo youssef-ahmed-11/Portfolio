@@ -995,6 +995,44 @@ footer{color:#fff4df!important;opacity:1!important}
  .hero-prop.hammer{bottom:3%!important;right:0!important}
  .hero-props{inset:0!important}
 }
+
+/* CINEMATIC FLOATING PROPS — animated objects, no captions or labels */
+.hero-props{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:visible}
+.hero-prop{
+ position:absolute!important;display:grid!important;place-items:center!important;
+ width:clamp(92px,12vw,172px)!important;height:clamp(92px,12vw,172px)!important;
+ padding:0!important;margin:0!important;background:transparent!important;
+ border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;
+ transform-style:preserve-3d;perspective:900px;will-change:transform,filter;
+ animation:propHover 5.8s ease-in-out infinite!important;
+}
+.hero-prop::before{content:"";position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,rgba(255,210,130,.35),rgba(230,50,39,0) 68%);filter:blur(12px);z-index:-1}
+.hero-prop img{
+ display:block!important;position:relative!important;inset:auto!important;
+ width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+ object-fit:contain!important;filter:drop-shadow(0 14px 12px rgba(0,0,0,.55))!important;
+ mix-blend-mode:normal!important;mask-image:none!important;
+}
+.hero-prop.shield{top:4%;left:0%;animation:shieldFlight 8s ease-in-out infinite!important}
+.hero-prop.gauntlet{top:43%;left:1%;animation:gauntletPulse 6.2s ease-in-out infinite!important}
+.hero-prop.armor{top:7%;right:0%;animation:helmetHover 5.2s ease-in-out infinite!important}
+.hero-prop.hammer{bottom:4%;right:2%;animation:hammerFlight 6.8s ease-in-out infinite!important}
+.hero-prop.gauntlet::before{background:radial-gradient(circle,rgba(80,210,255,.35),rgba(230,50,39,0) 70%)}
+.hero-prop.hammer::before{background:radial-gradient(circle,rgba(130,190,255,.4),rgba(230,50,39,0) 70%)}
+@keyframes propHover{0%,100%{translate:0 0;filter:drop-shadow(0 0 0 transparent)}50%{translate:0 -16px;filter:drop-shadow(0 12px 10px rgba(0,0,0,.25))}}
+@keyframes shieldFlight{0%,100%{transform:translate3d(0,0,0) rotate(-14deg)}50%{transform:translate3d(18px,-24px,28px) rotate(18deg)}}
+@keyframes gauntletPulse{0%,100%{transform:translate3d(0,0,0) rotate(-9deg) scale(1)}50%{transform:translate3d(10px,-18px,22px) rotate(5deg) scale(1.07)}}
+@keyframes helmetHover{0%,100%{transform:translate3d(0,0,0) rotate(8deg)}50%{transform:translate3d(-14px,-20px,20px) rotate(-8deg)}}
+@keyframes hammerFlight{0%,100%{transform:translate3d(0,0,0) rotate(18deg)}45%{transform:translate3d(-18px,-25px,24px) rotate(-22deg)}55%{transform:translate3d(-14px,-20px,24px) rotate(-12deg)}}
+.hero-prop figcaption,.hero-prop small{display:none!important}
+@media(max-width:760px){
+ .hero-prop{width:clamp(62px,19vw,104px)!important;height:clamp(62px,19vw,104px)!important}
+ .hero-prop.shield{top:0;left:-3%}
+ .hero-prop.gauntlet{top:44%;left:-4%}
+ .hero-prop.armor{top:1%;right:-3%}
+ .hero-prop.hammer{bottom:0;right:-2%}
+}
+@media(prefers-reduced-motion:reduce){.hero-prop{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1182,15 +1220,15 @@ if ("IntersectionObserver" in window) {
   art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait">' : '')+
     '<span class="art-burst" aria-hidden="true">POW!</span><span class="art-stamp">CREATE · PLAN · SHOOT · DELIVER</span>';
   hero.appendChild(art);
-  /* Photographic Marvel prop references — recognizable physical replicas/props, not vector stand-ins. */
+  /* Floating cinematic Marvel-style props: no labels, no captions. */
   const props=document.createElement("div");
   props.className="hero-props";
-  props.setAttribute("aria-label","Marvel prop collectibles");
+  props.setAttribute("aria-hidden","true");
   props.innerHTML=
-    '<figure class="hero-prop shield"><img src="https://bid.juliensauctions.com/images/lot/4584/458449_xl.jpg?ts=1742640309" alt="Captain America’s original hero shield prop" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>CAPTAIN AMERICA · SHIELD</figcaption></figure>'+
-    '<figure class="hero-prop gauntlet"><img src="https://www.dystryktzero.pl/images/detailed/28/x_hase0491.jpg" alt="Thanos Infinity Gauntlet replica with Infinity Stones" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>THANOS · INFINITY GAUNTLET</figcaption></figure>'+
-    '<figure class="hero-prop armor"><img src="https://cdn.webshopapp.com/shops/259033/files/476136064/hasbro-marvel-iron-man-helmet-hasbro-replica.jpg" alt="Iron Man red and gold helmet replica" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>IRON MAN · HELMET</figcaption></figure>'+
-    '<figure class="hero-prop hammer"><img src="https://cdn.webshopapp.com/shops/305440/files/334090110/thor-full-metal-mjolnir-hammer-base.jpg" alt="Thor’s Mjolnir hammer replica" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>THOR · MJOLNIR</figcaption></figure>';
+    '<figure class="hero-prop shield"><img src="https://bid.juliensauctions.com/images/lot/4584/458449_xl.jpg?ts=1742640309" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer"></figure>'+
+    '<figure class="hero-prop gauntlet"><img src="https://www.dystryktzero.pl/images/detailed/28/x_hase0491.jpg" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer"></figure>'+
+    '<figure class="hero-prop armor"><img src="https://cdn.webshopapp.com/shops/259033/files/476136064/hasbro-marvel-iron-man-helmet-hasbro-replica.jpg" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer"></figure>'+
+    '<figure class="hero-prop hammer"><img src="https://cdn.webshopapp.com/shops/305440/files/334090110/thor-full-metal-mjolnir-hammer-base.jpg" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer"></figure>';
   hero.appendChild(props);
   const cover=document.createElement("div");
   cover.className="cover-lines";
