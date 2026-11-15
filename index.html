@@ -784,15 +784,24 @@ footer{color:#fff4df!important;opacity:1!important}
   #clients .cl .nm{font-size:13px!important}
 }
 
+
+/* Always render language controls in the page markup (not JS-injected only). */
+.lang-switch{display:inline-flex!important;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;border:2px solid var(--ink);background:#17100e;color:var(--ink);padding:7px 10px;box-shadow:3px 3px 0 var(--red);font:700 12px var(--m);white-space:nowrap;position:relative;z-index:25}
+.lang-switch button{display:inline-block!important;visibility:visible!important;opacity:1!important;border:0;background:none;color:var(--mute);font:inherit;padding:0 2px;cursor:pointer}
+.lang-switch button[aria-pressed="true"]{color:var(--red);text-decoration:underline;text-underline-offset:3px}
+.nav .lang-switch{margin-left:auto}
+.tabbar .lang-switch{padding:5px 8px;box-shadow:2px 2px 0 var(--red)}
+@media(max-width:760px){.nav .lang-switch{margin-left:auto}.tabbar{align-items:center;gap:5px}.tabbar .lang-switch{gap:4px}}
 </style>
 </head>
 <body>
 <header class="nav">
 <a class="logo" href="#top">YOUSEF AHMED</a>
 <nav><a href="#about">About</a><a href="#clients" id="navcl">Clients</a><a href="#work">Work</a><a href="#strategy">Strategy</a><a href="#direction" id="navdir">Direction</a><a href="#photos">Photo</a><a href="#boards">Moodboard</a></nav>
+<div class="lang-switch" aria-label="Choose language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span>/</span><button type="button" data-lang="ar" aria-pressed="false">AR</button></div>
 <a class="btn red" href="#contact">Hire me</a>
 </header>
-<nav class="tabbar" aria-label="Quick links"><a href="#about">About</a><a href="#work">Work</a><a href="#strategy">Strategy</a><a href="#contact">Contact</a></nav>
+<nav class="tabbar" aria-label="Quick links"><a href="#about">About</a><a href="#work">Work</a><a href="#strategy">Strategy</a><a href="#contact">Contact</a><div class="lang-switch" aria-label="Choose language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span>/</span><button type="button" data-lang="ar" aria-pressed="false">AR</button></div></nav>
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · <span id="fl">CAIRO, EGYPT</span></footer>
 
