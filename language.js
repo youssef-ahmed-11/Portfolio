@@ -4,8 +4,8 @@
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const dict = {
-    "About":"عنّي","Clients":"العملاء","Work":"الأعمال","Strategy":"الاستراتيجية","Direction":"التوجيه الإبداعي","Photo":"التصوير","Moodboard":"لوحة الإلهام","Hire me":"تواصل معي","Contact":"التواصل",
-    "THE LOGLINE":"الحكاية","ABOUT":"عنّي","FEATURED PROJECT":"مشروع مختار","NOW SHOWING":"نعرض الآن","A featured reel to start with.":"فيديو مختار من أعمالي.","A placeholder for your showreel or strongest piece.":"مساحة لعرض أقوى أعمالي.",
+    "About":"نبذة عني","Clients":"العملاء","Work":"الأعمال","Strategy":"الاستراتيجية","Direction":"التوجيه الإبداعي","Photo":"التصوير","Moodboard":"لوحة الإلهام","Hire me":"تواصل معي","Contact":"التواصل",
+    "THE LOGLINE":"الحكاية","ABOUT":"نبذة عني","FEATURED PROJECT":"مشروع مختار","NOW SHOWING":"نعرض الآن","A featured reel to start with.":"فيديو مختار من أعمالي.","A placeholder for your showreel or strongest piece.":"مساحة لعرض أقوى أعمالي.",
     "BRANDS I’VE WORKED WITH":"علامات تجارية عملت معها","OUR CLIENTS":"عملائي","Selected brands behind the work.":"مجموعة من العلامات التجارية التي عملت معها.",
     "VIDEO &amp; COMMERCIAL WORK":"الفيديوهات والإعلانات","VIDEO & COMMERCIAL WORK":"الفيديوهات والإعلانات","Reels and commercial projects, tap to play.":"ريلز ومشروعات إعلانية — اضغط للمشاهدة.",
     "STRATEGY &amp; CAMPAIGNS":"الاستراتيجيات والحملات","STRATEGY & CAMPAIGNS":"الاستراتيجيات والحملات","How the ideas are planned, researched and run.":"من البحث والتخطيط لحد تنفيذ الأفكار.",
@@ -13,7 +13,7 @@
     "PHOTOGRAPHY &amp; BEHIND THE SCENES":"التصوير وكواليس العمل","PHOTOGRAPHY & BEHIND THE SCENES":"التصوير وكواليس العمل","Stills and set moments, grouped by shoot. Open a folder to see its photos.":"صور وكواليس جلسات التصوير — افتح كل مجموعة لمشاهدة الصور.",
     "The references behind my work: images, color, light, texture and composition.":"المراجع البصرية وراء شغلي: صور وألوان وإضاءة وتفاصيل وتكوين.",
     "CLOSING CREDITS":"النهاية","LET’S MAKE\nSOMETHING.":"خلّينا نعمل\nحاجة مختلفة.","Start a project on WhatsApp":"ابدأ مشروع على واتساب","Watch featured work":"شاهد أعمال مختارة","Download CV":"تحميل السيرة الذاتية","Preview CV":"معاينة السيرة الذاتية",
-    "Written, shot & strategized by":"كتابة وتصوير وتخطيط","Based in":"الموقع","Industries":"المجالات","Open to":"متاح لـ","Challenge":"التحدي","Idea":"الفكرة","Execution":"التنفيذ","Results":"النتائج","Email":"البريد الإلكتروني","WhatsApp":"واتساب","LinkedIn":"لينكدإن","Instagram":"إنستجرام",
+    "Written, shot & strategized by":"كتابة وتصوير وتخطيط","Based in":"الموقع","Industries":"المجالات","Open to":"متاح لـ","Challenge":"التحدي","Idea":"الفكرة","Execution":"التنفيذ","Results":"النتائج","Email":"البريد الإلكتروني","WhatsApp":"WhatsApp","LinkedIn":"LinkedIn","Instagram":"إنستجرام",
     "View Strategy PDF ↗":"عرض ملف الاستراتيجية ↗","View Content Plan PDF ↗":"عرض خطة المحتوى ↗","View Script ↗":"عرض السكريبت ↗","View Execution ↗":"مشاهدة التنفيذ ↗"
   };
   const contentAr = new Map([
@@ -92,6 +92,11 @@
     ["Citadel Horizons", "آفاق القلعة"],
     ["Echoes of Shadows", "أصداء الظلال"],
     ["Ya 7alawet el shar2y", "يا حلاوة الشرقي"],
+    ["Ya 7alawet el shar2y", "يا حلاوة الشرقي"],
+    ["About Me", "نبذة عني"],
+    ["About me", "نبذة عني"],
+    ["LinkedIn", "لينكدإن"],
+    ["WhatsApp", "واتساب"],
     ["details", "تفاصيل"],
     ["3’waysh", "قراميش"],
     ["Brand Positioning: Establish Palmé in the market as a primary creator and manufacturer of Mawlid sweets—rather than just a reseller—competing in a heavily saturated market dominated by legacy brands.\n\nEmotional Connection: Transform Mawlid sweets from a seasonal food product into an authentic cultural and emotional experience.", "تموضع العلامة التجارية: ترسيخ مكانة Palmé في السوق باعتبارها علامة تصنع حلوى المولد بنفسها، وليس مجرد بائع لها، وسط سوق مزدحم تهيمن عليه علامات تجارية عريقة.\n\nالارتباط العاطفي: تحويل حلوى المولد من منتج موسمي إلى تجربة ثقافية وإنسانية أصيلة."],
