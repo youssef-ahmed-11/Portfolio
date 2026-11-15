@@ -1415,6 +1415,59 @@ a.cl:hover .go{background:#df2927!important;color:#fff!important}
 }
 </style>
 
+
+<style id="client-and-moodboard-copy-emphasis">
+/* Stronger, clearer copy under each client card and in the moodboard description. */
+#app .clients .doc .dt,
+#app .clients .mat .mt b{
+  color:#fff8e9!important;
+  font-weight:900!important;
+  font-size:clamp(15px,1.25vw,17px)!important;
+  line-height:1.5!important;
+  text-shadow:0 1px 0 rgba(0,0,0,.35)!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+#app .clients .doc .k,
+#app .clients .mat .mt small{
+  color:#ffcf70!important;
+  font-weight:900!important;
+  font-size:12px!important;
+  letter-spacing:.1em!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+#app .clients .doc a,
+#app .clients .mat .go{
+  color:#fff8e9!important;
+  font-weight:900!important;
+}
+#boards .head .sub,
+#boards .board .sub{
+  color:#160d0b!important;
+  -webkit-text-fill-color:#160d0b!important;
+  font-weight:900!important;
+  font-size:clamp(17px,1.7vw,21px)!important;
+  line-height:1.75!important;
+  text-shadow:0 1px 0 rgba(255,244,223,.7)!important;
+}
+#boards .gi figcaption .gn{
+  color:#160d0b!important;
+  -webkit-text-fill-color:#160d0b!important;
+  font-weight:900!important;
+}
+#boards .gi figcaption .gt{
+  color:#b51f27!important;
+  -webkit-text-fill-color:#b51f27!important;
+  font-weight:900!important;
+}
+@media(max-width:600px){
+  #app .clients .doc .dt,#app .clients .mat .mt b{font-size:15px!important}
+  #app .clients .doc .k,#app .clients .mat .mt small{font-size:11px!important}
+  #boards .head .sub,#boards .board .sub{font-size:16px!important;line-height:1.8!important}
+}
+</style>
+
 </head>
 <body>
 <header class="nav">
