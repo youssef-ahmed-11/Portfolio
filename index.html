@@ -439,6 +439,89 @@ body::before{
  body{background-attachment:scroll;background-size:7px 7px,8px 8px,7px 7px,auto,auto,auto,auto,auto}
  body::before{opacity:.16}
 }
+
+/* RED COMIC WORLD — square panel layout */
+:root{
+  --bg:#941b20;--ink:#fffaf0;--red:#e52b2f;--gold:#f1dfbd;
+  --line:#241719;--mute:#f0c9bd;
+  --comic-paper:#f1dfbd;--comic-paper-light:#fff4df;
+}
+html,body{background-color:#941b20!important}
+body{
+ color:#fffaf0;
+ background-image:
+  radial-gradient(circle,rgba(30,12,13,.24) 1px,transparent 1.5px),
+  linear-gradient(135deg,#a92328 0%,#86151c 48%,#a52227 100%)!important;
+ background-size:8px 8px,auto!important;
+ background-attachment:fixed;
+}
+body::before{
+ content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.18;
+ background:
+  linear-gradient(90deg,transparent 0 49.7%,#210f11 49.7% 50.3%,transparent 50.3%),
+  linear-gradient(0deg,transparent 0 49.7%,#210f11 49.7% 50.3%,transparent 50.3%);
+ background-size:100% 100%;
+}
+#app,.nav,.tabbar,footer{position:relative;z-index:1}
+.nav{background:#77151b!important;border-bottom:4px solid #211315!important;box-shadow:0 5px 0 #f1dfbd!important}
+.logo,.nav nav a,.tabbar a{color:#fffaf0!important}
+.nav nav a:hover,.tabbar a:hover{color:#f1dfbd!important}
+.hero{
+ background:
+  radial-gradient(circle,rgba(255,244,223,.18) 1px,transparent 1.5px),
+  linear-gradient(135deg,#a92328,#75141a)!important;
+ background-size:8px 8px,auto!important;
+ border:4px solid #211315!important;
+ box-shadow:10px 10px 0 #211315!important;
+ margin:28px auto 34px!important;
+}
+.hero::after{border-radius:0!important;border:4px solid #211315!important;background:linear-gradient(145deg,#d92b31,#8c171e)!important}
+.hero h1,.hero .cred,.hero .roles,.hero .rec{color:#fffaf0!important}
+.hero h1 .last-name,.hero h1 span{color:#f1dfbd!important;-webkit-text-stroke:1px #211315}
+.hero .cred{text-shadow:2px 2px 0 #8b171c!important}
+.hero .roles{color:#fff0d9!important}
+.hero .rec{background:#211315!important;border-color:#f1dfbd!important}
+.hero-art::before{border-radius:0!important;border:4px solid #211315!important;background:#f1dfbd!important}
+.hero-art .art-stamp,.comic-issue{border-radius:0!important;background:#f1dfbd!important;color:#211315!important;border:3px solid #211315!important;box-shadow:5px 5px 0 #211315!important}
+.mq{background:#211315!important;border-block:4px solid #f1dfbd!important;box-shadow:0 5px 0 #5b1116!important}
+.mq-t,.mq-t b{color:#fffaf0!important}
+.sec{background:transparent!important;border:0!important;padding:54px 0!important}
+.sec>.wrap{
+ position:relative;background:#f1dfbd!important;color:#211719!important;
+ border:4px solid #211315!important;box-shadow:9px 9px 0 #211315!important;
+ padding:30px 24px!important;margin:0 auto!important;
+}
+.sec .slate,.sec .meta,.sec .sub,.sec .card p,.sec .case dd,.sec .bio p,
+.sec .facts,.sec .facts span,.sec .rows,.sec .rows>*{color:#352326!important}
+.sec h2,.sec h3,.sec .gn,.sec .sn b{color:#211719!important}
+.sec h2{ text-shadow:2px 2px 0 rgba(229,43,47,.22)!important}
+.sec .sub{color:#63484a!important}
+.card,.case,.board,.shoot,.cl,.mat,.doc,.gf,.portrait,.vid{
+ border:3px solid #211315!important;border-radius:0!important;
+ box-shadow:5px 5px 0 rgba(33,19,21,.88)!important;
+}
+.case,.mat,.doc,.cl,.gf,.portrait{background:#fff4df!important;color:#211719!important}
+.cl .nm,.mat b,.doc .dt{color:#211719!important}
+.cl .go,.doc a{color:#8f171e!important}
+.cl .bdg{border-radius:0!important;background:#d9272e!important}
+.tags span{border:2px solid #211315!important;color:#211719!important;background:#fff4df!important}
+.btn{border:3px solid #211315!important;border-radius:0!important;box-shadow:5px 5px 0 #211315!important}
+.btn.red{background:#d9272e!important;color:#fff!important}
+.play{border-radius:0!important;background:#d9272e!important;border:3px solid #211315!important}
+.fi,.fi::before{border-radius:0!important;border-color:#211315!important}
+.shoot{background:#fff4df!important}
+.shoot summary{color:#211719!important}
+.shoot .slate,.shoot .sc,.shoot .sn em{color:#63484a!important}
+.shoot .chev{border-color:#211315!important}
+.rows>*{border-bottom:2px solid #8b6d68!important}
+footer{color:#fff4df!important}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr!important;margin:14px 12px 24px!important;padding:38px 20px!important}
+ .hero-art{min-height:300px}
+ .sec>.wrap{padding:22px 16px!important;margin:0 12px!important}
+ .sec{padding:34px 0!important}
+}
+
 </style>
 </head>
 <body>
