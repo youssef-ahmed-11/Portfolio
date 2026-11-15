@@ -1162,6 +1162,70 @@ body{counter-reset:comic-page}
 }
 @media(prefers-reduced-motion:reduce){.hero-art img,.hero-art .art-burst,.hero-art .art-stamp{animation:none!important}}
 </style>
+
+<style>
+<!-- CASE STUDY VISIBILITY FIX -->
+/* Keep case-study copy readable on the light comic panels. */
+#strategy .cases .case{
+  background:#fff4df!important;
+  color:#211719!important;
+  border:3px solid #211315!important;
+  padding:clamp(20px,3vw,30px)!important;
+  overflow:visible!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+#strategy .cases .case .slate{
+  display:block!important;
+  color:#8f171e!important;
+  opacity:1!important;
+  visibility:visible!important;
+  font-weight:900!important;
+}
+#strategy .cases .case h3{
+  display:block!important;
+  color:#211315!important;
+  opacity:1!important;
+  visibility:visible!important;
+  line-height:1.25!important;
+}
+#strategy .cases .case dl{
+  display:block!important;
+  margin:18px 0 0!important;
+  color:#211719!important;
+}
+#strategy .cases .case dt{
+  display:block!important;
+  margin:18px 0 6px!important;
+  color:#8f171e!important;
+  opacity:1!important;
+  visibility:visible!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  letter-spacing:.1em!important;
+  text-transform:uppercase!important;
+}
+#strategy .cases .case dd{
+  display:block!important;
+  margin:0!important;
+  padding:0 0 12px!important;
+  color:#211719!important;
+  opacity:1!important;
+  visibility:visible!important;
+  font-size:15px!important;
+  font-weight:600!important;
+  line-height:1.85!important;
+  white-space:pre-line!important;
+  overflow-wrap:anywhere!important;
+  text-shadow:none!important;
+}
+#strategy .cases .case .tba{color:#6b5550!important}
+@media(max-width:600px){
+  #strategy .cases{grid-template-columns:minmax(0,1fr)!important}
+  #strategy .cases .case{padding:18px!important}
+  #strategy .cases .case dd{font-size:14px!important;line-height:1.8!important}
+}
+</style>
 </head>
 <body>
 <header class="nav">
