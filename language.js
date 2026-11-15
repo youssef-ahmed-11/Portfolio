@@ -111,6 +111,7 @@
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) {
+      if (node.parentElement?.closest("[data-en][data-ar]")) continue;
       if (node.__portfolioOriginal === undefined) node.__portfolioOriginal = node.nodeValue;
       const original = node.__portfolioOriginal.trim();
       const translated = ar ? (contentAr.get(original) || dict[original] || null) : node.__portfolioOriginal;
