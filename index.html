@@ -1034,55 +1034,6 @@ footer{color:#fff4df!important;opacity:1!important}
 }
 @media(prefers-reduced-motion:reduce){.hero-prop{animation:none!important}}
 
-/* HERO SLIDER — transparent PNG cutouts, halftone lighting and comic-red framing */
-.hero-props{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:visible}
-.hero-prop{
- position:absolute!important;inset:7% 2% 5% auto!important;
- width:min(49%,480px)!important;height:86%!important;
- display:grid!important;place-items:center!important;
- padding:0!important;margin:0!important;background:transparent!important;
- border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;
- opacity:0;visibility:hidden;transform:translate3d(36px,14px,0) scale(.91) rotate(4deg);
- transition:opacity .65s ease,transform .85s cubic-bezier(.2,.8,.2,1),visibility .65s;
-}
-.hero-prop.is-active{opacity:1;visibility:visible;transform:translate3d(0,0,0) scale(1) rotate(0);animation:heroCutoutFloat 5s ease-in-out infinite}
-.hero-prop::before{
- content:"";position:absolute;inset:12%;z-index:-1;border-radius:50%;
- background:radial-gradient(circle,rgba(246,232,207,.32),rgba(230,50,39,.22) 38%,transparent 72%);
- filter:blur(22px)
-}
-.hero-prop img{
- width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
- object-fit:contain!important;object-position:center!important;
- filter:drop-shadow(0 16px 0 rgba(23,16,14,.75)) drop-shadow(0 0 22px rgba(246,232,207,.24))!important;
- mix-blend-mode:normal!important;mask-image:none!important;
-}
-.hero-prop.shield{inset:12% 4% 8% auto!important;width:min(48%,450px)!important}
-.hero-prop.armor{inset:4% 2% 3% auto!important;width:min(48%,450px)!important}
-.hero-prop.hammer{inset:5% 2% 4% auto!important;width:min(53%,490px)!important}
-.hero-prop.gauntlet{inset:3% 2% 2% auto!important;width:min(48%,450px)!important}
-.hero-prop.spider{inset:0 -1% 0 auto!important;width:min(57%,520px)!important}
-.hero-prop.spider img{filter:drop-shadow(8px 9px 0 #17100e) drop-shadow(13px 13px 0 #e63227) drop-shadow(0 0 18px rgba(246,232,207,.2))!important}
-.spider-web{position:absolute;right:-2%;top:-2%;width:78%;height:76%;z-index:0;opacity:0;overflow:visible;transition:opacity .4s}
-.spider-web path{fill:none;stroke:#f6e8cf;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:7 5;filter:drop-shadow(2px 2px 0 #17100e)}
-.hero-props.web-active .spider-web{opacity:.78;animation:webSwing 5s ease-in-out infinite}
-.hero-slide-controls{position:absolute;z-index:8;right:4%;bottom:5%;display:flex;gap:9px;align-items:center}
-.hero-slide-controls button{width:10px;height:10px;padding:0;border:2px solid #f6e8cf;background:#211315;box-shadow:2px 2px 0 #17100e;transform:rotate(45deg);cursor:pointer}
-.hero-slide-controls button[aria-pressed="true"]{background:#e63227;transform:rotate(45deg) scale(1.4);box-shadow:0 0 0 3px #f6e8cf,3px 3px 0 #17100e}
-@keyframes heroCutoutFloat{0%,100%{translate:0 0}50%{translate:0 -13px}}
-@keyframes webSwing{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-12px,8px) rotate(-3deg)}}
-@media(max-width:760px){
- .hero-prop{inset:0 -4% 0 auto!important;width:58%!important;height:65%!important;top:auto!important;bottom:3%!important}
- .hero-prop.shield{width:58%!important;inset:auto -2% 5% auto!important}
- .hero-prop.armor{width:58%!important;inset:auto -3% 2% auto!important}
- .hero-prop.hammer{width:65%!important;inset:auto -5% 4% auto!important}
- .hero-prop.gauntlet{width:58%!important;inset:auto -2% 2% auto!important}
- .hero-prop.spider{width:70%!important;inset:auto -6% 0 auto!important}
- .hero-slide-controls{right:7%;bottom:2%;gap:8px}
- .hero-slide-controls button{width:9px;height:9px}
- .spider-web{right:-12%;top:24%;width:92%;height:58%}
-}
-@media(prefers-reduced-motion:reduce){.hero-prop.is-active,.hero-props.web-active .spider-web{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -1270,38 +1221,6 @@ if ("IntersectionObserver" in window) {
   art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait">' : '')+
     '<span class="art-burst" aria-hidden="true">POW!</span><span class="art-stamp">CREATE · PLAN · SHOOT · DELIVER</span>';
   hero.appendChild(art);
-  /* Five transparent cutout hero slides. Visuals are integrated into the comic layout, never boxed photos. */
-  const props=document.createElement("div");
-  props.className="hero-props";
-  props.setAttribute("aria-label","Animated superhero visual carousel");
-  props.innerHTML=
-    '<div class="hero-prop shield is-active" data-slide="0"><img src="https://toppng.com/uploads/preview/captin-america-shield-115309253250eyh2crv1v.png" alt="" loading="eager" decoding="async"></div>'+
-    '<div class="hero-prop armor" data-slide="1"><img src="https://pngimg.com/uploads/ironman/ironman_PNG21.png" alt="" loading="lazy" decoding="async"></div>'+
-    '<div class="hero-prop hammer" data-slide="2"><img src="https://www.vhv.rs/dpng/d/443-4431353_thor-hammer-transparent-background-png-download-transparent-thor.png" alt="" loading="lazy" decoding="async"></div>'+
-    '<div class="hero-prop gauntlet" data-slide="3"><img src="https://toppng.com/uploads/preview/transparent-infinity-gauntlet-11549536781bdr3vhf95x.png" alt="" loading="lazy" decoding="async"></div>'+
-    '<div class="hero-prop spider" data-slide="4"><img src="https://toppng.com/uploads/preview/spiderman-11530966758chefvlrtpq.png" alt="" loading="lazy" decoding="async"></div>'+
-    '<svg class="spider-web" viewBox="0 0 420 360" aria-hidden="true"><path d="M420 0 C310 24 270 78 215 120 S95 230 0 360 M420 0 L215 120 L420 125 M215 120 L315 250 M215 120 L85 70 M215 120 L110 280 M315 250 L420 300 M110 280 L0 250 M85 70 L0 0 M315 250 L420 360" /></svg>';
-  hero.appendChild(props);
-  const controls=document.createElement("div");
-  controls.className="hero-slide-controls";
-  controls.setAttribute("aria-label","Choose hero visual");
-  controls.innerHTML=[0,1,2,3,4].map((n)=>'<button type="button" aria-label="Show visual '+(n+1)+'" aria-pressed="'+(n===0)+'" data-go="'+n+'"></button>').join("");
-  hero.appendChild(controls);
-  let activeSlide=0;
-  const showSlide=(n)=>{
-    activeSlide=(n+5)%5;
-    props.querySelectorAll(".hero-prop").forEach((el,i)=>el.classList.toggle("is-active",i===activeSlide));
-    controls.querySelectorAll("button").forEach((el,i)=>el.setAttribute("aria-pressed",String(i===activeSlide)));
-    props.classList.toggle("web-active",activeSlide===4);
-  };
-  controls.addEventListener("click",(event)=>{
-    const button=event.target.closest("button[data-go]");
-    if(button) showSlide(Number(button.dataset.go));
-  });
-  let slideTimer=window.setInterval(()=>showSlide(activeSlide+1),5200);
-  hero.addEventListener("mouseenter",()=>window.clearInterval(slideTimer));
-  hero.addEventListener("mouseleave",()=>{window.clearInterval(slideTimer);slideTimer=window.setInterval(()=>showSlide(activeSlide+1),5200);});
-
   const cover=document.createElement("div");
   cover.className="cover-lines";
   cover.innerHTML='<span class="cover-kicker">THE CREATOR FILE</span><b>IDEAS THAT<br>HIT DIFFERENT.</b><i>CONTENT · REELS · STRATEGY</i><span class="cover-edition">SPECIAL EDITION / 01</span>';
