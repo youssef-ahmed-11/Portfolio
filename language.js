@@ -200,15 +200,25 @@
     if (c.brand === "rosto") contentAr.set(c.brand, "روستو");
     if (c.campaign === "strategy 2025") contentAr.set(c.campaign, "استراتيجية 2025");
   });
+  const normalizeText = value => String(value ?? "").replace(/\\s+/g, " ").trim();
+  const normalizedContentAr = new Map([...contentAr.entries()].map(([en, ar]) => [normalizeText(en), ar]));
+  const normalizedDict = new Map(Object.entries(dict).map(([en, ar]) => [normalizeText(en), ar]));
   const applyContentTranslation = ar => {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) {
-      if (node.parentElement?.closest("[data-en][data-ar]")) continue;
+      if (node.parentElement?.closest("[data-en][data-ar],.lang-switch,script,style")) continue;
       if (node.__portfolioOriginal === undefined) node.__portfolioOriginal = node.nodeValue;
-      const original = node.__portfolioOriginal.trim();
-      const translated = ar ? (contentAr.get(original) || dict[original] || null) : node.__portfolioOriginal;
-      if (translated !== null) node.nodeValue = node.__portfolioOriginal.replace(original, translated);
+      const originalNode = node.__portfolioOriginal;
+      const key = normalizeText(originalNode);
+      const translated = ar ? (normalizedContentAr.get(key) || normalizedDict.get(key) || null) : null;
+      if (ar && translated !== null) {
+        const leading = (originalNode.match(/^\\s*/) || [""])[0];
+        const trailing = (originalNode.match(/\\s*$/) || [""])[0];
+        node.nodeValue = leading + translated + trailing;
+      } else if (!ar) {
+        node.nodeValue = originalNode;
+      }
     }
   };
   const arText = (s) => dict[s] || s;
