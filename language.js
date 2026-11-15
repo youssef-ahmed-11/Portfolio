@@ -3,6 +3,21 @@
   // content.js declares SITE as a top-level const (not window.SITE).
   // Read that lexical global so translations can be built from the real portfolio content.
   const S = (typeof SITE !== "undefined" ? SITE : window.SITE) || {};
+  // Register the language control before building dictionaries, so a later
+  // translation-data error cannot leave the EN/AR buttons inert.
+  document.addEventListener("click", event => {
+    const target = event.target instanceof Element ? event.target : event.target?.parentElement;
+    const button = target?.closest("[data-lang]");
+    if (!button) return;
+    event.preventDefault();
+    const requested = button.dataset.lang === "ar" ? "ar" : "en";
+    if (typeof window.setPortfolioLanguage === "function") {
+      window.setPortfolioLanguage(requested);
+    } else {
+      window.__requestedPortfolioLanguage = requested;
+      button.setAttribute("aria-pressed", "true");
+    }
+  }, true);
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const dict = {
@@ -330,13 +345,10 @@
     try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
     applyContentTranslation(ar);
   };
-  document.addEventListener("click", e => {
-    const b = e.target.closest("[data-lang]");
-    if (b) apply(b.dataset.lang);
-  });
+  window.setPortfolioLanguage = apply;
   let saved = "en";
   try { saved = localStorage.getItem("portfolio-language") || "en"; } catch (_) {}
-  apply(saved === "ar" ? "ar" : "en");
+  apply(window.__requestedPortfolioLanguage || (saved === "ar" ? "ar" : "en"));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }));
     $$(".thinking-card.rv").forEach(x => io.observe(x));
