@@ -453,3 +453,6 @@ const SITE = {
     }
   ]
 };
+
+// Expose portfolio data for the bilingual layer.
+window.SITE = SITE;
