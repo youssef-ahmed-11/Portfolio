@@ -947,6 +947,55 @@ footer{color:#fff4df!important;opacity:1!important}
 }
 
 </style>
+<style id="mobile-language-and-marvel-props">
+/* Keep the mobile quick bar fixed and its EN/AR controls visible above the safe area. */
+@media(max-width:760px){
+  body{padding-bottom:88px!important}
+  .tabbar{
+    display:flex!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;
+    z-index:99999!important;align-items:center!important;justify-content:space-around!important;
+    gap:5px!important;padding:9px 6px calc(9px + env(safe-area-inset-bottom))!important;
+    min-height:62px!important;box-sizing:border-box!important;
+  }
+  .tabbar .lang-switch{
+    display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;
+    flex:0 0 auto!important;align-items:center!important;justify-content:center!important;
+    gap:5px!important;margin:0!important;padding:7px 9px!important;min-width:58px!important;
+    border:2px solid #211315!important;background:#fff4df!important;color:#211315!important;
+    box-shadow:2px 2px 0 #211315!important;z-index:2!important;
+  }
+  .tabbar .lang-switch button{
+    display:inline-flex!important;visibility:visible!important;opacity:1!important;
+    color:#211315!important;font-size:12px!important;font-weight:900!important;padding:2px!important;
+  }
+  .tabbar .lang-switch button[aria-pressed="true"]{color:#b51f27!important;text-decoration:underline!important}
+}
+.hero-prop{
+  position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:clamp(84px,10vw,126px)!important;height:clamp(92px,11vw,138px)!important;
+  padding:7px!important;overflow:hidden;background:#f1dfbd!important;
+  border:3px solid #17100e!important;border-radius:2px!important;
+  box-shadow:5px 5px 0 #17100e!important;transform:rotate(-3deg);
+}
+.hero-prop img{display:block;width:100%;height:calc(100% - 20px);min-height:0;object-fit:contain;object-position:center;background:#f1dfbd}
+.hero-prop figcaption{
+  display:block;width:100%;margin-top:4px;padding:3px 2px;background:#211315;color:#fff4df;
+  font:800 7px/1.2 var(--m);letter-spacing:.04em;text-align:center;white-space:nowrap;
+}
+.hero-prop.shield{top:7%!important;right:1%!important;bottom:auto!important;left:auto!important;border-radius:2px!important;outline:0!important}
+.hero-prop.gauntlet{top:48%!important;left:-1%!important;right:auto!important}
+.hero-prop.armor{top:8%!important;left:-1%!important;right:auto!important}
+.hero-prop.hammer{bottom:9%!important;left:auto!important;right:1%!important}
+@media(max-width:760px){
+ .hero-prop{width:76px!important;height:88px!important;padding:5px!important}
+ .hero-prop figcaption{font-size:6px!important;letter-spacing:0!important}
+ .hero-prop.shield{top:3%!important;right:0!important}
+ .hero-prop.armor{top:3%!important;left:0!important}
+ .hero-prop.gauntlet{top:48%!important;left:0!important}
+ .hero-prop.hammer{bottom:3%!important;right:0!important}
+ .hero-props{inset:0!important}
+}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -1133,17 +1182,15 @@ if ("IntersectionObserver" in window) {
   art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait">' : '')+
     '<span class="art-burst" aria-hidden="true">POW!</span><span class="art-stamp">CREATE · PLAN · SHOOT · DELIVER</span>';
   hero.appendChild(art);
-  /* Illustrated comic collectibles — custom vector artwork, never emoji placeholders. */
+  /* Photographic Marvel prop references — recognizable physical replicas/props, not vector stand-ins. */
   const props=document.createElement("div");
   props.className="hero-props";
-  props.setAttribute("aria-hidden","true");
+  props.setAttribute("aria-label","Marvel prop collectibles");
   props.innerHTML=
-    '<span class="hero-prop web"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><path d="M50 6V94M6 50H94M19 19L81 81M81 19L19 81M50 6L37 28L50 50L63 28ZM94 50L72 37L50 50L72 63ZM50 94L63 72L50 50L37 72ZM6 50L28 63L50 50L28 37Z"/></svg><small>WEB-SLINGER</small></span>'+
-    '<span class="hero-prop armor"><svg viewBox="0 0 100 100"><path d="M28 8L50 2L72 8L88 28L80 52L72 92H28L20 52L12 28Z"/><path d="M35 15L50 11L65 15L76 31L69 48L63 82H37L31 48L24 31Z"/><circle cx="50" cy="48" r="13"/><path d="M50 35V61M37 48H63"/></svg><small>ARMORED TECH</small></span>'+
-    '<span class="hero-prop hammer"><svg viewBox="0 0 100 100"><path d="M42 40L58 40L64 94L36 94Z"/><path d="M13 12L87 12L82 49L18 49Z"/><path d="M22 19H78M50 12V49"/></svg><small>THUNDER CLASS</small></span>'+
-    '<span class="hero-prop shield"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47"/><circle cx="50" cy="50" r="35"/><circle cx="50" cy="50" r="22"/><path d="M50 28L55 43L71 43L58 53L63 69L50 59L37 69L42 53L29 43L45 43Z"/></svg><small>THE SHIELD</small></span>'+
-    '<span class="hero-prop gauntlet"><svg viewBox="0 0 100 100"><path d="M22 54L19 27Q18 17 26 16Q34 15 35 25L38 42L39 12Q40 3 48 5Q56 6 55 15L54 39L59 13Q61 5 69 8Q77 10 74 19L68 43L77 27Q82 20 89 25Q96 30 90 39L77 69L68 89L34 88L19 70Z"/><path d="M39 58L55 52L70 59L65 74L47 77Z"/></svg><small>INFINITY POWER</small></span>'+
-    '<span class="hero-prop gem"><svg viewBox="0 0 100 100"><path d="M50 4L88 30L73 83L50 98L27 83L12 30Z"/><path d="M12 30H88M27 83L50 4L73 83M12 30L50 98L88 30"/></svg></span>';
+    '<figure class="hero-prop shield"><img src="https://bid.juliensauctions.com/images/lot/4584/458449_xl.jpg?ts=1742640309" alt="Captain America’s original hero shield prop" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>CAPTAIN AMERICA · SHIELD</figcaption></figure>'+
+    '<figure class="hero-prop gauntlet"><img src="https://www.dystryktzero.pl/images/detailed/28/x_hase0491.jpg" alt="Thanos Infinity Gauntlet replica with Infinity Stones" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>THANOS · INFINITY GAUNTLET</figcaption></figure>'+
+    '<figure class="hero-prop armor"><img src="https://cdn.webshopapp.com/shops/259033/files/476136064/hasbro-marvel-iron-man-helmet-hasbro-replica.jpg" alt="Iron Man red and gold helmet replica" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>IRON MAN · HELMET</figcaption></figure>'+
+    '<figure class="hero-prop hammer"><img src="https://cdn.webshopapp.com/shops/305440/files/334090110/thor-full-metal-mjolnir-hammer-base.jpg" alt="Thor’s Mjolnir hammer replica" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>THOR · MJOLNIR</figcaption></figure>';
   hero.appendChild(props);
   const cover=document.createElement("div");
   cover.className="cover-lines";
