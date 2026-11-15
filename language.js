@@ -16,6 +16,107 @@
     "Written, shot & strategized by":"كتابة وتصوير وتخطيط","Based in":"الموقع","Industries":"المجالات","Open to":"متاح لـ","Challenge":"التحدي","Idea":"الفكرة","Execution":"التنفيذ","Results":"النتائج","Email":"البريد الإلكتروني","WhatsApp":"واتساب","LinkedIn":"لينكدإن","Instagram":"إنستجرام",
     "View Strategy PDF ↗":"عرض ملف الاستراتيجية ↗","View Content Plan PDF ↗":"عرض خطة المحتوى ↗","View Script ↗":"عرض السكريبت ↗","View Execution ↗":"مشاهدة التنفيذ ↗"
   };
+  const contentAr = new Map([
+    [S.location || "Cairo, Egypt", "القاهرة، مصر"],
+    [S.openTo || "", "متاح لفرص العمل بدوام كامل في الوكالات الإبداعية والمشروعات المستقلة"],
+    ["Content Creator", "صانع محتوى"],
+    ["Social Media Specialist", "أخصائي سوشيال ميديا"],
+    ["Script Writer", "كاتب سكريبت"],
+    ["Full-time roles at creative agencies · Freelance projects", "وظائف بدوام كامل في الوكالات الإبداعية · ومشروعات عمل حر"],
+    ["Food & Beverage — Bakeries, Restaurants, Cafés, Desserts & Catering", "الأغذية والمشروبات — مخابز ومطاعم وكافيهات وحلويات وخدمات ضيافة"],
+    ["Retail & E-commerce", "التجزئة والتجارة الإلكترونية"],
+    ["Furniture & Home Interiors", "الأثاث والديكور الداخلي"],
+    ["Automotive — Car Care & Protection", "السيارات — العناية بالسيارات والحماية"],
+    ["Marine & Watersports — Boats & Watercraft", "الأنشطة البحرية والرياضات المائية — القوارب والمركبات المائية"],
+    ["Education — Academies & Educational Services", "التعليم — الأكاديميات والخدمات التعليمية"],
+    ["Real Estate & Property Rental", "العقارات وتأجير الوحدات"],
+    ["Marketing Technology & SaaS — CRM, Marketing Automation & Business Solutions", "تكنولوجيا التسويق والبرمجيات — إدارة علاقات العملاء وأتمتة التسويق وحلول الأعمال"],
+    ["Lifestyle & Consumer Brands", "أسلوب الحياة والعلامات التجارية الاستهلاكية"],
+    ["Content Calendars", "خطط المحتوى الشهرية"],
+    ["Scriptwriting", "كتابة السكريبتات"],
+    ["Copywriting", "كتابة المحتوى التسويقي"],
+    ["Content Strategy", "استراتيجية المحتوى"],
+    ["Competitor Research", "تحليل المنافسين"],
+    ["SWOT Analysis", "تحليل SWOT"],
+    ["Creative Concepts", "الأفكار الإبداعية"],
+    ["Photoshoot References", "مراجع جلسات التصوير"],
+    ["Mobile Video Production", "تصوير الفيديو بالموبايل"],
+    ["Photography", "التصوير الفوتوغرافي"],
+    ["Palmé Bakery · Croissant Reel", "بالمية · ريل الكرواسون"],
+    ["Food & Beverage", "الأغذية والمشروبات"],
+    ["Concept, Shot Planning, Mobile Videography, Editing", "الفكرة، وتخطيط اللقطات، والتصوير بالموبايل، والمونتاج"],
+    ["Nut Roasters", "محمصة مكسرات"],
+    ["Pumpkin seeds", "بذور اليقطين"],
+    ["Concept, Shot Planning, Mobile Videography", "الفكرة، وتخطيط اللقطات، والتصوير بالموبايل"],
+    ["Mawlid Branch Coverage", "تغطية فرع المولد"],
+    ["Old Cairo", "القاهرة القديمة"],
+    ["Architectural Photography", "تصوير معماري"],
+    ["A cinematic croissant-making reel for Palmé, focusing on the craftsmanship and details behind the baking process. Pink lighting was incorporated into the visual setup to reflect the brand’s identity and create a distinctive visual atmosphere, blending product-focused close-ups with a dark, cinematic aesthetic.", "ريل سينمائي لرحلة إعداد الكرواسون في Palmé، يركز على الحرفية والتفاصيل الدقيقة في مراحل الخَبز. استخدمت الإضاءة الوردية لتعكس هوية العلامة التجارية وتخلق أجواء بصرية مميزة، مع لقطات قريبة للمنتج وطابع سينمائي داكن."],
+    ["Pumpkin seeds making step by step", "مراحل تحضير بذور اليقطين خطوة بخطوة."],
+    ["A visual coverage of Palmé’s branch during Mawlid celebrations, highlighting the seasonal packaging, festive decorations, and overall branch atmosphere to capture the spirit of the occasion and the brand experience.", "تغطية بصرية لفرع Palmé خلال احتفالات المولد، مع إبراز عبوات الموسم والزينة والأجواء داخل الفرع، لنقل روح المناسبة وتجربة العلامة التجارية."],
+    ["A cinematic reel exploring the details and visual charm of Old Cairo, highlighting its architecture, textures, and cultural character through carefully crafted shots and visual storytelling.", "ريل سينمائي يستكشف تفاصيل وسحر القاهرة القديمة، ويبرز عمارتها وخاماتها وطابعها الثقافي من خلال لقطات مدروسة وسرد بصري."],
+    ["A visually driven product reel showcasing the preparation of Palmé’s Raffaello Cake. The video focuses on the details, textures, and ingredients that bring the product to life, using close-up shots and a visual storytelling approach to capture attention and highlight the product’s appeal.", "ريل بصري يستعرض تحضير تورتة رافايلو من Palmé. يركز الفيديو على التفاصيل والقوام والمكونات التي تمنح المنتج تميزه، من خلال لقطات قريبة وسرد بصري يلفت الانتباه ويبرز جاذبية المنتج."],
+    ["Written, shot & strategized by", "كتابة وتصوير وتخطيط إبداعي"],
+    ["Watch featured work", "شاهد العمل المميز"],
+    ["Reels and commercial projects, tap to play.", "ريلز ومشروعات إعلانية — اضغط للمشاهدة."],
+    ["How the ideas are planned, researched and run.", "كيف نبحث عن الأفكار ونخطط لها وننفذها."],
+    ["Moodboards, references and visual concepts.", "لوحات إلهام ومراجع ومفاهيم بصرية."],
+    ["Stills and set moments, grouped by shoot. Open a folder to see its photos.", "صور ثابتة ولقطات من كواليس التصوير، مرتبة حسب كل جلسة. افتح المجموعة لمشاهدة الصور."],
+    ["The references behind my work: images, color, light, texture and composition.", "المراجع البصرية وراء أعمالي: الصور والألوان والإضاءة والخامات والتكوين."],
+    ["Selected brands behind the work.", "مجموعة من العلامات التجارية التي عملت معها."],
+    ["Open strategy", "عرض الاستراتيجية"],
+    ["Open content plan", "عرض خطة المحتوى"],
+    ["Read script", "قراءة السكريبت"],
+    ["Watch video", "مشاهدة الفيديو"],
+    ["View project ↓", "عرض المشروع ↓"],
+    ["Visit site ↗", "زيارة الموقع ↗"],
+    ["last quarter", "الربع الأخير"],
+    ["7wadet el mwild", "حواديت المولد"],
+    ["July content plan", "خطة محتوى يوليو"],
+    ["Open content plan", "فتح خطة المحتوى"],
+    ["ramadan", "رمضان"],
+    ["grammar", "قواعد اللغة"],
+    ["courses", "الكورسات"],
+    ["color reference", "مرجع الألوان"],
+    ["croissant shoot", "جلسة تصوير الكرواسون"],
+    ["pink vibes", "الأجواء الوردية"],
+    ["fruit Danish", "دانش بالفواكه"],
+    ["7ba kamla", "حبة كاملة"],
+    ["cookies 7ba kamla", "كوكيز الحبة الكاملة"],
+    ["mnen 7ba kamla", "مناقيش الحبة الكاملة"],
+    ["The Mosque-Madrasa of Sultan Hasan", "مجمع السلطان حسن"],
+    ["Passage to Light", "ممر إلى النور"],
+    ["Play of Natural Light", "تلاعب الضوء الطبيعي"],
+    ["Spiritual Serenity", "سكينة وروحانية"],
+    ["Framed Heritage", "تراث داخل إطار"],
+    ["Citadel Horizons", "آفاق القلعة"],
+    ["Echoes of Shadows", "أصداء الظلال"],
+    ["Ya 7alawet el shar2y", "يا حلاوة الشرقي"],
+    ["details", "تفاصيل"],
+    ["3’waysh", "قراميش"]
+  ]);
+  (S.bio || []).forEach((v, i) => {
+    if (i === 0) contentAr.set(v, "وأنا صغير، كان دايمًا بيشغلني سؤال… إزاي مشهد في فيلم يفضل في ذاكرتي سنين؟ أو لحن في إعلان يفضل يتردد في ودني؟\nمع الوقت فهمت إن أي حاجة بتلمس مشاعرنا بتفضل جوانا.\nوساعتها أدركت إن الموضوع مش دايمًا عن المعلومة، لكنه عن الإحساس.\nجملة قصيرة، مشهد مضحك، أو صوت في الخلفية… كلهم ممكن يخلّوا حد يضحك أو يفكر أو يغيّر رأيه، ويمكن كمان ياخد قرار شراء.\nومن هنا بدأت رحلتي. أنا مش بكتب بوستات أو سكريبتات وبس؛ أنا بصنع لحظات بتحسّها وبتفضل فاكرها.");
+  });
+  (S.projects || []).forEach(p => {
+    if (p.title === "Palmé Bakery") contentAr.set(p.title, "مخبوزات Palmé");
+  });
+  (S.cases || []).forEach(c => {
+    if (c.brand === "Palmé Bakery") contentAr.set(c.brand, "مخبوزات Palmé");
+    if (c.campaign === "حواديت المولد -Hawadeet El-Mawlid") contentAr.set(c.campaign, "حواديت المولد");
+    if (c.brand === "rosto") contentAr.set(c.brand, "روستو");
+    if (c.campaign === "strategy 2025") contentAr.set(c.campaign, "استراتيجية 2025");
+  });
+  const applyContentTranslation = ar => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (node.__portfolioOriginal === undefined) node.__portfolioOriginal = node.nodeValue;
+      const original = node.__portfolioOriginal.trim();
+      const translated = ar ? (contentAr.get(original) || dict[original] || null) : node.__portfolioOriginal;
+      if (translated !== null) node.nodeValue = node.__portfolioOriginal.replace(original, translated);
+    }
+  };
   const arText = (s) => dict[s] || s;
   const css = document.createElement("style");
   css.textContent = `
@@ -109,31 +210,6 @@
   add(".head .slate,.head h2,.head .sub,.contact .slate,.contact h2,.finfo .slate,.finfo h3,.finfo p,.bio .facts .meta,.case dt", dict);
   add(".doc a,.doc .k", dict);
 
-  const ensureGoogleTranslate = () => {
-    if (document.getElementById("google_translate_element")) return;
-    const host = document.createElement("div");
-    host.id = "google_translate_element";
-    host.style.cssText = "position:fixed;left:-9999px;top:-9999px";
-    document.body.appendChild(host);
-    window.googleTranslateElementInit = () => {
-      if (!window.google?.translate?.TranslateElement) return;
-      new google.translate.TranslateElement({pageLanguage:"en",includedLanguages:"ar",autoDisplay:false}, "google_translate_element");
-      if (window.__portfolioLang === "ar") setTimeout(() => triggerGoogleTranslate("ar"), 400);
-    };
-    if (!document.querySelector('script[data-google-translate]')) {
-      const s = document.createElement("script");
-      s.dataset.googleTranslate = "1";
-      s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      document.head.appendChild(s);
-    }
-  };
-  const triggerGoogleTranslate = lang => {
-    const combo = document.querySelector(".goog-te-combo");
-    if (!combo) return false;
-    combo.value = lang === "ar" ? "ar" : "";
-    combo.dispatchEvent(new Event("change"));
-    return true;
-  };
   const apply = lang => {
     const ar = lang === "ar";
     window.__portfolioLang = ar ? "ar" : "en";
@@ -146,13 +222,7 @@
     });
     $$(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
-    ensureGoogleTranslate();
-    let tries = 0;
-    const retry = () => {
-      if (triggerGoogleTranslate(lang) || tries++ > 24) return;
-      setTimeout(retry, 250);
-    };
-    retry();
+    applyContentTranslation(ar);
   };
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-lang]");
