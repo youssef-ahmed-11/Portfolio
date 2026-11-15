@@ -1686,7 +1686,7 @@ if ("IntersectionObserver" in window) {
     el.dataset.done = "1";
     const target = Number(el.dataset.count) || 0;
     const start = performance.now();
-    const duration = target >= 1000000 ? 1900 : 1300;
+    const duration = target >= 1000000 ? 650 : 450;
     const format = n => el.dataset.format === "million" ? (n >= 1000000 ? "1M" : Math.floor(n / 1000).toLocaleString("en-US") + "K") : Math.floor(n).toLocaleString("en-US");
     const tick = now => {
       const p = Math.min(1, (now - start) / duration);
