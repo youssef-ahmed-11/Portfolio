@@ -1843,7 +1843,120 @@ if ("IntersectionObserver" in window) {
   }
 }
 
+
+/* THE NEON OPENING — compact persistent synthwave player */
+#neon-sound-player{position:fixed;right:18px;bottom:82px;z-index:90;font-family:var(--m)}
+#neon-sound-player button{font:inherit;cursor:pointer}
+.neon-toggle{display:flex;align-items:center;gap:10px;padding:10px 13px;background:#111113;border:1px solid #a52b26;color:var(--ink);box-shadow:4px 4px 0 #e63b1f;letter-spacing:.1em;font-size:10px}
+.neon-disc{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle,#111 0 2px,#383033 3px 4px);border:2px solid #e8bd70;position:relative}
+.neon-disc:after{content:"";width:5px;height:5px;border-radius:50%;background:#e63b1f;border:1px solid #f2ede4}
+.neon-bars{height:15px;display:flex;align-items:center;gap:2px}
+.neon-bars i{display:block;width:2px;height:4px;background:#e63b1f}
+#neon-sound-player.is-playing .neon-disc{animation:neon-spin 4s linear infinite}
+#neon-sound-player.is-playing .neon-bars i{animation:neon-eq .55s ease-in-out infinite alternate}
+#neon-sound-player.is-playing .neon-bars i:nth-child(2){animation-delay:.15s}
+#neon-sound-player.is-playing .neon-bars i:nth-child(3){animation-delay:.3s}
+#neon-sound-player.is-playing .neon-bars i:nth-child(4){animation-delay:.08s}
+@keyframes neon-spin{to{transform:rotate(360deg)}}
+@keyframes neon-eq{to{height:14px}}
+.neon-label{display:grid;gap:2px;text-align:left}
+.neon-label b{font-size:10px;font-weight:400;color:#f2ede4}
+.neon-label small{font-size:8px;letter-spacing:.13em;color:#c9a24b}
+@media(max-width:600px){#neon-sound-player{right:12px;bottom:76px}.neon-toggle{padding:9px 10px;gap:8px}.neon-label b{font-size:9px}}
+@media(prefers-reduced-motion:reduce){#neon-sound-player.is-playing .neon-disc,#neon-sound-player.is-playing .neon-bars i{animation:none}}
+
 </style>
 <script id="comic-panels-script-v2">(()=>{const h=document.querySelector(".hero");if(!h||document.querySelector(".comic-panels"))return;const p=document.createElement("nav");p.className="comic-panels";p.setAttribute("aria-label","Explore portfolio");p.innerHTML='<a class="comic-panel" href="#clients"><span>OUR<br>CLIENTS</span><b>→</b></a><a class="comic-panel" href="#work"><span>EXPLORE<br>MY WORK</span><b>→</b></a><a class="comic-panel" href="#strategy"><span>CASE<br>STUDIES</span><b>→</b></a>';h.insertAdjacentElement("afterend",p)})();</script>
+
+<div id="neon-sound-player">
+  <button class="neon-toggle" type="button" aria-label="Play original Synthwave soundtrack" aria-pressed="false">
+    <span class="neon-disc" aria-hidden="true"></span>
+    <span class="neon-label"><b>THE NEON OPENING</b><small>SOUND OFF · SYNTHWAVE</small></span>
+    <span class="neon-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+</div>
+<script id="neon-sound-script">
+(() => {
+  const player = document.getElementById("neon-sound-player");
+  if (!player) return;
+  const button = player.querySelector("button");
+  const small = player.querySelector("small");
+  let ctx, master, timer = null, nextStep = 0, nextTime = 0, bar = 0;
+  const bpm = 100, stepTime = 60 / bpm / 4;
+  const progression = [
+    {root:48, chord:[60,63,67,70]},
+    {root:44, chord:[56,60,63,67]},
+    {root:39, chord:[51,55,58,63]},
+    {root:46, chord:[58,62,65,68]}
+  ];
+  const arp = [0,2,3,2,1,3,2,1,0,2,3,2,1,2,3,2];
+  function tone(freq, start, duration, type, volume, filterFreq, detune=0) {
+    const osc = ctx.createOscillator(), gain = ctx.createGain(), filter = ctx.createBiquadFilter();
+    osc.type = type; osc.frequency.setValueAtTime(freq, start); osc.detune.value = detune;
+    filter.type = "lowpass"; filter.frequency.setValueAtTime(filterFreq, start);
+    gain.gain.setValueAtTime(.0001, start);
+    gain.gain.exponentialRampToValueAtTime(Math.max(.0002,volume), start + .025);
+    gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
+    osc.connect(filter); filter.connect(gain); gain.connect(master);
+    osc.start(start); osc.stop(start + duration + .04);
+  }
+  function kick(t) {
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type="sine"; o.frequency.setValueAtTime(115,t); o.frequency.exponentialRampToValueAtTime(42,t+.16);
+    g.gain.setValueAtTime(.22,t); g.gain.exponentialRampToValueAtTime(.0001,t+.2);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t+.22);
+  }
+  function noise(t, duration, volume, highpass) {
+    const length=Math.ceil(ctx.sampleRate*duration), buffer=ctx.createBuffer(1,length,ctx.sampleRate), data=buffer.getChannelData(0);
+    for(let i=0;i<length;i++) data[i]=Math.random()*2-1;
+    const src=ctx.createBufferSource(), filter=ctx.createBiquadFilter(), gain=ctx.createGain();
+    src.buffer=buffer; filter.type="highpass"; filter.frequency.value=highpass;
+    gain.gain.setValueAtTime(volume,t); gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+    src.connect(filter); filter.connect(gain); gain.connect(master); src.start(t);
+  }
+  function scheduleStep(t, index, currentBar) {
+    const p=progression[currentBar%4], beat=index%4;
+    if(index===0){
+      p.chord.forEach((n,i)=>tone(440*Math.pow(2,(n-69)/12),t,2.25,"sawtooth",.018,850,i%2?7:-7));
+      tone(440*Math.pow(2,(p.root-12-69)/12),t,2.2,"triangle",.075,220);
+    }
+    if(index%4===0) kick(t);
+    if(index%4===2) noise(t,.16,.055,900);
+    if(index%2===0) noise(t,.045,.012,6500);
+    const note=p.chord[arp[index]];
+    tone(440*Math.pow(2,(note+12-69)/12),t,.12,"triangle",.026,2600);
+    if(index%4===1 || index%4===3) tone(440*Math.pow(2,(p.root-69)/12),t,.2,"sawtooth",.035,500);
+  }
+  function scheduler(){
+    while(nextTime < ctx.currentTime + .12){
+      scheduleStep(nextTime,nextStep,bar);
+      nextStep++;
+      if(nextStep===16){nextStep=0;bar=(bar+1)%4;}
+      nextTime+=stepTime;
+    }
+  }
+  async function start(){
+    const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContextClass){small.textContent="AUDIO NOT SUPPORTED";return;}
+    ctx=ctx||new AudioContextClass();
+    await ctx.resume();
+    if(!master){master=ctx.createGain();master.gain.value=.62;const comp=ctx.createDynamicsCompressor();master.connect(comp);comp.connect(ctx.destination);}
+    nextTime=ctx.currentTime+.06; nextStep=0; bar=0;
+    scheduler(); timer=window.setInterval(scheduler,25);
+    player.classList.add("is-playing");button.setAttribute("aria-pressed","true");
+    button.setAttribute("aria-label","Pause original Synthwave soundtrack");
+    small.textContent="SOUND ON · SYNTHWAVE";
+  }
+  function stop(){
+    if(timer!==null){window.clearInterval(timer);timer=null;}
+    if(master && ctx){master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.0001,ctx.currentTime,.035);}
+    player.classList.remove("is-playing");button.setAttribute("aria-pressed","false");
+    button.setAttribute("aria-label","Play original Synthwave soundtrack");small.textContent="SOUND OFF · SYNTHWAVE";
+    if(master && ctx){window.setTimeout(()=>{if(timer===null && master){try{master.disconnect();}catch(e){} master=null;}},180);}
+  }
+  button.addEventListener("click",()=>{if(timer!==null)stop();else start().catch(()=>{small.textContent="TAP TO ENABLE SOUND";});});
+})();
+</script>
+
 </body>
 </html>
