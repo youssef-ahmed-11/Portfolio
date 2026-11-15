@@ -1502,7 +1502,7 @@ a.cl:hover .go{background:#df2927!important;color:#fff!important}
 </header>
 <nav class="tabbar" aria-label="Quick links"><a href="#about">About</a><a href="#work">Work</a><a href="#strategy">Strategy</a><a href="#contact">Contact</a></nav>
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
-<footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · <span id="fl">CAIRO, EGYPT</span></footer>
+<footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
 <script src="content.js?v=20261115-3"></script>
 <script>
@@ -1590,7 +1590,7 @@ $("#app").innerHTML = `
 <div class="mq" aria-hidden="true"><div class="mq-t">${marq}${marq}</div></div>
 ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   `<div class="about rv"><div class="about-poster" aria-label="Yousef Ahmed editorial identity poster">
-    <div class="ap-top"><span>INDEPENDENT CREATIVE</span><span>CAIRO · EGYPT</span></div>
+    <div class="ap-top"><span>INDEPENDENT CREATIVE</span></div>
     <div class="ap-art" aria-hidden="true"><div class="ap-orbit"></div><div class="ap-cross ap-cross-one"></div><div class="ap-cross ap-cross-two"></div><span class="ap-mark">YA</span><span class="ap-side">IDEAS INTO STORIES</span></div>
     <div class="ap-name"><span>YOUSEF</span><span>AHMED</span></div>
     <div class="ap-bottom"><span>CONTENT</span><i></i><span>STORY</span><i></i><span>STRATEGY</span></div>
@@ -1690,11 +1690,11 @@ if ("IntersectionObserver" in window) {
   art.appendChild(cover);
   const corner=document.createElement("span");
   corner.className="cover-corner";
-  corner.innerHTML='<b>01</b><small>CAIRO<br>EGYPT</small>';
+  corner.innerHTML='<b>01</b>';
   hero.appendChild(corner);
   const issue=document.createElement("span");
   issue.className="comic-issue";
-  issue.textContent="ISSUE 01 · CAIRO, EGYPT";
+  issue.textContent="ISSUE 01";
   copy.insertBefore(issue,copy.firstChild);
   hero.querySelector(".rec")?.setAttribute("aria-label","Recording in Cairo, Egypt");
 })();
