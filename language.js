@@ -217,6 +217,20 @@
     if (c.brand === "rosto") contentAr.set(c.brand, "روستو");
     if (c.campaign === "strategy 2025") contentAr.set(c.campaign, "استراتيجية 2025");
   });
+  [
+    ["THE CREATOR FILE","ملف صانع المحتوى"],
+    ["IDEAS THAT","أفكار"],
+    ["HIT DIFFERENT.","تسيب أثر."],
+    ["CONTENT · REELS · STRATEGY","محتوى · ريلز · استراتيجية"],
+    ["SPECIAL EDITION / 01","إصدار خاص / ٠١"],
+    ["WEB-SLINGER","قوة العنكبوت"],
+    ["ARMORED TECH","تقنيات الدرع"],
+    ["THUNDER CLASS","قوة الرعد"],
+    ["THE SHIELD","الدرع"],
+    ["INFINITY POWER","قوة الأحجار"],
+    ["ISSUE 01 · CAIRO, EGYPT","العدد ٠١ · القاهرة، مصر"],
+    ["CREATE · PLAN · SHOOT · DELIVER","ابتكر · خطّط · صوّر · نفّذ"]
+  ].forEach(([en, ar]) => contentAr.set(en, ar));
   const normalizeText = value => String(value ?? "").replace(/\s+/g, " ").trim();
   const normalizedContentAr = new Map([...contentAr.entries()].map(([en, ar]) => [normalizeText(en), ar]));
   const normalizedDict = new Map(Object.entries(dict).map(([en, ar]) => [normalizeText(en), ar]));
