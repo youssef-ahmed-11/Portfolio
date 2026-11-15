@@ -195,6 +195,42 @@ a.cl:hover{border-color:var(--red)}a.cl:hover .go{color:var(--red)}
 .rv{opacity:1;transform:none;transition:none}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.mq-t,.rec i{animation:none}html{scroll-behavior:auto}}
 
+
+/* ABOUT — THE DIRECTOR'S MIND editorial collage */
+.director-collage{position:relative;isolation:isolate;overflow:hidden;max-width:420px;min-height:510px;aspect-ratio:4/5;padding:18px;background:#e9d8b9;color:#17100e;border:5px solid #17100e;box-shadow:9px 9px 0 #e63227,15px 15px 0 #e5b86b}
+.director-collage:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background-image:radial-gradient(#17100e .8px,transparent .9px);background-size:5px 5px}
+.dc-top,.dc-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;font:9px var(--m);letter-spacing:.12em}
+.dc-top{border-bottom:2px solid #17100e;padding:0 0 10px}
+.dc-stage{position:relative;height:365px;margin:14px 0 12px;overflow:hidden;background:linear-gradient(145deg,#a82025 0 42%,#211513 42% 100%);border:3px solid #17100e;box-shadow:5px 5px 0 #17100e}
+.dc-stage:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 17px,rgba(245,232,207,.1) 18px 20px);mix-blend-mode:screen}
+.dc-record{position:absolute;width:218px;height:218px;border-radius:50%;left:9%;top:16%;background:repeating-radial-gradient(circle,#111 0 3px,#292323 4px 6px,#111 7px 9px);border:5px solid #090909;box-shadow:8px 9px 0 rgba(0,0,0,.4)}
+.dc-label{position:absolute;width:68px;height:68px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:#e63227;border:5px solid #e9d8b9}
+.dc-record-core{position:absolute;width:9px;height:9px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:#17100e}
+.dc-lens{position:absolute;width:148px;height:148px;border-radius:50%;right:5%;top:32%;background:radial-gradient(circle,#e5b86b 0 8%,#17100e 9% 22%,#4c4740 23% 27%,#090909 28% 55%,#777064 56% 59%,#17100e 60%);border:8px solid #d6c4a4;box-shadow:0 0 0 5px #17100e,7px 8px 0 rgba(0,0,0,.4)}
+.dc-lens span{position:absolute;inset:22%;border:1px solid rgba(245,232,207,.5);border-radius:50%}
+.dc-lens i{position:absolute;width:8px;height:8px;background:#e63227;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.dc-film{position:absolute;display:flex;gap:5px;padding:6px;background:#080808;border:1px solid #e9d8b9;box-shadow:4px 4px 0 rgba(0,0,0,.35);z-index:3}
+.dc-film b{display:block;width:31px;height:25px;background:linear-gradient(145deg,#e5b86b,#a82025 55%,#17100e);border:1px solid #aaa}
+.dc-film-a{left:-14px;bottom:56px;transform:rotate(-12deg)}
+.dc-film-b{right:-12px;top:15px;transform:rotate(13deg)}
+.dc-film-b b{width:26px;height:20px;background:linear-gradient(135deg,#e9d8b9,#51423a 55%,#a82025)}
+.dc-headphones{position:absolute;right:16%;top:7%;width:78px;height:70px;border:8px solid #e5b86b;border-bottom:0;border-radius:55px 55px 0 0;transform:rotate(16deg);z-index:4}
+.dc-headphones:before,.dc-headphones:after{content:"";position:absolute;bottom:-14px;width:17px;height:29px;background:#17100e;border:3px solid #e5b86b;border-radius:5px}
+.dc-headphones:before{left:-9px}.dc-headphones:after{right:-9px}
+.dc-clapper{position:absolute;left:56%;bottom:24px;width:100px;height:58px;background:#e9d8b9;border:4px solid #17100e;transform:rotate(-9deg);z-index:4;box-shadow:4px 4px 0 #e63227}
+.dc-clapper i{position:absolute;left:-4px;right:-4px;top:-16px;height:15px;background:repeating-linear-gradient(135deg,#17100e 0 10px,#e9d8b9 10px 20px);border:3px solid #17100e}
+.dc-clapper b{position:absolute;left:8px;right:8px;top:24px;border-top:2px solid #17100e}
+.dc-wave{position:absolute;right:8px;bottom:15px;display:flex;align-items:center;gap:3px;height:44px;z-index:5}
+.dc-wave i{display:block;width:3px;background:#e5b86b;border-radius:4px;height:var(--h,18px)}
+.dc-wave i:nth-child(3n){height:34px}.dc-wave i:nth-child(2n){height:25px}.dc-wave i:nth-child(5n){height:40px}
+.dc-sticker{position:absolute;left:13px;top:14px;padding:8px 10px;background:#e5b86b;color:#17100e;font:18px/.85 var(--d);transform:rotate(-8deg);box-shadow:3px 3px 0 #17100e;z-index:6}
+.dc-note{position:absolute;right:10px;top:105px;writing-mode:vertical-rl;color:#f6e8cf;font:8px var(--m);letter-spacing:.16em}
+.dc-bottom{border-top:2px solid #17100e;padding-top:10px;flex-wrap:wrap}
+.dc-bottom b{font:25px/.9 var(--d);letter-spacing:.02em}
+.dc-bottom b:nth-child(2){color:#a82025}
+.dc-bottom span{flex-basis:100%;font:8px var(--m);letter-spacing:.16em;margin-top:2px}
+@media(max-width:860px){.director-collage{max-width:100%;min-height:420px;aspect-ratio:4/4.5}.dc-stage{height:clamp(280px,78vw,365px)}}
+
 /* COMIC BOOK ART DIRECTION */
 :root{--bg:#100e0d;--ink:#f6e8cf;--red:#e63227;--gold:#e5b86b;--line:#55443a;--mute:#b6a18b;--d:'Bebas Neue',Impact,sans-serif;--s:'Playfair Display',Georgia,serif;--b:Inter,system-ui,sans-serif;--m:'Space Mono',ui-monospace,monospace}
 body{background-color:#100e0d;background-image:radial-gradient(rgba(230,50,39,.16) .8px,transparent .8px),linear-gradient(135deg,#100e0d 0%,#17110f 55%,#0c0b0a 100%);background-size:7px 7px,auto}
@@ -1601,12 +1637,20 @@ $("#app").innerHTML = `
 </section>
 <div class="mq" aria-hidden="true"><div class="mq-t">${marq}${marq}</div></div>
 ${sec("about", head("THE LOGLINE", "ABOUT", "") +
-  `<div class="about rv"><div class="about-poster" aria-label="Yousef Ahmed editorial identity poster">
-    <div class="ap-top"><span>INDEPENDENT CREATIVE</span></div>
-    <div class="ap-art" aria-hidden="true"><div class="ap-orbit"></div><div class="ap-cross ap-cross-one"></div><div class="ap-cross ap-cross-two"></div><span class="ap-mark">YA</span><span class="ap-side">IDEAS INTO STORIES</span></div>
-    <div class="ap-name"><span>YOUSEF</span><span>AHMED</span></div>
-    <div class="ap-bottom"><span>CONTENT</span><i></i><span>STORY</span><i></i><span>STRATEGY</span></div>
-    <div class="ap-index">CREATIVE PROFILE — 01</div>
+  `<div class="about rv"><div class="director-collage" aria-label="Editorial collage combining music, cinema and content creation">
+    <div class="dc-top"><span>THE DIRECTOR'S MIND</span><span>VOL. 01 / CAIRO</span></div>
+    <div class="dc-stage">
+      <div class="dc-record"><span class="dc-label"></span><span class="dc-record-core"></span></div>
+      <div class="dc-lens"><span></span><i></i></div>
+      <div class="dc-film dc-film-a"><b></b><b></b><b></b><b></b></div>
+      <div class="dc-film dc-film-b"><b></b><b></b><b></b></div>
+      <div class="dc-headphones"><i></i><b></b></div>
+      <div class="dc-clapper"><i></i><b></b></div>
+      <div class="dc-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="dc-sticker">CUT<br>TO<br>THE<br>BEAT</span>
+      <span class="dc-note">FRAME / SOUND / STORY</span>
+    </div>
+    <div class="dc-bottom"><b>HALF MUSIC.</b><b>HALF CINEMA.</b><span>ALL CREATIVITY — 01</span></div>
   </div>
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
