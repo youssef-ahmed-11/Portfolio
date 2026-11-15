@@ -423,7 +423,7 @@ if ("IntersectionObserver" in window) {
   [...hero.children].forEach(el=>copy.appendChild(el));
   hero.appendChild(copy);
   const title=copy.querySelector("h1");
-  if(title){const parts=title.textContent.trim().split(/\\s+/);if(parts.length>1)title.innerHTML=parts.slice(0,-1).join(" ")+"<br><span class=\"last-name\">"+parts.at(-1)+"</span>";}
+  if(title){const parts=title.textContent.trim().split(/\s+/);if(parts.length>1)title.innerHTML=parts.slice(0,-1).join(" ")+"<br><span class=\"last-name\">"+parts.at(-1)+"</span>";}
   const art=document.createElement("div");
   art.className="hero-art";
   const portrait=(typeof SITE!=="undefined" && SITE.photo) ? SITE.photo : "";
