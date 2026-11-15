@@ -3,21 +3,7 @@
   // content.js declares SITE as a top-level const (not window.SITE).
   // Read that lexical global so translations can be built from the real portfolio content.
   const S = (typeof SITE !== "undefined" ? SITE : window.SITE) || {};
-  // Register the language control before building dictionaries, so a later
-  // translation-data error cannot leave the EN/AR buttons inert.
-  document.addEventListener("click", event => {
-    const target = event.target instanceof Element ? event.target : event.target?.parentElement;
-    const button = target?.closest("[data-lang]");
-    if (!button) return;
-    event.preventDefault();
-    const requested = button.dataset.lang === "ar" ? "ar" : "en";
-    if (typeof window.setPortfolioLanguage === "function") {
-      window.setPortfolioLanguage(requested);
-    } else {
-      window.__requestedPortfolioLanguage = requested;
-      button.setAttribute("aria-pressed", "true");
-    }
-  }, true);
+  // Language buttons are bound directly when each switcher is created below.
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const dict = {
@@ -264,7 +250,8 @@
     });
     $$(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
-    applyContentTranslation(ar);
+    // Keep the language switch responsive even if a text-node translation fails.
+    try { applyContentTranslation(ar); } catch (error) { console.error("Portfolio text translation failed:", error); }
   };
   window.setPortfolioLanguage = apply;
   // Keep the language action available even if optional portfolio sections fail.
@@ -306,7 +293,14 @@
     const node = document.createElement("div");
     node.className = "lang-switch";
     node.setAttribute("aria-label","Choose language");
-    node.innerHTML = '<button type="button" data-lang="en">EN</button><span>/</span><button type="button" data-lang="ar">AR</button>';
+    node.innerHTML = '<button type="button" data-lang="en" aria-label="Switch to English">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="ar" aria-label="التبديل إلى العربية">AR</button>';
+    node.querySelectorAll("button[data-lang]").forEach(button => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        apply(button.dataset.lang === "ar" ? "ar" : "en");
+      });
+    });
     return node;
   };
   const nav = $(".nav");
