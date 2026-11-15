@@ -278,25 +278,6 @@
     .lang-switch{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 11px;font:11px var(--m);letter-spacing:.12em;cursor:pointer;white-space:nowrap}
     .lang-switch button{border:0;background:none;color:var(--mute);font:inherit;padding:0;cursor:pointer}
     .lang-switch button[aria-pressed="true"]{color:var(--red);font-weight:bold}
-    .thinking-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
-    .thinking-card{border:1px solid var(--line);padding:22px;background:#111113;min-width:0}
-    .thinking-card .tc-kind{font:10px var(--m);letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
-    .thinking-card h3{font:400 clamp(25px,3vw,36px)/1.05 var(--d);margin:12px 0;overflow-wrap:anywhere}
-    .thinking-card p{font-size:14px;color:#cfc9bf;margin:0 0 18px}
-    .thinking-card a{display:inline-block;font:10px var(--m);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--red);padding-bottom:4px}
-    .thinking-card a:hover{color:var(--red)}
-    .thinking-client{font:10px var(--m);color:var(--mute);letter-spacing:.12em;text-transform:uppercase;margin-top:16px}
-    html[dir="rtl"] body{font-family:'Cairo',sans-serif}
-    html[dir="rtl"] .nav,html[dir="rtl"] .nav nav,html[dir="rtl"] .tabbar,html[dir="rtl"] .cta,html[dir="rtl"] .rows>*{direction:rtl}
-    html[dir="rtl"] .nav nav a,html[dir="rtl"] .tabbar a,html[dir="rtl"] .btn,html[dir="rtl"] .slate,html[dir="rtl"] .meta,html[dir="rtl"] .rec,html[dir="rtl"] .roles,html[dir="rtl"] .thinking-card .tc-kind,html[dir="rtl"] .thinking-card a{font-family:'Cairo',sans-serif;letter-spacing:0}
-    html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] .card h3,html[dir="rtl"] .case h3,html[dir="rtl"] .board h3,html[dir="rtl"] .sn b,html[dir="rtl"] .finfo h3{font-family:'Cairo',sans-serif;line-height:1.2}
-    html[dir="rtl"] .sub,html[dir="rtl"] .cred{font-family:'Cairo',sans-serif;font-style:normal}
-    html[dir="rtl"] .bio,html[dir="rtl"] .card p,html[dir="rtl"] .case dd,html[dir="rtl"] .finfo p,html[dir="rtl"] .thinking-card{text-align:right}
-    html[dir="rtl"] .facts .meta{min-width:110px}
-    html[dir="rtl"] .rows span:last-child{text-align:left}
-    html[dir="rtl"] .rec i{margin-right:0;margin-left:10px}
-    html[dir="rtl"] .thinking-card h3{font-family:'Cairo',sans-serif}
-    html[dir="rtl"] .thinking-client{text-align:right}
     @media(max-width:760px){.nav .lang-switch{padding:7px 8px}.nav{gap:8px}.nav .btn{padding:9px 10px;font-size:10px}}
   `;
   document.head.append(css);
@@ -331,45 +312,6 @@
     });
   });
 
-  const entries = [];
-  (S.clients || []).forEach(client => (client.links || []).forEach(link => {
-    if (!link || !link.url) return;
-    const kind = String(link.kind || "").toLowerCase();
-    let group = "";
-    if (kind.includes("strateg")) group = "strategy";
-    else if (kind.includes("content")) group = "plan";
-    else if (kind.includes("script")) group = "script";
-    else if (kind.includes("video") || kind.includes("execution")) group = "execution";
-    if (group) entries.push({group, client:client.name || "Client", title:link.title || link.kind, url:link.url, kind:link.kind});
-  }));
-  const groups = [
-    {id:"strategy", en:"STRATEGIES", ar:"الاستراتيجيات", descEn:"Research, positioning and campaign thinking.", descAr:"الأبحاث والتموضع وأفكار الحملات."},
-    {id:"plan", en:"CONTENT PLANS", ar:"خطط المحتوى", descEn:"Turning strategy into clear content direction.", descAr:"تحويل الاستراتيجية إلى خطة محتوى واضحة."},
-    {id:"script", en:"SCRIPTS", ar:"السكريبتات", descEn:"The words and structure behind the idea.", descAr:"الكلمات والبناء الإبداعي وراء الفكرة."},
-    {id:"execution", en:"EXECUTION", ar:"التنفيذ", descEn:"Published work and the final execution.", descAr:"المحتوى بعد التنفيذ والنشر."}
-  ];
-  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const cards = groups.map(g => {
-    const items = entries.filter(x => x.group === g.id);
-    if (!items.length) return "";
-    return `<article class="thinking-card rv"><span class="tc-kind" data-en="${g.en}" data-ar="${g.ar}">${g.en}</span><h3 data-en="${g.en}" data-ar="${g.ar}">${g.en}</h3><p data-en="${g.descEn}" data-ar="${g.descAr}">${g.descEn}</p>${items.map(x => `<div style="padding:12px 0;border-top:1px solid var(--line)"><div class="meta">${esc(x.client)}</div><h3 style="font-size:24px;margin:6px 0 12px">${esc(x.title)}</h3><a href="${esc(x.url)}" target="_blank" rel="noopener" data-en="${g.id==="strategy"?"Open strategy ↗":g.id==="plan"?"Open content plan ↗":g.id==="script"?"Read script ↗":"View execution ↗"}" data-ar="${g.id==="strategy"?"عرض الاستراتيجية ↗":g.id==="plan"?"عرض خطة المحتوى ↗":g.id==="script"?"قراءة السكريبت ↗":"مشاهدة التنفيذ ↗"}">${g.id==="strategy"?"Open strategy ↗":g.id==="plan"?"Open content plan ↗":g.id==="script"?"Read script ↗":"View execution ↗"}</a></div>`).join("")}</article>`;
-  }).join("");
-  const clientSec = $("#clients");
-  if (clientSec && cards) {
-    const sec = document.createElement("section");
-    sec.className = "sec";
-    sec.id = "thinking";
-    sec.innerHTML = `<div class="wrap"><div class="head rv"><div class="slate" data-en="BEHIND THE WORK" data-ar="ما وراء العمل">BEHIND THE WORK</div><h2 data-en="THE THINKING BEHIND THE CONTENT" data-ar="الفكرة وراء المحتوى">THE THINKING BEHIND THE CONTENT</h2><p class="sub" data-en="Strategy, planning, and scripts — from the first idea to the final execution." data-ar="استراتيجية وتخطيط وسكريبتات — من أول فكرة لحد التنفيذ.">Strategy, planning, and scripts — from the first idea to the final execution.</p></div><div class="thinking-grid">${cards}</div></div>`;
-    clientSec.insertAdjacentElement("afterend", sec);
-  }
-  const navLink = document.createElement("a");
-  navLink.href = "#thinking";
-  navLink.textContent = "Thinking";
-  navLink.dataset.en = "Thinking"; navLink.dataset.ar = "التفكير";
-  if (nav && $("nav", nav)) {
-    const work = $('nav a[href="#work"]', nav);
-    if (work) work.insertAdjacentElement("beforebegin", navLink);
-  }
 
   const translations = new Map();
   const add = (selector, map) => $$(selector).forEach(el => {
