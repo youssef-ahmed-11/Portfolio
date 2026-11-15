@@ -244,6 +244,36 @@ footer{border-top:2px solid var(--red);background:#0b0908}
 }
 @media(prefers-reduced-motion:reduce){.hero .rec i{animation:none}}
 
+/* Comic-cover refinements */
+.hero{max-width:none;padding-left:max(6vw,28px);padding-right:max(6vw,28px)}
+.comic-copy{width:100%;padding:clamp(8px,2vw,24px) 0}
+.hero .rec{margin-left:8px}
+.hero h1{max-width:760px;font-size:clamp(76px,12.5vw,190px);line-height:.76}
+.hero h1 .last-name{display:inline-block;margin-left:clamp(12px,2vw,28px)}
+.hero .cred{max-width:560px;padding-left:8px}
+.hero .roles{max-width:570px;padding-left:10px}
+.hero .cta{padding-left:8px}
+.hero-art{min-width:0}
+.hero-art img{object-position:center bottom}
+.hero-art::before{clip-path:polygon(7% 0,100% 4%,94% 100%,0 93%);box-shadow:9px 9px 0 var(--red)}
+.hero-art .art-stamp{font-size:clamp(15px,2vw,22px)}
+.sec .head{transform:rotate(-.6deg)}
+.card,.case,.board{clip-path:polygon(0 0,98.5% 1%,100% 98%,1% 100%)}
+.vid,.gf{background-color:#1b1512}
+.cl{min-height:150px}
+.cl img{max-width:96%;max-height:90%}
+@media(min-width:1100px){
+ .hero{grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr);gap:2vw}
+ .hero-art{min-height:540px}
+}
+@media(max-width:760px){
+ .hero{padding-left:22px;padding-right:22px}
+ .hero h1{font-size:clamp(72px,17vw,132px);line-height:.8}
+ .hero h1 .last-name{margin-left:8px}
+ .hero-art{width:100%;min-height:270px}
+ .hero .cred{font-size:19px}
+}
+
 </style>
 </head>
 <body>
