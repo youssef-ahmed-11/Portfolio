@@ -258,11 +258,11 @@
     document.documentElement.lang = ar ? "ar" : "en";
     document.documentElement.dir = ar ? "rtl" : "ltr";
     document.body.dataset.language = lang;
-    $("[data-en][data-ar]").forEach(el => {
+    $$("[data-en][data-ar]").forEach(el => {
       const v = ar ? el.dataset.ar : el.dataset.en;
       if (v != null) el.textContent = v;
     });
-    $(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    $$(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     try { localStorage.setItem("portfolio-language", lang); } catch (_) {}
     applyContentTranslation(ar);
   };
