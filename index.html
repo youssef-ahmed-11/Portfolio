@@ -1034,6 +1034,12 @@ footer{color:#fff4df!important;opacity:1!important}
 /* GLOBAL TYPE LEGIBILITY — remove decorative text shadows that muddy lettering */
 /* Keep typography crisp across headings, captions, labels and navigation. */
 #app *, .nav *, .tabbar *, footer * { text-shadow:none !important; }
+
+/* Clear, visible actions for client resources */
+#clients .mat{cursor:pointer;min-height:58px!important;border:2px solid #d9272e!important;box-shadow:3px 3px 0 #211315!important}
+#clients .mat .mat-action{display:inline-block;margin-top:7px;padding:5px 8px;background:#d9272e;color:#fff4df;font:900 10px/1.2 var(--m);letter-spacing:.08em}
+#clients .mat:hover .mat-action{background:#211315;color:#fff4df}
+#clients .mat .mt b{display:block}
 </style>
 <style id="mobile-language-and-marvel-props">
 /* Keep the mobile quick bar fixed and its EN/AR controls visible above the safe area. */
@@ -1716,7 +1722,7 @@ body::before,body::after{display:none!important}
 #clients .client-marquee-track{
   display:flex!important;align-items:stretch!important;gap:16px!important;
   width:max-content!important;will-change:transform;
-  animation:clientMarquee 48s linear infinite;
+  animation:clientMarquee 28s linear infinite;
 }
 #clients .client-marquee-track>.cw{
   flex:0 0 clamp(190px,22vw,250px)!important;width:clamp(190px,22vw,250px)!important;
@@ -1732,7 +1738,7 @@ body::before,body::after{display:none!important}
 @media(max-width:600px){
   #clients .clients{overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   #clients .clients::-webkit-scrollbar{display:none}
-  #clients .client-marquee-track{gap:12px!important;animation-duration:42s}
+  #clients .client-marquee-track{gap:12px!important;animation-duration:24s}
   #clients .client-marquee-track>.cw{flex-basis:190px!important;width:190px!important}
 }
 @media(prefers-reduced-motion:reduce){
@@ -1753,7 +1759,7 @@ body::before,body::after{display:none!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
-<script src="content.js?v=20261116-2"></script>
+<script src="content.js?v=20261116-3"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
@@ -1816,7 +1822,7 @@ const clientDocs = c => {
 const ICON = { Video: '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>', Strategy: '<svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>', "Content Plan": '<svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"/></svg>', Script: '<svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5zm2 8v2h10v-2zm0 4v2h10v-2z"/></svg>' };
 const LABEL = { Video: "Watch video", Strategy: "Open strategy", "Content Plan": "Open content plan", Script: "Read script" };
 const clientLinks = c => (c.links || []).filter(l => l && String(l.url || "").trim());
-const linksHtml = ls => ls.length ? `<div class="mats">${ls.map(l => { const k = l.kind || "Video"; return `<a class="mat" href="${esc(https(String(l.url).trim()))}" target="_blank" rel="noopener"><i class="ic">${ICON[k] || ICON.Video}</i><span class="mt"><small>${esc(k)}</small><b>${esc(l.title || LABEL[k] || "Open link")}</b></span><span class="go">↗</span></a>`; }).join("")}</div>` : "";
+const linksHtml = ls => ls.length ? `<div class="mats">${ls.map(l => { const k = l.kind || "Video", action = ({Strategy:"OPEN STRATEGY","Content Plan":"OPEN CONTENT PLAN",Script:"OPEN SCRIPT",Video:"WATCH VIDEO"})[k] || "OPEN LINK"; return `<a class="mat" href="${esc(https(String(l.url).trim()))}" target="_blank" rel="noopener noreferrer"><i class="ic">${ICON[k] || ICON.Video}</i><span class="mt"><small>${esc(k)}</small><b>${esc(l.title || LABEL[k] || "Open link")}</b><strong class="mat-action">${action} ↗</strong></span><span class="go">↗</span></a>`; }).join("")}</div>` : "";
 let _r = 0; const REEL = () => "REEL " + pad(_r++);
 const row = (label, v, href) => v
   ? `<a href="${esc(href(v))}" target="_blank" rel="noopener"><span>${label}</span><span>${esc(label === "Email" || label === "WhatsApp" ? v : "Open →")}</span></a>`
@@ -1872,10 +1878,6 @@ ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   </div>
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
-${(() => { const F = S.featured || {}, fid = yt(F.youtube), ff = F.file || "", has = !!(fid || ff), fmt = F.format || (/shorts\//.test(F.youtube || "") ? "vertical" : "cine");
-  const player = ff ? `<video class="fv" controls playsinline preload="metadata" src="${esc(ff)}"></video>` : vid(fid, F.title, fmt === "vertical" ? "vertical" : fmt === "wide" ? "" : "cine");
-  return has ? sec("featured", head("FEATURED PROJECT", "NOW SHOWING", "A featured reel to start with.") +
-  `<div class="feat${fmt === "vertical" && !ff ? " v" : ""} rv"><div class="fp">${player}</div><div class="finfo"><span class="slate">FEATURED REEL</span><h3>${val(F.title, "Title")}</h3>${F.desc ? `<p>${esc(F.desc)}</p>` : ""}</div></div>`) : ""; })()}
 <div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">1M+</span><span class="metric-label">VIEWS</span></div></div>
   ${(S.clients || []).filter(c => c && (c.name || c.logo)).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Selected brands behind the work." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo)).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
 ${sec("work", head(REEL(), "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
