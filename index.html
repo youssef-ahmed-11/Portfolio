@@ -1840,7 +1840,7 @@ const vid = (id, title, fmt) => {
   const c = "vid " + (fmt || "");
   if (!id) return `<div class="${c}"><div class="ph"><span>VIDEO PLACEHOLDER</span><small>Add a YouTube link</small></div></div>`;
   const label = esc(title || "portfolio video");
-  return `<div class="${c}"><iframe src="https://www.youtube-nocookie.com/embed/${id}?playsinline=1&rel=0" title="${label}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+  return `<div class="${c}"><iframe src="https://www.youtube.com/embed/${id}?playsinline=1&rel=0&origin=https%3A%2F%2Fyoussef-ahmed-11.github.io" title="${label}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe></div>`;
 };
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
