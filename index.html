@@ -1838,7 +1838,8 @@ const list = (a, n, fn) => (a && a.length ? a : Array(n).fill(null)).map(fn).joi
 const vid = (id, title, fmt) => {
   const c = "vid " + (fmt || "");
   if (!id) return `<div class="${c}"><div class="ph"><span>VIDEO PLACEHOLDER</span><small>Add a YouTube link</small></div></div>`;
-  return `<button class="${c}" type="button" data-yt="${id}" aria-label="Play ${esc(title || "portfolio video")}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></button>`;
+  const videoUrl = fmt === "vertical" ? `https://www.youtube.com/shorts/${id}` : `https://www.youtube.com/watch?v=${id}`;
+  return `<a class="${c}" href="${videoUrl}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${esc(title || "portfolio video")} on YouTube"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></a>`;
 };
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
@@ -1991,12 +1992,6 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") document.que
 document.addEventListener("click", e => {
   if (e.target.closest("[data-cv]")) return openCV();
   if (e.target.closest(".cvm [data-x]")) return document.querySelector(".cvm").remove();
-  const b = e.target.closest("[data-yt]");
-  if (b) {
-    const d = document.createElement("div"); d.className = b.className;
-    d.innerHTML = `<iframe src="https://www.youtube.com/embed/${b.dataset.yt}?autoplay=1&rel=0&playsinline=1" title="Video player" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-    b.replaceWith(d); return;
-  }
   const l = e.target.closest("[data-lb]");
   if (l) { const o = document.createElement("div"); o.className = "lb"; o.innerHTML = `<img src="${l.dataset.lb}" alt="">`; o.onclick = () => o.remove(); document.body.append(o); }
 }, true);
