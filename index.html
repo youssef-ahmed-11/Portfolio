@@ -1704,6 +1704,43 @@ body::before,body::after{display:none!important}
 @media(max-width:760px){body{background-attachment:scroll!important}.hero-prop{animation-duration:7s!important}}
 @media(prefers-reduced-motion:reduce){.hero-prop,.hero-art img{animation:none!important}}
 </style>
+
+<style id="client-marquee-style">
+/* OUR CLIENTS — seamless horizontal logo marquee; every original card and link stays interactive */
+#clients .clients{
+  display:block!important;position:relative!important;overflow:hidden!important;
+  width:100%!important;padding:8px 0 18px!important;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+}
+#clients .client-marquee-track{
+  display:flex!important;align-items:stretch!important;gap:16px!important;
+  width:max-content!important;will-change:transform;
+  animation:clientMarquee 48s linear infinite;
+}
+#clients .client-marquee-track>.cw{
+  flex:0 0 clamp(190px,22vw,250px)!important;width:clamp(190px,22vw,250px)!important;
+  min-width:0!important;display:flex!important;flex-direction:column!important;
+}
+#clients .client-marquee-track .cl{width:100%!important;flex:0 0 auto!important}
+#clients .client-marquee-track .mats,
+#clients .client-marquee-track .docs{width:100%!important}
+#clients .client-marquee-track .mat{min-height:48px}
+#clients .clients:hover .client-marquee-track,
+#clients .clients:focus-within .client-marquee-track{animation-play-state:paused}
+@keyframes clientMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:600px){
+  #clients .clients{overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  #clients .clients::-webkit-scrollbar{display:none}
+  #clients .client-marquee-track{gap:12px!important;animation-duration:42s}
+  #clients .client-marquee-track>.cw{flex-basis:190px!important;width:190px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #clients .client-marquee-track{animation:none!important;transform:none!important}
+  #clients .clients{overflow-x:auto!important}
+}
+</style>
+
 </head>
 <body>
 <header class="nav">
@@ -2291,6 +2328,27 @@ footer{color:#fff4df!important;border-top:4px solid #fff4df!important}
 }
 @media(prefers-reduced-motion:reduce){#app .hero .hero-prop{animation:none!important}}
 </style>
+
+
+<script id="client-marquee-script">
+(() => {
+  const viewport=document.querySelector("#clients .clients");
+  if(!viewport || viewport.dataset.marqueeReady) return;
+  const originals=[...viewport.children];
+  if(originals.length<2) return;
+  viewport.dataset.marqueeReady="1";
+  const track=document.createElement("div");
+  track.className="client-marquee-track";
+  originals.forEach(node=>track.appendChild(node));
+  originals.forEach(node=>{
+    const clone=node.cloneNode(true);
+    clone.setAttribute("aria-hidden","true");
+    clone.querySelectorAll("a,button,[tabindex]").forEach(el=>el.setAttribute("tabindex","-1"));
+    track.appendChild(clone);
+  });
+  viewport.appendChild(track);
+})();
+</script>
 
 </body>
 </html>
