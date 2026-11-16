@@ -1987,7 +1987,8 @@ document.querySelectorAll(".card h3,.card p,.case h3,.case dd,.bio p,.board h3,.
 
 function openCV() {
   const m = document.createElement("div"); m.className = "cvm"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", "CV preview");
-  m.innerHTML = `<div class="cvh"><span>CV · ${esc(S.name.toUpperCase())}</span><span><a class="btn" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download</a><a class="btn" href="${esc(S.cv)}" target="_blank" rel="noopener">Open PDF</a><button class="btn" data-x>Close</button></span></div><iframe src="${esc(S.cv)}#toolbar=1&navpanes=0" title="CV preview" loading="eager"></iframe>`;
+  const pdfUrl = new URL(S.cv, location.href).href; const viewerUrl = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(pdfUrl);
+  m.innerHTML = `<div class="cvh"><span>CV · ${esc(S.name.toUpperCase())}</span><span><a class="btn" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download</a><a class="btn" href="${esc(S.cv)}" target="_blank" rel="noopener">Open original PDF</a><button class="btn" data-x>Close</button></span></div><iframe src="${viewerUrl}" title="CV preview" loading="eager" allow="fullscreen"></iframe>`;
   document.body.append(m); m.querySelector("[data-x]").focus();
 }
 document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelector(".cvm")?.remove(); document.querySelector(".lb")?.remove(); });
