@@ -1733,6 +1733,22 @@ body::before,body::after{display:none!important}
 @media(prefers-reduced-motion:reduce){#clients .client-marquee-track{animation:none!important;transform:none!important}#clients .clients{overflow-x:auto!important}}
 </style>
 
+
+<style id="client-open-links-visible">
+/* Keep each client's actual work links visible and unmistakably clickable */
+#clients .client-marquee-group>.cw{height:auto!important;align-self:flex-start!important}
+#clients .client-marquee-group .mats{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin:8px 0 0!important;overflow:visible!important}
+#clients .client-marquee-group a.mat{display:flex!important;align-items:center!important;width:100%!important;min-height:58px!important;padding:9px 10px!important;position:relative!important;z-index:2!important;background:#171516!important;border:1px solid #5a4740!important;border-left:3px solid #e52b32!important;color:#f4e3c5!important;text-decoration:none!important;pointer-events:auto!important}
+#clients .client-marquee-group .mat .mt{display:block!important;min-width:0!important}
+#clients .client-marquee-group .mat .mt small{display:block!important;font-size:9px!important}
+#clients .client-marquee-group .mat .mt b{display:block!important;font-size:12px!important;line-height:1.25!important}
+#clients .client-marquee-group .mat .mat-action{display:inline-block!important;margin-top:6px!important;padding:5px 8px!important;background:#e52b32!important;color:#fff4df!important;font:900 10px/1.2 var(--m)!important;letter-spacing:.08em!important}
+#clients .client-marquee-group a.mat:hover .mat-action{background:#fff4df!important;color:#211315!important}
+#clients .client-marquee-group .docs{display:grid!important;gap:7px!important;margin-top:8px!important}
+#clients .client-marquee-group .doc a{display:inline-block!important;position:relative!important;z-index:2!important;padding:6px 8px!important;background:#e52b32!important;color:#fff4df!important;border:0!important;text-decoration:none!important}
+@media(max-width:600px){#clients .client-marquee-group>.cw{flex-basis:168px!important;width:168px!important}#clients .client-marquee-group a.mat{min-height:62px!important}}
+</style>
+
 </head>
 <body>
 <header class="nav">
@@ -1745,7 +1761,7 @@ body::before,body::after{display:none!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
-<script src="content.js?v=20261116-3"></script>
+<script src="content.js?v=20261116-4"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
@@ -1807,8 +1823,13 @@ const clientDocs = c => {
 };
 const ICON = { Video: '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>', Strategy: '<svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>', "Content Plan": '<svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"/></svg>', Script: '<svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5zm2 8v2h10v-2zm0 4v2h10v-2z"/></svg>' };
 const LABEL = { Video: "Watch video", Strategy: "Open strategy", "Content Plan": "Open content plan", Script: "Read script" };
-const clientLinks = c => (c.links || []).filter(l => l && String(l.url || "").trim());
-const linksHtml = ls => ls.length ? `<div class="mats">${ls.map(l => { const k = l.kind || "Video", action = ({Strategy:"OPEN STRATEGY","Content Plan":"OPEN CONTENT PLAN",Script:"OPEN SCRIPT",Video:"WATCH VIDEO"})[k] || "OPEN LINK"; return `<a class="mat" href="${esc(https(String(l.url).trim()))}" target="_blank" rel="noopener noreferrer"><i class="ic">${ICON[k] || ICON.Video}</i><span class="mt"><small>${esc(k)}</small><b>${esc(l.title || LABEL[k] || "Open link")}</b><strong class="mat-action">${action} ↗</strong></span><span class="go">↗</span></a>`; }).join("")}</div>` : "";
+const clientLinks = c => {
+  const out = (c.links || []).filter(l => l && String(l.url || "").trim()).map(l => ({...l}));
+  const projectUrl = String(c.project || "").trim();
+  if (projectUrl && !out.some(l => String(l.url || "").trim() === projectUrl)) out.unshift({kind:"Project",title:"Selected client work",url:projectUrl});
+  return out;
+};
+const linksHtml = ls => ls.length ? `<div class="mats">${ls.map(l => { const k = l.kind || "Video", action = ({Strategy:"OPEN STRATEGY","Content Plan":"OPEN CONTENT PLAN",Script:"OPEN SCRIPT",Video:"WATCH VIDEO",Project:"OPEN PROJECT"})[k] || "OPEN LINK"; return `<a class="mat" href="${esc(https(String(l.url).trim()))}" target="_blank" rel="noopener noreferrer" aria-label="${action}: ${esc(l.title || k)}"><span class="mt"><small>${esc(k)}</small><b>${esc(l.title || LABEL[k] || "Selected work")}</b><span class="mat-action">${action} ↗</span></span></a>`; }).join("")}</div>` : "";
 let _r = 0; const REEL = () => "REEL " + pad(_r++);
 const row = (label, v, href) => v
   ? `<a href="${esc(href(v))}" target="_blank" rel="noopener"><span>${label}</span><span>${esc(label === "Email" || label === "WhatsApp" ? v : "Open →")}</span></a>`
