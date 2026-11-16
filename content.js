@@ -44,14 +44,6 @@ const SITE = {
   "bio": [
     "When I was a kid, I used to wonder…\n How can a movie scene stay in my head for years? Or a song from an ad keep playing in my ears?\nThen I realized  Anything that touches our feelings… stays inside us.\nThat’s when I noticed:\n It’s not always about the information,\n it’s about the emotion.\nA short sentence.\n A funny scene.\n A background sound.\n All of them can make someone laugh, think, change — or even decide to buy.\nAnd that’s how my journey started.\n I don’t just write posts or scripts.\n I create moments — Moments you feel… and never forget."
   ],
-  "featured": {
-    "title": "Palmé Bakery · Croissant Reel",
-    "desc": "A cinematic croissant-making reel for Palmé, focusing on the craftsmanship and details behind the baking process. Pink lighting was incorporated into the visual setup to reflect the brand’s identity and create a distinctive visual atmosphere, blending product-focused close-ups with a dark, cinematic aesthetic.",
-    "youtube": "https://youtube.com/shorts/mtmoVkDlrJc?feature=share",
-    "file": "",
-    "format": "vertical",
-    "note": "Your showreel or strongest project goes here."
-  },
   "projects": [
     {
       "title": "Palmé Bakery",
