@@ -64,7 +64,7 @@ h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .vid{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#141416;border:0;padding:0;cursor:pointer;overflow:hidden}
 .vid.cine{aspect-ratio:2.39/1;min-height:200px}
 .vid.vertical{aspect-ratio:9/16;max-width:360px}
-.vid img,.vid iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}
+.vid img,.vid iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}.vid img,.vid .play{pointer-events:none}.vid{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .play{position:absolute;inset:0;margin:auto;width:68px;height:68px;border-radius:50%;background:var(--red)}
 .play::after{content:"";position:absolute;left:27px;top:21px;border-left:20px solid #fff;border-block:13px solid transparent}
 .ph{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:6px;border:1px dashed #4a4a4d;font:12px var(--m);letter-spacing:.16em;color:var(--mute);padding:16px;cursor:default}
@@ -1738,7 +1738,7 @@ document.addEventListener("click", e => {
   }
   const l = e.target.closest("[data-lb]");
   if (l) { const o = document.createElement("div"); o.className = "lb"; o.innerHTML = `<img src="${l.dataset.lb}" alt="">`; o.onclick = () => o.remove(); document.body.append(o); }
-});
+}, true);
 
 const els = document.querySelectorAll(".rv");
 if ("IntersectionObserver" in window) {
