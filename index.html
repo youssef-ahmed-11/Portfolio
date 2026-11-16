@@ -2369,5 +2369,61 @@ footer{color:#fff4df!important;border-top:4px solid #fff4df!important}
 })();
 </script>
 
+
+<style id="views-counter-motion-v1">
+/* A restrained spotlight for the Views metric, matching the existing comic palette. */
+.metrics .metric-panel:nth-child(2){isolation:isolate}
+.metrics .metric-panel:nth-child(2)::before{
+  content:"";position:absolute;z-index:-1;inset:-45%;
+  background:conic-gradient(from 0deg,transparent 0 68%,rgba(255,255,255,.23) 76%,transparent 84% 100%);
+  animation:viewsSweep 5s linear infinite;pointer-events:none
+}
+.metrics .metric-panel:nth-child(2) .metric-number{
+  transform-origin:left center;
+  animation:viewsNumberPulse 2.8s ease-in-out infinite
+}
+.metrics .metric-panel:nth-child(2) .metric-label::before{
+  content:"";display:inline-block;width:7px;height:7px;margin:0 8px 1px 0;
+  border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.55);
+  animation:viewsDot 1.7s ease-out infinite
+}
+@keyframes viewsSweep{to{transform:rotate(360deg)}}
+@keyframes viewsNumberPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes viewsDot{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 9px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+@media(prefers-reduced-motion:reduce){
+ .metrics .metric-panel:nth-child(2)::before,
+ .metrics .metric-panel:nth-child(2) .metric-number,
+ .metrics .metric-panel:nth-child(2) .metric-label::before{animation:none!important}
+}
+</style>
+<script id="views-counter-motion-v1">
+(() => {
+  const metric=document.querySelector('.metrics .metric-panel:nth-child(2) .metric-number');
+  if(!metric || metric.dataset.counted) return;
+  metric.dataset.counted='1';
+  const finalText=metric.textContent.trim();
+  const target=1000000;
+  const format=n=>n>=1000000?(n/1000000).toFixed( n===target ? 0 : 1 ).replace(/\.0$/,'')+'M':n>=1000?Math.floor(n/1000)+'K':String(n);
+  const run=()=>{
+    const start=performance.now(),duration=1700;
+    const tick=now=>{
+      const p=Math.min(1,(now-start)/duration);
+      const eased=1-Math.pow(1-p,3);
+      metric.textContent=p===1?finalText:format(Math.floor(target*eased))+'+';
+      if(p<1) requestAnimationFrame(tick);
+    };
+    metric.textContent='0+';
+    requestAnimationFrame(tick);
+  };
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){metric.textContent=finalText;return;}
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){io.disconnect();run();}
+    },{threshold:.45});
+    io.observe(metric);
+  }else run();
+})();
+</script>
+
 </body>
 </html>
