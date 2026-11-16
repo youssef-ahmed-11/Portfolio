@@ -1748,6 +1748,70 @@ body::before,body::after{display:none!important}
 @media(max-width:600px){#clients .client-marquee-group>.cw{flex-basis:168px!important;width:168px!important}#clients .client-marquee-group a.mat{min-height:62px!important}}
 </style>
 
+
+<style id="neon-sound-player-visibility-fix">
+/* Restore the floating music control: fixed, visible and clear of the mobile tab bar. */
+#neon-sound-player{
+  position:fixed!important;right:18px!important;bottom:22px!important;z-index:100000!important;
+  display:block!important;visibility:visible!important;opacity:1!important;
+  pointer-events:auto!important;
+}
+#neon-sound-player .neon-toggle{
+  display:flex!important;align-items:center!important;gap:11px!important;
+  min-height:58px!important;padding:9px 15px!important;
+  color:#fff4df!important;background:#17100f!important;
+  border:3px solid #f3dfbd!important;box-shadow:5px 5px 0 #df292e!important;
+  border-radius:0!important;cursor:pointer!important;
+  font:inherit!important;text-align:left!important;
+}
+#neon-sound-player .gramophone-art{
+  position:relative!important;display:block!important;flex:none!important;
+  width:35px!important;height:35px!important;
+}
+#neon-sound-player .neon-disc{
+  position:absolute!important;left:1px!important;bottom:0!important;
+  width:29px!important;height:29px!important;border:3px solid #e9bd72!important;
+  border-radius:50%!important;background:repeating-radial-gradient(circle,#17100f 0 3px,#df292e 4px 5px)!important;
+}
+#neon-sound-player .neon-disc:after{
+  content:"";position:absolute;left:10px;top:10px;width:5px;height:5px;
+  border-radius:50%;background:#f3dfbd;
+}
+#neon-sound-player .gramophone-horn{
+  position:absolute!important;right:0!important;top:0!important;width:17px!important;height:15px!important;
+  background:#e9bd72!important;clip-path:polygon(45% 0,100% 0,75% 100%,0 70%)!important;
+}
+#neon-sound-player .gramophone-neck{
+  position:absolute!important;right:8px!important;top:10px!important;width:4px!important;height:12px!important;
+  background:#e9bd72!important;transform:rotate(18deg)!important;
+}
+#neon-sound-player .gramophone-arm{
+  position:absolute!important;right:6px!important;top:15px!important;width:3px!important;height:13px!important;
+  background:#f3dfbd!important;transform:rotate(-25deg)!important;transform-origin:top!important;
+}
+#neon-sound-player .gramophone-base{display:none!important}
+#neon-sound-player .neon-label{display:flex!important;flex-direction:column!important;gap:2px!important}
+#neon-sound-player .neon-label b{
+  display:block!important;color:#fff4df!important;font:700 10px/1.3 var(--m)!important;
+  letter-spacing:.08em!important;white-space:nowrap!important;
+}
+#neon-sound-player .neon-label small{
+  display:block!important;color:#e9bd72!important;font:9px/1.2 var(--m)!important;
+  letter-spacing:.15em!important;
+}
+#neon-sound-player .neon-toggle:hover{background:#df292e!important;transform:translateY(-2px)!important}
+#neon-sound-player.is-playing .neon-disc{animation:neonVinylSpin 3s linear infinite!important}
+@keyframes neonVinylSpin{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+  #neon-sound-player{right:10px!important;bottom:calc(76px + env(safe-area-inset-bottom))!important}
+  #neon-sound-player .neon-toggle{min-height:50px!important;padding:7px 10px!important;gap:8px!important}
+  #neon-sound-player .gramophone-art{width:30px!important;height:30px!important}
+  #neon-sound-player .neon-disc{width:25px!important;height:25px!important}
+  #neon-sound-player .neon-label b{font-size:9px!important}
+}
+@media(prefers-reduced-motion:reduce){#neon-sound-player .neon-disc{animation:none!important}}
+</style>
+
 </head>
 <body>
 <header class="nav">
