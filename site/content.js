@@ -39,7 +39,7 @@ const SITE = {
     "whatsappMessage": "Hi Yousef, I found your portfolio and I’d like to start a project."
   },
   "cv": "assets/cv/Yousef-Ahmed-CV.pdf",
-  "photo": "assets/images/gemini-generated-image-vogqzwv-mvjebgct.jpg",
+  "photo": "assets/297f2e7a-859f-4529-afb6-d0a857ad7fcf.jpeg",
   "bioApproved": true,
   "bio": [
     "When I was a kid, I used to wonder…\n How can a movie scene stay in my head for years? Or a song from an ad keep playing in my ears?\nThen I realized  Anything that touches our feelings… stays inside us.\nThat’s when I noticed:\n It’s not always about the information,\n it’s about the emotion.\nA short sentence.\n A funny scene.\n A background sound.\n All of them can make someone laugh, think, change — or even decide to buy.\nAnd that’s how my journey started.\n I don’t just write posts or scripts.\n I create moments — Moments you feel… and never forget."
