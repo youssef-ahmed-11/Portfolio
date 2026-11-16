@@ -62,6 +62,7 @@ h1{font:400 clamp(72px,19vw,230px)/.84 var(--d);margin:22px 0}
 h2{font:400 clamp(40px,8vw,88px)/.95 var(--d);margin:10px 0 8px}
 .sub{font:italic 20px var(--s);color:var(--mute);max-width:640px}
 .vid{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#141416;border:0;padding:0;cursor:pointer;overflow:hidden}
+.vid{z-index:5;pointer-events:auto!important;position:relative!important;-webkit-tap-highlight-color:rgba(230,45,50,.25)} .vid img,.vid .play{pointer-events:none!important}
 .vid.cine{aspect-ratio:2.39/1;min-height:200px}
 .vid.vertical{aspect-ratio:9/16;max-width:360px}
 .vid img,.vid iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}.vid img,.vid .play{pointer-events:none}.vid{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -1824,7 +1825,7 @@ body::before,body::after{display:none!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
-<script src="content.js?v=20261116-6"></script>
+<script src="content.js?v=20261116-7"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
@@ -1839,7 +1840,7 @@ const vid = (id, title, fmt) => {
   const c = "vid " + (fmt || "");
   if (!id) return `<div class="${c}"><div class="ph"><span>VIDEO PLACEHOLDER</span><small>Add a YouTube link</small></div></div>`;
   const videoUrl = fmt === "vertical" ? `https://www.youtube.com/shorts/${id}` : `https://www.youtube.com/watch?v=${id}`;
-  return `<a class="${c}" href="${videoUrl}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${esc(title || "portfolio video")} on YouTube"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></a>`;
+  return `<a class="${c}" href="${videoUrl}" aria-label="Watch ${esc(title || "portfolio video")} on YouTube"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></a>`;
 };
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
