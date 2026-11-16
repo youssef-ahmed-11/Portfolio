@@ -1825,7 +1825,7 @@ body::before,body::after{display:none!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
-<script src="content.js?v=20261116-11"></script>
+<script src="content.js?v=20261116-12"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
@@ -1879,6 +1879,7 @@ const client = (c, n) => { const tone = c.tone || "dark", pi = pIdx(c), href = p
   return href ? `<a class="cl ${tone}" href="${esc(href)}"${pi < 0 ? ' target="_blank" rel="noopener"' : ""} aria-label="${esc(c.name || "Client")}">${inner}</a>` : `<div class="cl ${tone}">${inner}</div>`; };
 const nk = t => String(t || "").toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]+/g, "");
 const clientDocs = c => {
+  if (isAntikaRadio(c)) return [];
   const n = nk(c.name), pr = nk(c.project), seen = new Set(), out = [];
   const add = ds => (ds || []).forEach(d => { if (d && d.file && !seen.has(d.file)) { seen.add(d.file); out.push(d); } });
   add(c.docs);
@@ -1888,7 +1889,8 @@ const clientDocs = c => {
 };
 const ICON = { Video: '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>', Strategy: '<svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>', "Content Plan": '<svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"/></svg>', Script: '<svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5zm2 8v2h10v-2zm0 4v2h10v-2z"/></svg>' };
 const LABEL = { Video: "Watch video", Strategy: "Open strategy", "Content Plan": "Open content plan", Script: "Read script" };
-const clientLinks = c => (c.links || []).filter(l => l && String(l.url || "").trim());
+const isAntikaRadio = c => /^antika\s*radio$/i.test(String(c && c.name || "").trim());
+const clientLinks = c => isAntikaRadio(c) ? [] : (c.links || []).filter(l => l && String(l.url || "").trim());
 const linksHtml = ls => ls.length ? `<div class="mats">${ls.map(l => { const k = l.kind || "Video", action = ({Strategy:"OPEN STRATEGY","Content Plan":"OPEN CONTENT PLAN",Script:"OPEN SCRIPT",Video:"WATCH VIDEO",Project:"OPEN PROJECT"})[k] || "OPEN LINK"; return `<a class="mat" href="${esc(https(String(l.url).trim()))}" target="_blank" rel="noopener noreferrer" aria-label="${action}: ${esc(l.title || k)}"><span class="mt"><small>${esc(k)}</small><b>${esc(l.title || LABEL[k] || "Open link")}</b><span class="mat-action">${action} ↗</span></span></a>`; }).join("")}</div>` : "";
 let _r = 0; const REEL = () => "REEL " + pad(_r++);
 const row = (label, v, href) => v
