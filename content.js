@@ -245,20 +245,6 @@ const SITE = {
       ]
     },
     {
-      "name": "فندق آفينو العرب - Avenue Al Arab Hotel",
-      "logo": "assets/images/466178143-122107036778606276-8-mvy50o0opyi.png",
-      "tone": "light",
-      "project": "",
-      "url": "",
-      "links": [
-        {
-          "kind": "Video",
-          "title": "",
-          "url": "https://www.facebook.com/reel/1034366221846013"
-        }
-      ]
-    },
-    {
       "name": "Antika Radio",
       "logo": "assets/images/482235760-1148603777279383-426-mvy5131uz9y.png",
       "tone": "light",
