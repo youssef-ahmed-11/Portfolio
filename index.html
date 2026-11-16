@@ -1561,6 +1561,134 @@ a.cl:hover .go{background:#df2927!important;color:#fff!important}
 #work{counter-increment:none!important}
 #work>.wrap::before{content:none!important;display:none!important}
 </style>
+
+<style id="comic-style-preserve-content">
+/* Presentation-only comic-book skin. No content, data, markup or behavior changes. */
+:root{
+  --bg:#211416;--ink:#fff4df;--red:#df292e;--gold:#e9bd72;
+  --line:#3b2424;--mute:#e6cdb6;
+}
+html{scroll-behavior:smooth}
+body{
+  color:#fff4df!important;
+  background-color:#211416!important;
+  background-image:
+    radial-gradient(circle,rgba(255,244,223,.13) 1px,transparent 1.6px),
+    radial-gradient(ellipse at 10% 10%,rgba(222,38,45,.25),transparent 42%),
+    linear-gradient(135deg,#271516,#120f10 65%,#3a1015)!important;
+  background-size:7px 7px,auto,auto!important;
+}
+.nav{
+  background:#f1dfc2!important;color:#211416!important;
+  border:3px solid #211416!important;
+  box-shadow:0 5px 0 #df292e,0 8px 0 #211416!important;
+}
+.logo{color:#211416!important;text-shadow:2px 2px 0 #df292e!important}
+.nav nav a,.tabbar a{color:#211416!important}
+.nav .btn,.btn.red{
+  background:#df292e!important;color:#fff4df!important;
+  border:3px solid #211416!important;box-shadow:4px 4px 0 #211416!important;
+}
+.hero{
+  border:4px solid #211416!important;outline:2px solid #f1dfc2!important;
+  box-shadow:10px 10px 0 #df292e!important;
+  background:
+    radial-gradient(circle,rgba(255,244,223,.16) 1px,transparent 1.7px) 0 0/7px 7px,
+    repeating-conic-gradient(from 4deg at 76% 45%,rgba(255,244,223,.08) 0 3deg,transparent 3deg 8deg),
+    radial-gradient(ellipse at 76% 45%,#bd2028 0%,#74151b 43%,transparent 70%),
+    linear-gradient(115deg,#211416 0 46%,#4b1118 100%)!important;
+}
+.hero::after{
+  border:4px solid #211416!important;border-radius:0!important;
+  clip-path:polygon(7% 0,100% 4%,94% 100%,0 93%)!important;
+  background:repeating-linear-gradient(135deg,rgba(255,244,223,.08) 0 5px,rgba(0,0,0,.2) 5px 9px)!important;
+}
+.hero h1{
+  color:#fff4df!important;font-style:italic!important;font-weight:1000!important;
+  -webkit-text-stroke:1px #211416!important;
+  text-shadow:4px 4px 0 #211416,8px 8px 0 #df292e,12px 12px 0 #211416!important;
+}
+.hero h1 .last-name,.hero h1 span{color:#df292e!important;-webkit-text-stroke:1px #fff4df!important}
+.hero .rec,.hero .cred{
+  background:#f1dfc2!important;color:#211416!important;
+  border:2px solid #211416!important;box-shadow:4px 4px 0 #df292e!important;
+}
+.hero .roles{
+  background:#e9bd72!important;color:#211416!important;
+  border:3px solid #211416!important;box-shadow:4px 4px 0 #f1dfc2!important;
+}
+.hero-art::before{
+  border:4px solid #211416!important;border-radius:0!important;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,244,223,.1) 0 4deg,rgba(0,0,0,.24) 4deg 9deg)!important;
+}
+.hero-art img{
+  filter:grayscale(.22) contrast(1.38) saturate(1.2)
+    drop-shadow(5px 5px 0 #211416) drop-shadow(9px 9px 0 #df292e)!important;
+}
+.hero-art .art-burst{
+  background:#e9bd72!important;color:#211416!important;border:3px solid #211416!important;
+}
+.hero-art .art-stamp,.comic-issue{
+  background:#f1dfc2!important;color:#211416!important;
+  border:3px solid #211416!important;box-shadow:5px 5px 0 #df292e!important;
+}
+.mq{
+  background:#df292e!important;border-block:4px solid #f1dfc2!important;
+  outline:3px solid #211416!important;box-shadow:0 5px 0 #211416!important;
+}
+.mq-t,.mq-t b{color:#fff4df!important;text-shadow:2px 2px 0 #211416!important}
+.sec{background:transparent!important;border:0!important}
+.sec>.wrap{
+  position:relative!important;background:#f1dfc2!important;color:#211416!important;
+  border:4px solid #211416!important;box-shadow:9px 9px 0 #211416!important;
+  padding:clamp(22px,3vw,34px)!important;
+}
+.sec>.wrap::before{
+  content:"";position:absolute;top:-10px;right:24px;width:66px;height:16px;
+  background:#df292e;border:2px solid #211416;box-shadow:3px 3px 0 #211416;
+  transform:rotate(3deg);pointer-events:none;
+}
+.sec:nth-of-type(even)>.wrap::before{right:auto;left:24px;transform:rotate(-3deg)}
+.head{
+  background:#fff4df!important;border:3px solid #211416!important;
+  box-shadow:6px 6px 0 #df292e,9px 9px 0 #211416!important;
+  transform:rotate(-1deg)!important;
+}
+.head h2,.sec h2,.sec h3,.sec .gn,.sec .sn b{color:#211416!important}
+.head .slate,.sec .slate,.sec .meta{color:#842126!important}
+.head .sub,.sec .sub{color:#5a3b36!important}
+.sec .card p,.sec .case dd,.sec .bio p,.sec .finfo p,
+.sec .facts,.sec .facts span,.sec .rows,.sec .rows>*{color:#211416!important;opacity:1!important}
+.card,.case,.board{
+  border:3px solid #211416!important;border-radius:0!important;
+  box-shadow:6px 6px 0 #df292e,9px 9px 0 #211416!important;
+  background:#251719!important;
+}
+.card h3,.case h3,.board h3,.finfo h3{color:#fff4df!important;text-shadow:2px 2px 0 #842126!important}
+.vid,.gi .gf{border:3px solid #211416!important;border-radius:0!important;box-shadow:5px 5px 0 #df292e!important}
+.cl,.mat,.doc,.shoot summary,.tags span{
+  background:#fff4df!important;color:#211416!important;
+  border:3px solid #211416!important;border-radius:0!important;
+  box-shadow:4px 4px 0 #df292e!important;
+}
+.cl .nm,.mat b,.doc .dt,.shoot .sn b{color:#211416!important}
+.cl .go,.doc a,.mat small,.shoot .slate,.shoot .sc{color:#842126!important}
+.play{background:#df292e!important;border:3px solid #211416!important;border-radius:0!important}
+.btn{border-radius:0!important}
+.contact h2{color:#fff4df!important;text-shadow:4px 4px 0 #df292e!important}
+.rows>*{border-bottom:2px solid #f1dfc2!important}
+footer{color:#fff4df!important;border-top:4px solid #f1dfc2!important}
+/* Keep the existing content sections and text ticker; add no image strip or gallery. */
+@media(max-width:760px){
+  .nav{box-shadow:0 4px 0 #df292e!important}
+  .hero{grid-template-columns:1fr!important;margin:14px 10px 24px!important;padding:38px 20px!important}
+  .hero-art{min-height:300px!important}
+  .sec{padding:34px 0!important}
+  .sec>.wrap{margin:0 10px!important;padding:22px 16px!important}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
 </head>
 <body>
 <header class="nav">
