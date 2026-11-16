@@ -1825,7 +1825,7 @@ body::before,body::after{display:none!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
-<script src="content.js?v=20261116-9"></script>
+<script src="content.js?v=20261116-10"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
@@ -1946,7 +1946,7 @@ ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
 <div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">1M+</span><span class="metric-label">VIEWS</span></div></div>
-  ${(S.clients || []).filter(c => c && (c.name || c.logo)).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Brands I’ve collaborated with." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo)).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
+  ${(S.clients || []).filter(c => c && (c.name || c.logo) && !/avenue\\s*al\\s*arab|آفينو\\s*العرب/i.test(String(c.name || "")) && !String(c.logo || "").includes("466178143")).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Brands I’ve collaborated with." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo) && !/avenue\\s*al\\s*arab|آفينو\\s*العرب/i.test(String(c.name || "")) && !String(c.logo || "").includes("466178143")).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
 ${sec("work", head(REEL(), "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
   `<div class="grid">${list(S.projects, 3, project)}</div>`)}
 ${sec("strategy", head(REEL(), "STRATEGY &amp; CAMPAIGNS", "How the ideas are planned, researched and run.") +
@@ -1963,7 +1963,7 @@ ${waOk ? `<a class="btn red" href="https://wa.me/${waNum}?text=${esc(encodeURICo
 </div></section>`;
 
 if (!(S.moodboard && S.moodboard.length)) document.getElementById("navdir")?.remove();
-if (!(S.clients || []).filter(c => c && (c.name || c.logo)).length) document.getElementById("navcl")?.remove();
+if (!(S.clients || []).filter(c => c && (c.name || c.logo) && !/avenue\\s*al\\s*arab|آفينو\\s*العرب/i.test(String(c.name || "")) && !String(c.logo || "").includes("466178143")).length) document.getElementById("navcl")?.remove();
 { const d = S.display || {}, st = document.documentElement.style; st.setProperty("--pcols", String(d.photoColumns || 4)); st.setProperty("--bcols", String(d.boardColumns || 5)); }
 /* Client logos: keep original artwork intact, use each logo's intended tile tone, and fall back cleanly if a source path fails. */
 document.querySelectorAll(".cl img").forEach(img => {
