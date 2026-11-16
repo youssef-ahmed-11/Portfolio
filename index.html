@@ -1712,39 +1712,25 @@ body::before,body::after{display:none!important}
 </style>
 
 <style id="client-marquee-style">
-/* OUR CLIENTS — seamless horizontal logo marquee; every original card and link stays interactive */
-#clients .clients{
-  display:block!important;position:relative!important;overflow:hidden!important;
-  width:100%!important;padding:8px 0 18px!important;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
-}
-#clients .client-marquee-track{
-  display:flex!important;align-items:stretch!important;gap:16px!important;
-  width:max-content!important;will-change:transform;
-  animation:clientMarquee 28s linear infinite;
-}
-#clients .client-marquee-track>.cw{
-  flex:0 0 clamp(190px,22vw,250px)!important;width:clamp(190px,22vw,250px)!important;
-  min-width:0!important;display:flex!important;flex-direction:column!important;
-}
-#clients .client-marquee-track .cl{width:100%!important;flex:0 0 auto!important}
-#clients .client-marquee-track .mats,
-#clients .client-marquee-track .docs{width:100%!important}
-#clients .client-marquee-track .mat{min-height:48px}
-#clients .clients:hover .client-marquee-track,
-#clients .clients:focus-within .client-marquee-track{animation-play-state:paused}
+/* Seamless, compact client ticker in the portfolio's existing visual language */
+#clients .clients{display:block!important;position:relative!important;overflow:hidden!important;width:100%!important;padding:8px 0 18px!important;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+#clients .client-marquee-track{display:flex!important;align-items:stretch!important;gap:0!important;width:max-content!important;will-change:transform;animation:clientMarquee 16s linear infinite}
+#clients .client-marquee-group{display:flex!important;align-items:stretch!important;gap:12px!important;flex:0 0 auto!important;width:max-content!important;padding-right:12px!important}
+#clients .client-marquee-group>.cw{flex:0 0 clamp(150px,16vw,184px)!important;width:clamp(150px,16vw,184px)!important;min-width:0!important;display:flex!important;flex-direction:column!important;gap:8px!important}
+#clients .client-marquee-group .cl{width:100%!important;min-height:112px!important;flex:0 0 auto!important}
+#clients .client-marquee-group .mats,#clients .client-marquee-group .docs{width:100%!important}
+#clients .client-marquee-group .mat{min-height:48px!important}
+#clients .clients:hover .client-marquee-track,#clients .clients:focus-within .client-marquee-track{animation-play-state:paused}
 @keyframes clientMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:600px){
-  #clients .clients{overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  #clients .clients::-webkit-scrollbar{display:none}
-  #clients .client-marquee-track{gap:12px!important;animation-duration:24s}
-  #clients .client-marquee-track>.cw{flex-basis:190px!important;width:190px!important}
+ #clients .clients{overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ #clients .clients::-webkit-scrollbar{display:none}
+ #clients .client-marquee-track{animation-duration:14s}
+ #clients .client-marquee-group{gap:9px!important;padding-right:9px!important}
+ #clients .client-marquee-group>.cw{flex-basis:148px!important;width:148px!important}
+ #clients .client-marquee-group .cl{min-height:96px!important}
 }
-@media(prefers-reduced-motion:reduce){
-  #clients .client-marquee-track{animation:none!important;transform:none!important}
-  #clients .clients{overflow-x:auto!important}
-}
+@media(prefers-reduced-motion:reduce){#clients .client-marquee-track{animation:none!important;transform:none!important}#clients .clients{overflow-x:auto!important}}
 </style>
 
 </head>
@@ -1777,7 +1763,7 @@ const vid = (id, title, fmt) => {
 };
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
-const docsHtml = d => { const ds = (d || []).filter(x => x && x.file); return ds.length ? `<div class="docs">${ds.map(x => { const k = x.kind || "Strategy", t = x.title || k + " document"; return `<div class="doc"><span class="k">${esc(k)} · PDF</span><span class="dt">${esc(t)}</span><a href="${esc(x.file)}" target="_blank" rel="noopener">View ${esc(k)} PDF ↗</a><a href="${esc(x.file)}" download="${esc(t.replace(/[^\w\u0600-\u06FF -]+/g, "").trim() || "document")}.pdf">Download</a></div>`; }).join("")}</div>` : ""; };
+const docsHtml = d => { const ds = (d || []).filter(x => x && x.file); return ds.length ? `<div class="docs">${ds.map(x => { const k = x.kind || "Strategy", t = x.title || k + " document"; return `<div class="doc"><span class="k">${esc(k)} · PDF</span><span class="dt">${esc(t)}</span><a href="${esc(x.file)}" target="_blank" rel="noopener">OPEN ${esc(k.toUpperCase())} ↗</a><a href="${esc(x.file)}" download="${esc(t.replace(/[^\w\u0600-\u06FF -]+/g, "").trim() || "document")}.pdf">Download</a></div>`; }).join("")}</div>` : ""; };
 const project = (p, i) => { p = p || {}; return `<article class="card rv" id="p-${i}">${vid(yt(p.youtube), p.title, p.format === "vertical" ? "vertical" : "")}
 <div class="meta" style="margin-top:14px">SCENE ${pad(i)}</div><h3>${val(p.title, "Project title")}</h3>
 <div class="meta">${val(p.category, "Category")} · ${val(p.year, "Year")}</div><div class="meta">${val(p.role, "Your role")}</div>
@@ -2341,13 +2327,19 @@ footer{color:#fff4df!important;border-top:4px solid #fff4df!important}
   viewport.dataset.marqueeReady="1";
   const track=document.createElement("div");
   track.className="client-marquee-track";
-  originals.forEach(node=>track.appendChild(node));
-  originals.forEach(node=>{
-    const clone=node.cloneNode(true);
-    clone.setAttribute("aria-hidden","true");
-    clone.querySelectorAll("a,button,[tabindex]").forEach(el=>el.setAttribute("tabindex","-1"));
-    track.appendChild(clone);
-  });
+  const makeGroup=(nodes,duplicate=false)=>{
+    const group=document.createElement("div");
+    group.className="client-marquee-group";
+    if(duplicate) group.setAttribute("aria-hidden","true");
+    nodes.forEach(node=>{
+      const item=duplicate?node.cloneNode(true):node;
+      if(duplicate)item.querySelectorAll("a,button,[tabindex]").forEach(el=>el.setAttribute("tabindex","-1"));
+      group.appendChild(item);
+    });
+    return group;
+  };
+  track.appendChild(makeGroup(originals));
+  track.appendChild(makeGroup(originals,true));
   viewport.appendChild(track);
 })();
 </script>
