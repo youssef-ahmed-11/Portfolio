@@ -1774,7 +1774,7 @@ const list = (a, n, fn) => (a && a.length ? a : Array(n).fill(null)).map(fn).joi
 const vid = (id, title, fmt) => {
   const c = "vid " + (fmt || "");
   if (!id) return `<div class="${c}"><div class="ph"><span>VIDEO PLACEHOLDER</span><small>Add a YouTube link</small></div></div>`;
-  return `<div class="${c}"><iframe src="https://www.youtube.com/embed/${id}?playsinline=1&rel=0" title="${esc(title || "Portfolio video")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+  return `<button class="${c}" type="button" data-yt="${id}" aria-label="Play ${esc(title || "portfolio video")}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></button>`;
 };
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
@@ -1961,7 +1961,7 @@ if ("IntersectionObserver" in window) {
   const art=document.createElement("div");
   art.className="hero-art";
   const portrait=(typeof SITE!=="undefined" && SITE.photo) ? SITE.photo : "";
-  art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait">' : '')+
+  art.innerHTML=(portrait ? '<img src="'+String(portrait).replace(/"/g,"&quot;")+'" alt="Yousef Ahmed portrait" fetchpriority="high" decoding="async">' : '')+
     '<span class="art-burst" aria-hidden="true">POW!</span><span class="art-stamp">CREATE · PLAN · SHOOT · DELIVER</span>';
   hero.appendChild(art);
   const cover=document.createElement("div");
