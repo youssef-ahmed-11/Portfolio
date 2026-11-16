@@ -1712,41 +1712,35 @@ body::before,body::after{display:none!important}
 @media(prefers-reduced-motion:reduce){.hero-prop,.hero-art img{animation:none!important}}
 </style>
 
-<style id="client-marquee-style">
-/* Seamless, compact client ticker in the portfolio's existing visual language */
-#clients .clients{display:block!important;position:relative!important;overflow:hidden!important;width:100%!important;padding:8px 0 18px!important;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
-#clients .client-marquee-track{display:flex!important;align-items:stretch!important;gap:0!important;width:max-content!important;will-change:transform;animation:clientMarquee 16s linear infinite alternate}
-#clients .client-marquee-group{display:flex!important;align-items:stretch!important;gap:12px!important;flex:0 0 auto!important;width:max-content!important;padding-right:12px!important}
-#clients .client-marquee-group>.cw{flex:0 0 clamp(150px,16vw,184px)!important;width:clamp(150px,16vw,184px)!important;min-width:0!important;display:flex!important;flex-direction:column!important;gap:8px!important}
-#clients .client-marquee-group .cl{width:100%!important;min-height:112px!important;flex:0 0 auto!important}
-#clients .client-marquee-group .mats,#clients .client-marquee-group .docs{width:100%!important}
-#clients .client-marquee-group .mat{min-height:48px!important}
-@keyframes clientMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(max-width:600px){
- #clients .clients{overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
- #clients .clients::-webkit-scrollbar{display:none}
- #clients .client-marquee-track{animation-duration:14s}
- #clients .client-marquee-group{gap:9px!important;padding-right:9px!important}
- #clients .client-marquee-group>.cw{flex-basis:148px!important;width:148px!important}
- #clients .client-marquee-group .cl{min-height:96px!important}
+<style id="client-grid-performance">
+/* Keep every client visible in a compact two-row grid without cloning cards. */
+#clients .clients{
+ display:grid!important;grid-auto-flow:column!important;
+ grid-template-rows:repeat(2,auto)!important;
+ grid-auto-columns:minmax(160px,184px)!important;
+ gap:14px!important;overflow-x:auto!important;overscroll-behavior-x:contain;
+ scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:8px 2px 18px!important;
 }
-@media(prefers-reduced-motion:reduce){#clients .client-marquee-track{animation:none!important;transform:none!important}#clients .clients{overflow-x:auto!important}}
+#clients .clients::-webkit-scrollbar{display:none}
+#clients .clients>.cw{width:auto!important;min-width:0!important}
+@media(min-width:960px){#clients .clients{grid-auto-columns:minmax(190px,1fr)!important}}
+@media(prefers-reduced-motion:reduce){#clients .clients{scroll-behavior:auto}}
 </style>
 
 
-<style id="client-open-links-visible">
+<style id="client-links-visible">
 /* Keep each client's actual work links visible and unmistakably clickable */
-#clients .client-marquee-group>.cw{height:auto!important;align-self:flex-start!important}
-#clients .client-marquee-group .mats{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin:8px 0 0!important;overflow:visible!important}
-#clients .client-marquee-group a.mat{display:flex!important;align-items:center!important;width:100%!important;min-height:58px!important;padding:9px 10px!important;position:relative!important;z-index:2!important;background:#171516!important;border:1px solid #5a4740!important;border-left:3px solid #e52b32!important;color:#f4e3c5!important;text-decoration:none!important;pointer-events:auto!important}
-#clients .client-marquee-group .mat .mt{display:block!important;min-width:0!important}
-#clients .client-marquee-group .mat .mt small{display:block!important;font-size:9px!important}
-#clients .client-marquee-group .mat .mt b{display:block!important;font-size:12px!important;line-height:1.25!important}
-#clients .client-marquee-group .mat .mat-action{display:inline-block!important;margin-top:6px!important;padding:5px 8px!important;background:#e52b32!important;color:#fff4df!important;font:900 10px/1.2 var(--m)!important;letter-spacing:.08em!important}
-#clients .client-marquee-group a.mat:hover .mat-action{background:#fff4df!important;color:#211315!important}
-#clients .client-marquee-group .docs{display:grid!important;gap:7px!important;margin-top:8px!important}
-#clients .client-marquee-group .doc a{display:inline-block!important;position:relative!important;z-index:2!important;padding:6px 8px!important;background:#e52b32!important;color:#fff4df!important;border:0!important;text-decoration:none!important}
-@media(max-width:600px){#clients .client-marquee-group>.cw{flex-basis:168px!important;width:168px!important}#clients .client-marquee-group a.mat{min-height:62px!important}}
+#clients .clients>.cw{height:auto!important;align-self:flex-start!important}
+#clients .clients .mats{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin:8px 0 0!important;overflow:visible!important}
+#clients .clients a.mat{display:flex!important;align-items:center!important;width:100%!important;min-height:58px!important;padding:9px 10px!important;position:relative!important;z-index:2!important;background:#171516!important;border:1px solid #5a4740!important;border-left:3px solid #e52b32!important;color:#f4e3c5!important;text-decoration:none!important;pointer-events:auto!important}
+#clients .clients .mat .mt{display:block!important;min-width:0!important}
+#clients .clients .mat .mt small{display:block!important;font-size:9px!important}
+#clients .clients .mat .mt b{display:block!important;font-size:12px!important;line-height:1.25!important}
+#clients .clients .mat .mat-action{display:inline-block!important;margin-top:6px!important;padding:5px 8px!important;background:#e52b32!important;color:#fff4df!important;font:900 10px/1.2 var(--m)!important;letter-spacing:.08em!important}
+#clients .clients a.mat:hover .mat-action{background:#fff4df!important;color:#211315!important}
+#clients .clients .docs{display:grid!important;gap:7px!important;margin-top:8px!important}
+#clients .clients .doc a{display:inline-block!important;position:relative!important;z-index:2!important;padding:6px 8px!important;background:#e52b32!important;color:#fff4df!important;border:0!important;text-decoration:none!important}
+@media(max-width:600px){#clients .clients>.cw{flex-basis:168px!important;width:168px!important}#clients .clients a.mat{min-height:62px!important}}
 </style>
 
 
@@ -2343,31 +2337,7 @@ footer{color:#fff4df!important;border-top:4px solid #fff4df!important}
 </style>
 
 
-<script id="client-marquee-script">
-(() => {
-  const viewport=document.querySelector("#clients .clients");
-  if(!viewport || viewport.dataset.marqueeReady) return;
-  const originals=[...viewport.children];
-  if(originals.length<2) return;
-  viewport.dataset.marqueeReady="1";
-  const track=document.createElement("div");
-  track.className="client-marquee-track";
-  const makeGroup=(nodes,duplicate=false)=>{
-    const group=document.createElement("div");
-    group.className="client-marquee-group";
-    if(duplicate) group.setAttribute("aria-hidden","true");
-    nodes.forEach(node=>{
-      const item=duplicate?node.cloneNode(true):node;
-      if(duplicate)item.querySelectorAll("a,button,[tabindex]").forEach(el=>el.setAttribute("tabindex","-1"));
-      group.appendChild(item);
-    });
-    return group;
-  };
-  track.appendChild(makeGroup(originals));
-  track.appendChild(makeGroup(originals,true));
-  viewport.appendChild(track);
-})();
-</script>
+
 
 </body>
 </html>
