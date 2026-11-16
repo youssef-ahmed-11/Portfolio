@@ -1825,7 +1825,7 @@ body::before,body::after{display:none!important}
 <main id="app"><noscript><p style="padding:40px">Please enable JavaScript to view this portfolio.</p></noscript></main>
 <footer>© <span id="yr"></span> <span id="fn">YOUSEF AHMED</span> · </footer>
 
-<script src="content.js?v=20261116-7"></script>
+<script src="content.js?v=20261116-8"></script>
 <script>
 /* ---------------- Engine (no need to edit below) ---------------- */
 const S = SITE, $ = s => document.querySelector(s);
@@ -1839,8 +1839,7 @@ const list = (a, n, fn) => (a && a.length ? a : Array(n).fill(null)).map(fn).joi
 const vid = (id, title, fmt) => {
   const c = "vid " + (fmt || "");
   if (!id) return `<div class="${c}"><div class="ph"><span>VIDEO PLACEHOLDER</span><small>Add a YouTube link</small></div></div>`;
-  const videoUrl = fmt === "vertical" ? `https://www.youtube.com/shorts/${id}` : `https://www.youtube.com/watch?v=${id}`;
-  return `<a class="${c}" href="${videoUrl}" aria-label="Watch ${esc(title || "portfolio video")} on YouTube"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></a>`;
+  return `<button class="${c}" type="button" data-yt="${id}" aria-label="Play ${esc(title || "portfolio video")}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="${esc(title || "Video thumbnail")}" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></button>`;
 };
 const head = (n, t, sub) => `<div class="head rv"><div class="slate">${n}</div><h2>${t}</h2><p class="sub">${sub}</p></div>`;
 const sec = (id, inner) => `<section class="sec" id="${id}"><div class="wrap">${inner}</div></section>`;
@@ -1991,6 +1990,15 @@ function openCV() {
 }
 document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelector(".cvm")?.remove(); document.querySelector(".lb")?.remove(); });
 document.addEventListener("click", e => {
+  const video = e.target.closest("[data-yt]");
+  if (video) {
+    e.preventDefault();
+    const id = video.dataset.yt;
+    const title = video.getAttribute("aria-label") || "Portfolio video";
+    video.removeAttribute("data-yt");
+    video.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0" title="${esc(title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    return;
+  }
   if (e.target.closest("[data-cv]")) return openCV();
   if (e.target.closest(".cvm [data-x]")) return document.querySelector(".cvm").remove();
   const l = e.target.closest("[data-lb]");
