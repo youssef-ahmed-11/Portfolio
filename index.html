@@ -1689,6 +1689,21 @@ footer{color:#fff4df!important;border-top:4px solid #f1dfc2!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 
+
+<style id="portfolio-performance-pass">
+/* Performance pass: preserve the comic look while reducing fixed paints and animated filters. */
+html{scroll-behavior:smooth}
+body{background-attachment:scroll!important}
+body::before,body::after{display:none!important}
+.hero-prop{will-change:auto!important;perspective:none!important;transform-style:flat!important;animation:propFloatLite 6s ease-in-out infinite!important;animation-delay:var(--delay,0s)!important;backface-visibility:hidden}
+.hero-prop::before{filter:none!important;opacity:.7}
+.hero-prop img{filter:drop-shadow(0 7px 7px rgba(0,0,0,.38))!important}
+.hero-art img{animation:heroPortraitIn .75s ease-out both!important;filter:contrast(1.12) saturate(1.08) drop-shadow(5px 5px 0 #211315) drop-shadow(8px 8px 0 #df292e)!important}
+.hero-art .art-burst,.hero-art .art-stamp{animation:none!important}
+@keyframes propFloatLite{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+@media(max-width:760px){body{background-attachment:scroll!important}.hero-prop{animation-duration:7s!important}}
+@media(prefers-reduced-motion:reduce){.hero-prop,.hero-art img{animation:none!important}}
+</style>
 </head>
 <body>
 <header class="nav">
