@@ -250,13 +250,6 @@ const SITE = {
       "tone": "light",
       "project": "",
       "url": "",
-      "links": [
-        {
-          "kind": "Content Plan",
-          "title": "",
-          "url": "https://www.facebook.com/share/p/1FBbqrmmuX/"
-        }
-      ]
     },
     {
       "name": "Fady El Fahdy - فادي الفهدي﻿",
