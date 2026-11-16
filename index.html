@@ -1796,7 +1796,7 @@ $("#app").innerHTML = `
   <h1>${esc(S.name.toUpperCase()).replace(/ (.+)$/, "<br>$1")}</h1>
   <p class="cred">Written, shot &amp; strategized by</p>
   <p class="roles">${ROLES.map(esc).join(" · ")}</p>
-  <div class="cta"><a class="btn red" href="#featured">Watch featured work</a>
+  <div class="cta"><a class="btn red" href="#work">Explore my work</a>
   ${S.cv ? `<a class="btn" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a>` : `<span class="btn off">CV coming soon</span>`}</div>
   <div class="hero-props" aria-hidden="true">
     <div class="hero-prop shield" style="--delay:0s">
@@ -1837,8 +1837,8 @@ ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a><button class="btn cv-preview" data-cv aria-label="Open a preview of my CV"><span aria-hidden="true">▣</span> Preview CV <small>VIEW PDF</small></button>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
 ${(() => { const F = S.featured || {}, fid = yt(F.youtube), ff = F.file || "", has = !!(fid || ff), fmt = F.format || (/shorts\//.test(F.youtube || "") ? "vertical" : "cine");
   const player = ff ? `<video class="fv" controls playsinline preload="metadata" src="${esc(ff)}"></video>` : vid(fid, F.title, fmt === "vertical" ? "vertical" : fmt === "wide" ? "" : "cine");
-  return sec("featured", head("FEATURED PROJECT", "NOW SHOWING", has ? "A featured reel to start with." : "A placeholder for your showreel or strongest piece.") +
-  `<div class="feat${fmt === "vertical" && !ff ? " v" : ""} rv"><div class="fp">${has ? player : vid("", "", "cine")}</div><div class="finfo">${has ? `<span class="slate">FEATURED REEL</span><h3>${val(F.title, "Title")}</h3>${F.desc ? `<p>${esc(F.desc)}</p>` : ""}` : `<p class="meta">FEATURED PLACEHOLDER — ${esc(F.note || "")}</p>`}</div></div>`); })()}
+  return has ? sec("featured", head("FEATURED PROJECT", "NOW SHOWING", "A featured reel to start with.") +
+  `<div class="feat${fmt === "vertical" && !ff ? " v" : ""} rv"><div class="fp">${player}</div><div class="finfo"><span class="slate">FEATURED REEL</span><h3>${val(F.title, "Title")}</h3>${F.desc ? `<p>${esc(F.desc)}</p>` : ""}</div></div>`) : ""; })()}
 <div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">1M+</span><span class="metric-label">VIEWS</span></div></div>
   ${(S.clients || []).filter(c => c && (c.name || c.logo)).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Selected brands behind the work." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo)).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
 ${sec("work", head(REEL(), "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
