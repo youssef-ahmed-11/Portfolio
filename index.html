@@ -1714,13 +1714,12 @@ body::before,body::after{display:none!important}
 <style id="client-marquee-style">
 /* Seamless, compact client ticker in the portfolio's existing visual language */
 #clients .clients{display:block!important;position:relative!important;overflow:hidden!important;width:100%!important;padding:8px 0 18px!important;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
-#clients .client-marquee-track{display:flex!important;align-items:stretch!important;gap:0!important;width:max-content!important;will-change:transform;animation:clientMarquee 16s linear infinite}
+#clients .client-marquee-track{display:flex!important;align-items:stretch!important;gap:0!important;width:max-content!important;will-change:transform;animation:clientMarquee 16s linear infinite alternate}
 #clients .client-marquee-group{display:flex!important;align-items:stretch!important;gap:12px!important;flex:0 0 auto!important;width:max-content!important;padding-right:12px!important}
 #clients .client-marquee-group>.cw{flex:0 0 clamp(150px,16vw,184px)!important;width:clamp(150px,16vw,184px)!important;min-width:0!important;display:flex!important;flex-direction:column!important;gap:8px!important}
 #clients .client-marquee-group .cl{width:100%!important;min-height:112px!important;flex:0 0 auto!important}
 #clients .client-marquee-group .mats,#clients .client-marquee-group .docs{width:100%!important}
 #clients .client-marquee-group .mat{min-height:48px!important}
-#clients .clients:hover .client-marquee-track,#clients .clients:focus-within .client-marquee-track{animation-play-state:paused}
 @keyframes clientMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:600px){
  #clients .clients{overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
