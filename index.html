@@ -1947,7 +1947,7 @@ ${sec("about", head("THE LOGLINE", "ABOUT", "") +
   </div>
   <div class="bio">${S.bioApproved ? "" : `<span class="draft">DRAFT BIO · PENDING APPROVAL</span>`}${S.bio.map(p => `<p>${esc(p)}</p>`).join("")}
   <div class="facts"><div><span class="meta">Based in</span><span>${esc(S.location)}</span></div><div><span class="meta">Industries</span><span>${S.industries.map(esc).join("<br>")}</span></div><div><span class="meta">Open to</span><span>${esc(S.openTo)}</span></div></div><div class="cta" style="margin-top:24px">${S.cv ? `<a class="btn red" href="${esc(S.cv)}" download="Yousef-Ahmed-CV.pdf">Download CV</a>` : `<span class="btn off">CV coming soon</span>`}</div></div></div>`)}
-<div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">1M+</span><span class="metric-label">VIEWS</span></div></div>
+<div class="metrics rv" aria-label="Key metrics"><div class="metric-panel"><span class="metric-number">25+</span><span class="metric-label">CLIENTS</span></div><div class="metric-panel"><span class="metric-number">10M+</span><span class="metric-label">VIEWS</span></div></div>
   ${(S.clients || []).filter(c => c && (c.name || c.logo) && !/avenue\\s*al\\s*arab|آفينو\\s*العرب/i.test(String(c.name || "")) && !String(c.logo || "").includes("466178143")).length ? sec("clients", head("BRANDS I’VE WORKED WITH", "OUR CLIENTS", "Brands I’ve collaborated with." + ((S.clients || []).some(c => c && (clientLinks(c).length || clientDocs(c).length)) ? " Open each client’s video, strategy, content plan or script right under its logo." : "")) + `<div class="clients rv">${S.clients.filter(c => c && (c.name || c.logo) && !/avenue\\s*al\\s*arab|آفينو\\s*العرب/i.test(String(c.name || "")) && !String(c.logo || "").includes("466178143")).map(c => { const ls = clientLinks(c), ds = clientDocs(c), n = ls.length + ds.length; return `<div class="cw${n ? " has" : ""}">${client(c, n)}${linksHtml(ls)}${docsHtml(ds)}</div>`; }).join("")}</div>`) : ""}
 ${sec("work", head(REEL(), "VIDEO &amp; COMMERCIAL WORK", "Reels and commercial projects, tap to play.") +
   `<div class="grid">${list(S.projects, 3, project)}</div>`)}
@@ -2005,7 +2005,7 @@ if ("IntersectionObserver" in window) {
   els.forEach(x => io.observe(x));
 } else els.forEach(x => x.classList.add("in"));
 
-/* Social-proof metrics are intentionally static: 25+ clients and 1M+ views. */
+/* Social-proof metrics are intentionally static: 25+ clients and 10M+ views. */
 </script>
 
 <script>
@@ -2404,7 +2404,7 @@ footer{color:#fff4df!important;border-top:4px solid #fff4df!important}
   if(!metric || metric.dataset.counted) return;
   metric.dataset.counted='1';
   const finalText=metric.textContent.trim();
-  const target=1000000;
+  const target=10000000;
   const format=n=>n>=1000000?(n/1000000).toFixed( n===target ? 0 : 1 ).replace(/\.0$/,'')+'M':n>=1000?Math.floor(n/1000)+'K':String(n);
   const run=()=>{
     const start=performance.now(),duration=1700;
