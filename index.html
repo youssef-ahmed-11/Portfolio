@@ -1813,6 +1813,35 @@ body::before,body::after{display:none!important}
 @media(prefers-reduced-motion:reduce){#neon-sound-player .neon-disc{animation:none!important}}
 </style>
 
+
+<style id="director-collage-responsive-fit">
+/* Responsive sizing: keep the complete cinema/music artwork and its footer visible. */
+.director-collage{
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  padding:clamp(12px,3vw,20px)!important;
+}
+.dc-stage{
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:1.2 / 1!important;
+}
+.dc-bottom{
+  min-height:48px;
+  align-items:center;
+  gap:8px 12px;
+}
+.dc-bottom b{
+  font-size:clamp(19px,4.2vw,25px)!important;
+}
+@media(max-width:480px){
+  .dc-stage{aspect-ratio:1.08 / 1!important}
+  .dc-bottom b{font-size:clamp(18px,5vw,23px)!important}
+  .dc-bottom span{font-size:7px!important}
+}
+</style>
+
 </head>
 <body>
 <header class="nav">
