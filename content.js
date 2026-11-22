@@ -299,7 +299,7 @@ const SITE = {
       "project": "",
       "url": "",
       "links": []
-    }
+    },
     {
       "name": "Smile Dent",
       "logo": "assets/clients/smile-dent.svg",
