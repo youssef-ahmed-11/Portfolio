@@ -300,6 +300,14 @@ const SITE = {
       "url": "",
       "links": []
     }
+    {
+      "name": "Smile Dent",
+      "logo": "assets/clients/smile-dent.jpg",
+      "tone": "light",
+      "project": "",
+      "url": "",
+      "links": []
+    }
   ],
   "display": {
     "boardColumns": "6",
