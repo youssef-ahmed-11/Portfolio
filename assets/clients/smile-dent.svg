@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
+<rect width="960" height="960" fill="#fff"/>
+<g fill="none" stroke="#103b79" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+<path d="M322 292 C330 225 400 190 472 205 C520 215 542 231 565 219 C650 176 741 221 754 298 C770 390 722 485 679 575 C659 617 651 644 623 650 C588 657 569 626 555 593 C538 555 512 528 480 528 C447 528 422 557 406 596 C393 628 377 657 345 650 C316 644 305 608 287 568 C247 479 201 383 220 298 C235 230 285 205 350 210 C394 213 424 231 457 218"/>
+<path d="M350 262 C325 293 315 341 323 394" stroke="#16a4b8" stroke-width="9"/>
+<path d="M416 368 Q449 336 476 371" stroke="#16a4b8" stroke-width="12"/>
+<path d="M505 371 Q536 337 566 368" stroke="#16a4b8" stroke-width="12"/>
+</g>
+<path d="M420 414 Q480 430 540 414 Q532 468 480 475 Q429 468 420 414Z" fill="#e83b2b"/>
+<path d="M438 440 Q480 452 522 440 Q507 466 480 469 Q453 466 438 440Z" fill="#fff"/>
+<g fill="none" stroke="#16a4b8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M626 174 L650 121 L676 174 L726 192 L677 207 L657 258 L642 207 L593 190Z"/>
+<path d="M704 245 L719 214 L737 245 L766 257 L737 268 L725 299 L713 268 L684 258Z"/>
+</g>
+<text x="480" y="750" text-anchor="middle" fill="#e83b2b" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="700" letter-spacing="1">Smile Dent</text>
+<text x="480" y="807" text-anchor="middle" fill="#2695a8" font-family="Arial,Helvetica,sans-serif" font-size="28" letter-spacing="3">Dental Clinic</text>
+</svg>

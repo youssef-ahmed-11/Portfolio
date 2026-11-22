@@ -302,7 +302,7 @@ const SITE = {
     }
     {
       "name": "Smile Dent",
-      "logo": "assets/clients/smile-dent.jpg",
+      "logo": "assets/clients/smile-dent.svg",
       "tone": "light",
       "project": "",
       "url": "",
